@@ -75,7 +75,7 @@
                                       <span class="menu-category-title">ПОПУЛЯРНЕ</span>
                                       <div class="tag-conteiner">
                                           @foreach(\App\Services\HomeServices::getTopTags() as $tag)
-                                              <a class="menu-dropdown-item" href="{{ '/search?query='.$tag->name}}">{{ $tag->name }}</a>
+                                              <a class="menu-dropdown-item" href="{{ '/search?query=' . $tag->name}}">#{{ $tag->name }}</a>
                                           @endforeach
                                       </div>
 
