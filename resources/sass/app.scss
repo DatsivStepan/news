@@ -1291,12 +1291,15 @@ main {
 // end three news block styles
 
 .single-news-container {
+    background: #ffffff;
     .singl-news-body {
         background: #ffffff;
     width: calc( 100% - 24px );
     margin: 0 auto;
     }
     .category {
+        padding-right: 0;
+        padding-left: 0;
         position: relative;
         .single-card-img-top {
             width: 100%;
@@ -1390,6 +1393,8 @@ main {
         color: #1f5e9c;
         font-family: 'Raleway', sans-serif;
         padding: 10px 20px;
+        margin-left: 0;
+        border-bottom: 1px solid #d7d7d7;
         .btn-group.me-2 {
             margin-left: 30px;
             a {
@@ -1406,13 +1411,12 @@ main {
         border-top: 1px solid #d7d7d7;
         border-bottom: 1px solid #d7d7d7;
         margin: 0 0;
-        padding: 30px 40px 0 ;
+        padding: 30px 32px 0 ;
     }
 }
 
 .loader-end-block {
     margin: 20px 0 !important;
-    border-bottom: 1px solid #f5f5f5;
 }
 
 .fb-comments.fb_iframe_widget.fb_iframe_widget_fluid_desktop {
@@ -2284,6 +2288,7 @@ footer {
 
     }
     .single-news-container {
+        margin-left: -13px;
         .single-news-title {
             font-size: 18px;
             padding: 10px 0 0 0;
