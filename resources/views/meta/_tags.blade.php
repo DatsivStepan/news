@@ -1,5 +1,11 @@
 @section('meta_tags')
     <?php $metaData = getMetaData(isset($meta) ? $meta : []) ?>
+
+    <meta name="title" content="<?= $metaData['title']; ?>">
+    <meta name="description" content="<?= $metaData['description']; ?>">
+    <meta property="image" content="<?= $metaData['image']; ?>">
+    <meta property="url" content="<?= $metaData['url']; ?>">
+
     <meta property="op:markup_version" content="v1.0">
     <meta property="fb:article_style" content="myarticlestyle">
     <meta name="description" content="<?= $metaData['description']; ?>">

@@ -12,8 +12,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="google-site-verification" content="f0keE2RFQFMrpYgtuv84yqvMN8JOHswSe5tl9bsvetU"/>
 
-        <title>{{ getSetting('site_name') ?? config('app.name')  }}</title>
+        <title>
+            @yield('pageTitle', 'Інформаційне агентство “Король Данило” | Найсвіжіші новини України і Світу')
+        </title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -27,6 +30,39 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         @yield('meta_tags')
+        <style>
+            .social-header {
+                padding-top: 15px;
+            }
+            .social-header a .social-icon {
+                fill: #56564f;
+                align-items: center;
+                border: 1px solid #56564f;
+                border-radius: 50%;
+                color: #56564f;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 5px;
+                margin-right: 5px;
+                height: 30px;
+                width: 30px;
+                font-size: 18px;
+            }
+            @media (max-width:640px){
+                .social-header a .social-icon {
+                    display: inline-block;
+                    text-align: center;
+                    height: 35px;
+                    width: 35px;
+                    font-size: 22px;
+                }
+            }
+            @media screen and (min-width: 992px) {
+                .main-header .main-header-container .main-header-left-side .dropdown-menu.show {
+                    width: 20vw;
+                }
+            }
+        </style>
     </head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SYYQ5EWE81"></script>
     <script>
@@ -43,14 +79,14 @@
             <section class="top-bar mobile-hide">
                 <div class="custom-container">
                     <div class="left-side">
-                        <span><img src="{{ asset('/img/map_marker.png') }}">{{ getSetting('address') }}</span>
+                        <span><img src="{{ asset('/img/map_marker.png') }}" >{{ getSetting('address') }}</span>
                     </div>
                     <div class="right-side">
                         <div class="top-bar-email">
-                            <a href="mailto:{{ getSetting('email_address') }}"><img src="{{ asset('/img/email_icon.png') }}">{{ getSetting('email_address') }}</a>
+                            <a href="mailto:{{ getSetting('email_address') }}" rel=”nofollow”><img src="{{ asset('/img/email_icon.png') }}">{{ getSetting('email_address') }}</a>
                         </div>
                         <div class="top-bar-phone">
-                            <a href="tel:{{ getSetting('phone') }}"><img src="{{ asset('/img/Phone_icon.png') }}">{{ getSetting('phone') }}</a>
+                            <a href="tel:{{ getSetting('phone') }}" rel=”nofollow”><img src="{{ asset('/img/Phone_icon.png') }}">{{ getSetting('phone') }}</a>
                         </div>
                     </div>
                 </div>
@@ -72,13 +108,25 @@
                                       @endforeach
                                   </div>
                                   <div class="menu-category menu-sub-category">
-                                      <span class="menu-category-title">ПОПУЛЯРНЕ</span>
-                                      <div class="tag-conteiner">
-                                          @foreach(\App\Services\HomeServices::getTopTags() as $tag)
-                                              <a class="menu-dropdown-item" href="{{ '/search?query=' . $tag->name}}">#{{ $tag->name }}</a>
-                                          @endforeach
-                                      </div>
+                                      <p class="social-header">
+                                          @if($facebookLink = getSetting('facebook_link'))
+                                              <a href="{{ $facebookLink }}" rel=”nofollow” style="text-decoration: none !important;">
+                                                  <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+                                              </a>
+                                          @endif
 
+                                          @if($youtubeLink = getSetting('youtube_link'))
+                                              <a href="{{ $youtubeLink }}" rel=”nofollow” style="text-decoration: none !important;">
+                                                  <span class="social-icon"><i class="fa fa-youtube" aria-hidden="true"></i></span>
+                                              </a>
+                                          @endif
+
+                                          @if($telegramLink = getSetting('telegram_link'))
+                                              <a href="{{ $telegramLink }}" rel=”nofollow” style="text-decoration: none !important;">
+                                                  <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
+                                              </a>
+                                         @endif
+                                      </p>
                                   </div>
                               </div>
 
@@ -124,4 +172,13 @@
           } );
         });
     </script>
+
+    {!! getSetting('other_scripts') !!}
+
+    {{-- Підрахунок відвідувань на сайт --}}
+    @php
+        if ($site = \App\Models\Page::where(['slug' => 'site'])->first()) {
+            views($site)->record();
+        }
+    @endphp
 </html>

@@ -6,15 +6,18 @@ use App\Filters\NewsBasketFilter;
 use App\Filters\NewsDraftsFilter;
 use App\Filters\NewsFilter;
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use App\Models\News;
 use App\Repositories\AuthorsRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\GalleryRepository;
 use App\Repositories\HomeSliderRepository;
 use App\Repositories\NewsRepository;
 use App\Repositories\PaidNewsRepository;
 use App\Repositories\UserRepository;
 use App\Services\NewsServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 /**
  * Class NewsController
@@ -28,6 +31,7 @@ class NewsController extends Controller
 
     private $categoryRepository;
     private $userRepository;
+    private $galleryRepository;
     private $paidNewsRepository;
     private $homeSliderRepository;
 
@@ -40,7 +44,8 @@ class NewsController extends Controller
         CategoryRepository $categoryRepository,
         HomeSliderRepository $homeSliderRepository,
         AuthorsRepository $authorsRepository,
-        PaidNewsRepository $paidNewsRepository
+        PaidNewsRepository $paidNewsRepository,
+        GalleryRepository $galleryRepository
     )
     {
         $this->paidNewsRepository = $paidNewsRepository;
@@ -50,6 +55,7 @@ class NewsController extends Controller
         $this->authorsRepository = $authorsRepository;
         $this->homeSliderRepository = $homeSliderRepository;
         $this->userRepository = $userRepository;
+        $this->galleryRepository = $galleryRepository;
     }
     /**
      * Display a listing of the resource.
@@ -78,13 +84,17 @@ class NewsController extends Controller
         //$news->author = auth()->user()->author->id;
         $news->category = request()->get('category_id');
 
-        $categories +=[
+        $categories += [
             '' => 'Виберіть Батьківську Категорію'
         ];
         $categories += $this->categoryRepository->getParentsCategoriesForNews();
         $authors = $this->authorsRepository->getAuthors();
+        $galleries = Gallery::orderBy('id', 'DESC')->get()->toArray();
+        $galleries = json_encode(Arr::map($galleries, function ($value, $key) {
+            return ['text' => $value['id'] . ' | ' . $value['name'], 'value' => (string)$value['id']];
+        }));
 
-        return view('admin.news.create', compact('news', 'tags', 'image', 'categories', 'authors'));
+        return view('admin.news.create', compact('news', 'tags', 'image', 'categories', 'authors', 'galleries'));
     }
 
     /**
@@ -101,6 +111,16 @@ class NewsController extends Controller
 
         return redirect()->route('admin.news.index')
             ->with('success', 'News created successfully.');
+    }
+
+    public function upload(Request $request){
+        $fileName = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->storeAs('uploads', $fileName, 'public');
+        return response()->json(['location' => "/storage/$path"]);
+
+        /*$imgpath = request()->file('file')->store('uploads', 'public');
+        return response()->json(['location' => "/storage/$imgpath"]);*/
+
     }
 
     /**
@@ -130,7 +150,13 @@ class NewsController extends Controller
 
         $image = implode("','", $news->image->pluck('path')->toArray());
         $tags = implode(",", $news->tags->pluck('name')->toArray());
-        return view('admin.news.edit', compact('news','tags', 'image', 'categories', 'authors'));
+
+        $galleries = Gallery::orderBy('id', 'DESC')->get()->toArray();
+        $galleries = json_encode(Arr::map($galleries, function ($value, $key) {
+            return ['text' => $value['id'] . ' | ' . $value['name'], 'value' => (string)$value['id']];
+        }));
+
+        return view('admin.news.edit', compact('news','tags', 'image', 'categories', 'authors', 'galleries'));
     }
 
     /**
@@ -144,6 +170,7 @@ class NewsController extends Controller
     {
         $data = request()->validate(News::$rules);
 
+        $data['show_author'] = isset($data['show_author']) ? 1 : 0;
         $this->newsServices->updateNews($news, $data);
 
         return redirect()->route('admin.news.index')

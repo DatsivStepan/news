@@ -94,10 +94,22 @@
                         Слайдер
                     </a>
 
-                    <a class="nav-link" href="/admin/files">
-                        <div class="sb-nav-link-icon"><i class="fas fa-images"></i></div>
-                        Файли
+{{--                    <a class="nav-link" href="/admin/files">--}}
+{{--                        <div class="sb-nav-link-icon"><i class="fas fa-images"></i></div>--}}
+{{--                        Файли--}}
+{{--                    </a>--}}
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayout" aria-expanded="false" aria-controls="collapseLayout">
+                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Файл менеджер
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
+                    <div class="collapse" id="collapseLayout" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordio">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/admin/gallery">Галереї</a>
+                            <a class="nav-link" href="/admin/files">Список файлів</a>
+                        </nav>
+                    </div>
+
 
                     <a class="nav-link" href="/admin/paidNews">
                         <div class="sb-nav-link-icon"><i class="fas fa-images"></i></div>

@@ -52,6 +52,11 @@ class  NewsRepository extends BaseRepository
             $query->search($options['search']);
             unset($options['search']);
         }
+
+        if (isset($options['tagSearch'])) {
+            $query->tagSearch($options['tagSearch']);
+            unset($options['tagSearch']);
+        }
         $options['filters'] = ['type_publication' => 1];
 
         if (isset($options['viewType'])) {

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Filters\QueryFilter;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,8 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Category extends Model
+class Category extends Model implements Viewable
 {
+    use InteractsWithViews;
+
     static $rules = [
 		'name' => 'required',
 		'parent_id' => '',
@@ -70,6 +74,22 @@ class Category extends Model
     public function getShortDescription():?string
     {
         return $this->description;
+    }
+
+    /**
+     * @var string
+     */
+    public function getMetaTitle():?string
+    {
+        return $this->getName() . " | Інформаційне агентство “Король Данило”";
+    }
+
+    /**
+     * @var string
+     */
+    public function getMetaDescription():?string
+    {
+        return "Читати ⏩ " . $this->getName() . " | Інформаційне агентство “Король Данило” - головні новини України та Світу";
     }
 
     /**

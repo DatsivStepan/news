@@ -64,4 +64,8 @@ return [
     'email' => 'Пошта',
     'dateOfPublication' => 'Дата Публікації',
     'image' => 'Зображення',
+    'galleries' => 'Галереї',
+    'gallery' => [
+        'update' => 'Редагування'
+    ]
 ];

@@ -19,7 +19,7 @@
                             </h5>
                             <p class="card-text">{{ $new->mini_description }}</p>
                             <div class="read-more-container">
-                                <p class="read-more"> <a href="{{$new->getUrl()}}">Читти > </a></p>
+                                <p class="read-more"> <a href="{{$new->getUrl()}}">Читати > </a></p>
                             </div>
                         </div>
                     </div>

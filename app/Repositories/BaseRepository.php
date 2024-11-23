@@ -393,17 +393,7 @@ abstract class BaseRepository
 
     public function massDeleteByConditions(array $conditions)
     {
-        $query = ($this->getModelClass())::query();
-
-        foreach ($conditions as $field => $value) {
-            if (is_array($value)) {
-                $query->whereIn($field, $value);
-            } else {
-                $query->where($field, $value);
-            }
-        }
-
-        return $query->delete();
+        return ($this->getModelClass())::where($conditions)->delete();
     }
 
     public function attach(Model $model, string $relation, $values): void

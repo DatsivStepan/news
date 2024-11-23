@@ -44,6 +44,7 @@ class News extends Model implements Viewable
 		'slug' => '',
 		'image' => '',
 		'author_id' => '',
+		'show_author' => '',
 		'subtitle' => 'required',
 		'mini_description' => 'required',
 		'description' => 'required',
@@ -62,7 +63,7 @@ class News extends Model implements Viewable
      */
     protected $fillable = [
         'title', 'slug', 'subtitle', 'mini_description', 'description', 'type_publication',
-        'type', 'date_of_publication'
+        'type', 'date_of_publication', 'show_author'
     ];
 
     protected $perPage = 20;
@@ -83,10 +84,34 @@ class News extends Model implements Viewable
             });
     }
 
+    public function scopeTagSearch($query, $search)
+    {
+        return $query
+            ->orWhereHas('tags', function ($q) use($search){
+                $q->where('name', 'LIKE', '%'.$search.'%');
+            });
+    }
+
     public function getTitle()
     {
-
         return $this->title;
+    }
+
+    public function isShowAuthor()
+    {
+        return $this->show_author;
+    }
+
+    public function getMetaTitle()
+    {
+        return $this->getTitle() . " | Король Данило";
+    }
+
+    public function getMetaDescription()
+    {
+        $description = strip_tags($this->description);
+
+        return "Інформаційне агентство “Король Данило” ⏩ " . mb_substr($description, 0, 150) . '...';
     }
 
     public function isImportment()
@@ -99,9 +124,14 @@ class News extends Model implements Viewable
         return $this->description;
     }
 
-    public function getPublicationDate()
+    public function getPublicationDate($time = true, $format = 'd.m.Y')
     {
-        return Carbon::parse($this->date_of_publication)->format('d.m.Y H:i');
+        return Carbon::parse($this->date_of_publication)->format($format . ($time ? ' H:i' : ''));
+    }
+
+    public function getModifiedDate($time = true)
+    {
+        return Carbon::parse($this->updated_at)->format('d.m.Y ' . ($time ? 'H:i' : ''));
     }
 
     public function getUrl()
@@ -116,7 +146,8 @@ class News extends Model implements Viewable
 
     public function getAuthorFullName()
     {
-        return $this->author ? $this->author->pluck('name')->first() : '';
+        $author = $this->author->first();
+        return $author ? $author->getFullName() : '';
     }
 
     public function getaDate()
@@ -143,7 +174,8 @@ class News extends Model implements Viewable
 
     public function getCategoryName()
     {
-       return $this->category()->first()->name;
+        $category = $this->category()->first();
+        return $category ? $category->name : '';
     }
 
     public function getCategory()

@@ -26,14 +26,14 @@
                 @if(empty($date))
                     <p class="widget-news-date">
                         @php {{ $date = $news->date_of_publication; }} @endphp
-                        {{\Carbon\Carbon::parse($date)->day . ' ' . \App\Helpers\DateHelper::getMonth()[\Carbon\Carbon::parse($date)->format('M')] }}
+                        {{ \App\Helpers\DateHelper::getMonthByDay($date) }}
                     </p>
                 @endif
 
                 @if((\Carbon\Carbon::parse($date)->format('Y-m-d')  != \Carbon\Carbon::parse($news->date_of_publication)->format('Y-m-d')))
                     <p class="widget-news-date">
                         @php {{ $date = $news->date_of_publication; }} @endphp
-                        {{\Carbon\Carbon::parse($date)->day . ' ' . \App\Helpers\DateHelper::getMonth()[\Carbon\Carbon::parse($date)->format('M')] }}
+                        {{ \App\Helpers\DateHelper::getMonthByDay($date) }}
                     </p>
                 @endif
 
@@ -53,14 +53,14 @@
                 @if(empty($date))
                     <p class="widget-news-date">
                         @php {{ $date = $news->date_of_publication; }} @endphp
-                        {{\Carbon\Carbon::parse($date)->day . ' ' . \App\Helpers\DateHelper::getMonth()[\Carbon\Carbon::parse($date)->format('M')] }}
+                        {{ \App\Helpers\DateHelper::getMonthByDay($date) }}
                     </p>
                 @endif
 
                 @if((\Carbon\Carbon::parse($date)->format('Y-m-d')  != \Carbon\Carbon::parse($news->date_of_publication)->format('Y-m-d')))
                     <p class="widget-news-date">
                         @php {{ $date = $news->date_of_publication; }} @endphp
-                        {{\Carbon\Carbon::parse($date)->day . ' ' . \App\Helpers\DateHelper::getMonth()[\Carbon\Carbon::parse($date)->format('M')] }}
+                        {{ \App\Helpers\DateHelper::getMonthByDay($date) }}
                     </p>
                 @endif
 

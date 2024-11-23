@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
+@section('pageTitle', $news->getMetaTitle())
+
 @include('meta._tags', [
     'meta' => [
-        'title' => $news->title,
-        'description' => $news->mini_description,
+        'title' => $news->getMetaTitle(),
+        'description' => $news->getMetaDescription(),
         'image' => $news->getImageUrl(),
         'url' => $news->getUrl(),
     ]
@@ -14,13 +16,42 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 </head>
-
 @section('template_title')
-    {{ $news->getTitle() ?? "{{ __('Show')" }}
+    {{ $news->getTitle() }}
 @endsection
 
 @section('content')
+
+    <script type='text/javascript' src='/js/gallery/ug-common-libraries.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-functions.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-thumbsgeneral.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-thumbsstrip.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-touchthumbs.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-panelsbase.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-strippanel.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-gridpanel.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-thumbsgrid.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-tiles.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-tiledesign.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-avia.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-slider.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-sliderassets.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-touchslider.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-zoomslider.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-video.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-gallery.js'></script>
+    <!--	<script type='text/javascript' src='unitegallery/js/ug-lightbox.js'></script>-->
+    <!--	<script type='text/javascript' src='unitegallery/js/ug-carousel.js'></script>-->
+    <script type='text/javascript' src='/js/gallery/ug-api.js'></script>
+    <script type='text/javascript' src='/js/gallery/ug-theme-default.js'></script>
+
+    <link rel='stylesheet' href='/css/unite-gallery.css' type='text/css' />
+
     <style>
+        .single-news-description img {
+            max-width: 100%;
+            /*height: auto;*/
+        }
         div#social-links ul {
             display: inline-block;
         }
@@ -34,6 +65,11 @@
             font-size: 30px;
             color: #222;
             background-color: #ccc;
+        }
+        @media (max-width:640px){
+            .single-news-description img {
+                height: auto;
+            }
         }
     </style>
            <a class="back-home-btn mobile-hide" href="{{ route('/') }}"><spann class="arrow-left"></spann> Повернутися на головну</a>
@@ -51,49 +87,53 @@
             <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
                 <div class="row single-news-container">
                     <div class="category">
-                        <img class="card-img-top" src="{{ $news->getImageUrl() }}"alt="Card image cap">
+                        <img class="card-img-top" title="{{ $news->getTitle() }}" src="{{ $news->getImageUrl() }}" alt="{{ $news->getTitle() }}">
                         <div class="top-left"><div class="triangle">{{ $news->getCategoryName() }}</div></div>
                     </div>
                     <div class="singl-news-body">
                        <h1 class="single-news-title">
                             {{$news->getTitle()}}
                         </h1>
-                        @if($author = $news->getAuthor())
+                        <div class="row single-news-author" style="font-size:18px;">
+                            <i>{{ $news->getPublicationDate() }}</i>
+                        </div>
+                        @if(($author = $news->getAuthor()) && $news->isShowAuthor())
                             <div class="row single-news-author">
                                 <i>Автор: <b><a href= {{ $author->getUrl() }}>{{ $author->getFullName() }}</a></b></i>
                             </div>
-                            <div class="row d-lg-none d-xl-none">
-                                <div id="social-links">
-                                    <ul>
-                                        <li>
-                                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
-                                            <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="https://twitter.com/intent/tweet?text=fd&amp;url={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
-                                                <span class="social-icon"><i class="fa fa-twitter" aria-hidden="true"></i></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="https://telegram.me/share/url?url={{ $news->getUrl() . '&text=' . $news->getTitle() }}" class="social-button " id="" title="" rel="">
-                                                <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a target="_blank" href="mailto:news-demo.space?subject={{$news->getTitle() }}&amp;body={{ $news->getUrl() }}" data-provider="" data-share-link="{{ $news->getUrl() }}" data-share-title="{{ $news->getTitle() }}" class="social-button " id="" title="" rel="">
-                                                <span class="social-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="social-button" id="copy-link" title="" rel="">
-                                                <span class="social-icon"><i class="fa fa-clone" aria-hidden="true"></i></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                         @endif
+                        <div class="row d-lg-none d-xl-none">
+                            <div id="social-links">
+                                <ul>
+                                    <li>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
+                                        <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com/intent/tweet?text=fd&amp;url={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
+                                            <span class="social-icon"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://telegram.me/share/url?url={{ $news->getUrl() . '&text=' . $news->getTitle() }}" class="social-button " id="" title="" rel="">
+                                            <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="mailto:news-demo.space?subject={{$news->getTitle() }}&amp;body={{ $news->getUrl() }}" data-provider="" data-share-link="{{ $news->getUrl() }}" data-share-title="{{ $news->getTitle() }}" class="social-button " id="" title="" rel="">
+                                            <span class="social-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="social-button" id="copy-link" title="" rel="">
+                                            <span class="social-icon"><i class="fa fa-clone" aria-hidden="true"></i></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="row single-news-description">
                             {!! $news->getDescription() !!}
                         </div>
@@ -107,7 +147,7 @@
                             {{ 'Теги :' }}
                             @foreach($news->tags as $tag)
                                 <div class="btn-group me-2" role="group" aria-label="Second group">
-                                <a href='/search?query={{ $tag->name }}'>{{ mb_strtoupper($tag->name) . ' '}}  </a>
+                                <a href='/tag-search?query={{ $tag->name }}'>{{ mb_strtoupper($tag->name) . ' '}}  </a>
                                 </div>
                             @endforeach
                         </div>
@@ -118,6 +158,7 @@
                 </div>
             </div>
         </div>
+
 
 {{--        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 {{--        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v17.0&appId= 255331274088195&autoLogAppEvents=1" nonce="znv8STtW" ></script>--}}
@@ -132,6 +173,10 @@
         var lastNewId = '{{ $news->id }}';
 
         $(document).ready(function(){
+            $(".gallery-block").each(function() {
+                $(this).unitegallery();
+            });
+
             $(document).on('click', '#copy-link', function(){
                 var $temp = $("<input>");
                 $("body").append($temp);
@@ -183,4 +228,34 @@
         }
 
     </script>
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ $news->getUrl() }}"
+          },
+          "headline": "{{ $news->getTitle() }}",
+          "description": "{{ $news->getMetaDescription() }}",
+          "image": "{{ $news->getImageUrl() }}",
+          "author": {
+            "@type": "Person",
+            "name": "{{ $author ? $author->getFullName() : '' }}",
+            "url": "{{ $author ? $author->getUrl() : '' }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Інформаційне агентство Король Данило",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "{{ asset('/img/KD-Logo-UA-FIN-01.png') }}"
+            }
+          },
+          "datePublished": "{{ $news->getPublicationDate(false, 'Y-m-d') }}",
+          "dateModified": "{{ $news->getPublicationDate(false, 'Y-m-d') }}"
+        }
+    </script>
+
 @endsection

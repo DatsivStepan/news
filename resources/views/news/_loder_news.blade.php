@@ -9,42 +9,46 @@
             <h1 class="single-news-title">
                 {{$news->getTitle()}}
             </h1>
-            @if($author = $news->getAuthor())
+            <div class="row single-news-author" style="font-size:18px;">
+                <i>{{ $news->getPublicationDate() }}</i>
+            </div>
+            @if($author = $news->getAuthor() && $news->isShowAuthor())
                 <div class="row single-news-author">
                     <i>Автор: <b><a href= {{ $author->getUrl() }} > {{ $author->getFullName() }}</a></b></i>
                 </div>
-                <div class="row d-lg-none d-xl-none">
-                    <div id="social-links">
-                        <ul>
-                            <li>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
-                                <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/intent/tweet?text=fd&amp;url={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
-                                    <span class="social-icon"><i class="fa fa-twitter" aria-hidden="true"></i></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="https://telegram.me/share/url?url={{ $news->getUrl() . '&text=' . $news->getTitle() }}" class="social-button " id="" title="" rel="">
-                                    <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="mailto:news-demo.space?subject={{$news->getTitle() }}&amp;body={{ $news->getUrl() }}" data-provider="" data-share-link="{{ $news->getUrl() }}" data-share-title="{{ $news->getTitle() }}" class="social-button " id="" title="" rel="">
-                                    <span class="social-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="social-button" id="copy-link" title="" rel="">
-                                    <span class="social-icon"><i class="fa fa-clone" aria-hidden="true"></i></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             @endif
+            <div class="row d-lg-none d-xl-none">
+                <div id="social-links">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
+                            <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/intent/tweet?text=fd&amp;url={{ $news->getUrl() }}" class="social-button " id="" title="" rel="">
+                                <span class="social-icon"><i class="fa fa-twitter" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="https://telegram.me/share/url?url={{ $news->getUrl() . '&text=' . $news->getTitle() }}" class="social-button " id="" title="" rel="">
+                                <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="mailto:news-demo.space?subject={{$news->getTitle() }}&amp;body={{ $news->getUrl() }}" data-provider="" data-share-link="{{ $news->getUrl() }}" data-share-title="{{ $news->getTitle() }}" class="social-button " id="" title="" rel="">
+                                <span class="social-icon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="social-button" id="copy-link" title="" rel="">
+                                <span class="social-icon"><i class="fa fa-clone" aria-hidden="true"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="row single-news-description">
                 {!! $news->getDescription() !!}
             </div>
@@ -63,4 +67,4 @@
         <div id="fb-root"></div>
         <div class="fb-comments" data-href="{{ $news->getUrl() }}" data-width="100%" data-numposts="5"></div>
     </div>
-    
+

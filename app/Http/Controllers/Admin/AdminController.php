@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\News;
+use App\Models\Page;
 use App\Repositories\CategoryRepository;
-use App\Repositories\NewsRepository;
-use App\Repositories\SettingRepository;
-use Illuminate\Http\Request;
-use function Sodium\compare;
+use Carbon\Carbon;
+use CyrildeWit\EloquentViewable\Support\Period;
 
 class AdminController extends Controller
 {
@@ -21,7 +22,23 @@ class AdminController extends Controller
     public function index()
     {
         $categories = $this->categoryRepository->table();
-        return view('admin/index', compact('categories'));
+        $site = Page::where(['slug' => 'site'])->first();
+
+        $responseView = [
+            'site_all' => views($site)->remember(now()->addHour())->count(),
+            'site_unique' => views($site)->unique()->remember(now()->addHour())->count(),
+
+            'site_all_day' => views($site)->period(Period::since(Carbon::now()->format('Y-m-d')))->remember(now()->addHour())->count(),
+            'site_unique_day' => views($site)->period(Period::since(Carbon::now()->format('Y-m-d')))->unique()->remember(now()->addHour())->count(),
+
+            'category_all' => views(Category::class)->remember(now()->addHour())->count(),
+            'category_unique' => views(Category::class)->unique()->remember(now()->addHour())->count(),
+
+            'news_all' => views(News::class)->remember(now()->addHour())->count(),
+            'news_unique' => views(News::class)->unique()->remember(now()->addHour())->count(),
+        ];
+
+        return view('admin/index', compact('categories', 'responseView'));
     }
 
     public function login()

@@ -41,10 +41,11 @@
                                     <tr>
                                         <th>No</th>
 										<th>@lang('main.title')</th>
-										<th>Статус</th>
+										<th>Автор</th>
                                         <th>Слайдер</th>
                                         <th>Платна</th>
                                         <th>@lang('main.type')</th>
+                                        <th>Відвідування</th>
                                         <th>@lang('main.dateOfPublication')</th>
                                         <th></th>
                                     </tr>
@@ -54,10 +55,11 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $new->title }}</td>
-											<td>{{ $new->getTypePublication() }}</td>
+											<td>{{ $new->getAuthorFullName() }}</td>
 											<td><input  data-id="{{ $new->id }}" class="addNewsSlider" type="checkbox" {{ $new->home_slider ? 'checked' : '' }} ></td>
 											<td><input  data-id="{{ $new->id }}" class="addPaidNews" type="checkbox" {{ $new->paidNews ? 'checked' : '' }} ></td>
 											<td>{{ $new->getType() }}</td>
+											<td>{{ $new->views()->count() }}</td>
 											<td>{{ $new->getPublicationDate() }}</td>
                                             <td>
                                                 <form action="{{ route('admin.news.destroy', $new->id) }}" method="POST">

@@ -14,7 +14,7 @@ class FileRepository extends BaseRepository
 
     public function uploadAndCreate(UploadedFile $file, string $name = '')
     {
-        $path = $file->store('public/image/planes');
+        $path = $file->store('public/image/news');
 
         return $this->create([
             'name' => $name ?? basename($path),

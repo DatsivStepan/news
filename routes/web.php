@@ -18,20 +18,25 @@ Route::get('/admin-login', [App\Http\Controllers\Admin\AdminController::class,'l
 Route::post('/admin/login', [App\Http\Controllers\Admin\AdminLoginController::class,'login'])->name('admin.login');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::group(['middleware' => ['role:Admin|Manager']], function () {
+//    Route::group(['middleware' => ['role:Admin|Manager']], function () {
         Route::prefix('admin')->name('admin.')->group(function() {
             Route::get('/', [App\Http\Controllers\Admin\AdminController::class,'index'])->name('admin');
             Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
+
+            Route::post('gallery/upload', [\App\Http\Controllers\Admin\GalleryController::class, 'fileStore']);
+            Route::post('gallery/destroy',[\App\Http\Controllers\Admin\GalleryController::class, 'fileDestroy']);
+            Route::resource('gallery', \App\Http\Controllers\Admin\GalleryController::class);
             Route::get('news/drafts', [App\Http\Controllers\Admin\NewsController::class, 'drafts'])->name('news.drafts');
             Route::get('news/basket', [App\Http\Controllers\Admin\NewsController::class, 'basket'])->name('news.basket');
+            Route::post('news/upload', [\App\Http\Controllers\Admin\NewsController::class, 'upload'])->name('news.upload');;
             Route::resource('news', \App\Http\Controllers\Admin\NewsController::class);
             Route::resource('authors', \App\Http\Controllers\Admin\AuthorController::class);
             Route::resource('pages', \App\Http\Controllers\Admin\PageController::class);
             Route::resource('profile', \App\Http\Controllers\Admin\ProfileController::class);
-            Route::group(['middleware' => ['role:Admin']], function () {
+//            Route::group(['middleware' => ['role:Admin']], function () {
                 Route::resource('settings', \App\Http\Controllers\Admin\SettingController::class);
                 Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-            });
+//            });
             Route::resource('sliders', \App\Http\Controllers\Admin\HomeSliderController::class);
             Route::resource('files', \App\Http\Controllers\Admin\FileController::class);
             Route::resource('paidNews', \App\Http\Controllers\Admin\PaidNewsController::class);
@@ -44,7 +49,7 @@ Route::group(['middleware' => ['auth']], function() {
             Route::delete('news/finalDelete/{id}', [App\Http\Controllers\Admin\NewsController::class, 'finalDelete'])->name('news.finalDelete');
 
         });
-    });
+//    });
 });
 
 Route::resource('category', \App\Http\Controllers\CategoryController::class);
@@ -56,6 +61,7 @@ Route::get('listNews', [App\Http\Controllers\NewsController::class, 'listNews'])
 Route::get('news', [App\Http\Controllers\NewsController::class, 'allNews'])->name('news');
 Route::get('news/{slug}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 Route::get('search', [App\Http\Controllers\NewsController::class, 'search'])->name('search');
+Route::get('tag-search', [App\Http\Controllers\NewsController::class, 'tagSearch'])->name('tag.search');
 Route::get('contacts', [App\Http\Controllers\NewsController::class, 'contacts'])->name('contacts');
 
 Auth::routes();

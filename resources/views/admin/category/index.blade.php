@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>@lang('main.no')</th>
                                         <th>Назва</th>
+                                        <th>Відвідування</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -48,7 +49,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $category->name }}</td>
-{{--											<td><input data-id="{{$category->id}}" class="addItemMenu" type="checkbox" {{ !strripos($settingHeadMenu->value, $category->getUrl()) ? '' : 'checked' }}></td>--}}
+											<td>{{ $category->views()->count() }}</td>
                                             <td>
                                                 <form action="{{ route('admin.categories.destroy',$category->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-success" href="{{ route('admin.categories.edit',$category->id) }}"><i class="fa fa-fw fa-edit"></i></a>

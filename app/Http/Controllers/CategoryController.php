@@ -43,6 +43,9 @@ class CategoryController extends Controller
 //        $date = $request->get('date');
 //        $date = $date ? $date : Carbon::now()->format('Y-m-d');
         $category = $this->categoryRepository->getOneOrFail($slug, 'slug');
+
+        views($category)->record();
+
         $categoryId = $category->id;
         $options = [
             'whereHas' => [

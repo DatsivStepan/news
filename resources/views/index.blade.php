@@ -45,7 +45,7 @@
                                 <div class="card">
                                     <div class="three-news-blocks-category">
                                         <div class="triangle">
-                                            <a class="category-link" href={{ $slide->news->getCategory()->getUrl() }}>{{ $slide->news->getCategoryName() }}</a>
+                                            <a class="category-link" href={{ $slide->news->getCategory() ? $slide->news->getCategory()->getUrl() : '' }}>{{ $slide->news->getCategoryName() }}</a>
                                         </div>
                                     </div>
                                     <img class="card-img-top" src="{{ $slide->news->getImageUrl() }}" alt="Card image cap">
@@ -60,7 +60,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                </a>
                             </div>
 
                         @endif

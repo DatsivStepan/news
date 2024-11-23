@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta_tags')
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+@endsection
+
 @section('template_title')
 
 @endsection

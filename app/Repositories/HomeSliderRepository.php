@@ -33,6 +33,6 @@ class  HomeSliderRepository extends BaseRepository
             ],
         ];
 
-        return $this->table($options, '20', ['field' => 'sort_order']);
+        return $this->table($options, '100', ['field' => 'sort_order']);
     }
 }

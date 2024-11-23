@@ -1,0 +1,3 @@
+Sitemap: https://www.koroldanylo.com.ua/sitemap.xml
+User-agent: *
+Allow:

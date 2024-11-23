@@ -88,6 +88,14 @@ class GenerateSettings extends Seeder
                 'description' => ''
             ],
             [
+                'name' => 'Додаткові скріпти. Підключення сторонніх сервісів.',
+                'value' => '',
+                'key' => Setting::OTHER_SCRIPTS,
+                'category' => Setting::CATEGORY_FOOTER,
+                'type' => Setting::TYPE_TEXTAREA,
+                'description' => ''
+            ],
+            [
                 'name' => 'Наш Адрес',
                 'value' => '',
                 'key' => Setting::ADDRESS,

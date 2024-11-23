@@ -60,6 +60,7 @@ class Setting extends Model
     const EMAIL_MARKETING = 'email_marketing';
     const EMAIL_CORPORATE = 'email_corporate';
     const PHONE = 'phone';
+    const OTHER_SCRIPTS = 'other_scripts';
 
     public function image()
     {
@@ -101,10 +102,10 @@ class Setting extends Model
             return Category::doesnthave('parent',)->pluck('name', 'id')->toArray();;
         }
         if ($key == self::PAGE_COMPANY) {
-            return Page::pluck('title', 'id')->toArray();;
+            return Page::active()->pluck('title', 'id')->toArray();;
         }
         if ($key == self::PAGE_CONTACTS) {
-            return Page::pluck('title', 'id')->toArray();;
+            return Page::active()->pluck('title', 'id')->toArray();;
         }
     }
 }

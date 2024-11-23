@@ -1,18 +1,22 @@
 @extends('layouts.app')
 
+@section('pageTitle', $category->getMetaTitle())
+
 @include('meta._tags', [
     'meta' => [
-        'title' => $category->name,
-        'description' => $category->description
+        'title' => $category->getMetaTitle(),
+        'description' => $category->getMetaDescription()
     ]
 ])
 
 @section('template_title')
-    {{ $category->name ?? "{{ __('Show') Category" }}
+    {{ $category->name }}
 @endsection
 
 @section('content')
-    <a class="back-home-btn mobile-hide" href="{{ route('/') }}"><spann class="arrow-left"></spann> Повернутися на головну</a>
+    <a class="back-home-btn mobile-hide" href="{{ route('/') }}">
+        <span class="arrow-left"></span> Повернутися на головну
+    </a>
 
     {{ Breadcrumbs::render('category' , $category) }}
 

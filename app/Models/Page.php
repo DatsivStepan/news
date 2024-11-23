@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,8 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Page extends Model
+class Page extends Model implements Viewable
 {
+    use InteractsWithViews;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_NOT_ACTIVE = 0;
 
     static $rules = [
 		'title' => 'required',
@@ -37,6 +43,11 @@ class Page extends Model
     public function getUrl()
     {
         return route('page.show', $this->slug);
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', self::STATUS_ACTIVE);
     }
 
     public function getName()

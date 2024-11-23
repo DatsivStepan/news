@@ -101,7 +101,7 @@ class HomeServices
       return $category;
   }
 
-    public function getFooterPageCompany($type)
+    public static function getFooterPageCompany($type)
     {
         $setting = app(SettingRepository::class)->getOne($type, 'key');
 

@@ -7,6 +7,37 @@ namespace App\Helpers;
  */
 class DateHelper
 {
+    public static function getMonthByDay($date)
+    {
+            $timestamp = strtotime($date);
+
+            if (!$timestamp) {
+                return "Invalid date";
+            }
+
+            $day = date('j', $timestamp);
+            $month = date('n', $timestamp);
+
+            $monthNames = [
+                1 => 'Січня',
+                2 => 'Лютого',
+                3 => 'Березня',
+                4 => 'Квітня',
+                5 => 'Травня',
+                6 => 'Червня',
+                7 => 'Липня',
+                8 => 'Серпня',
+                9 => 'Вересня',
+                10 => 'Жовтня',
+                11 => 'Листопада',
+                12 => 'Грудня'
+            ];
+
+            $monthInDeclension = $monthNames[$month];
+
+            return "$day $monthInDeclension";
+    }
+
     public static function getDays()
     {
         return [
@@ -25,7 +56,7 @@ class DateHelper
         return [
             "Jan" => 'Січень',
             "Feb" => 'Лютий',
-            "March" => 'Березень',
+            "Mar" => 'Березень',
             "Apr" => 'Квітень',
             "May" => 'Травень',
             "Jun" => 'Червень',
