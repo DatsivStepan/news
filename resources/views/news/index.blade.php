@@ -17,7 +17,7 @@
         <div class="row home-content">
             <div class="col-xl-3 col-lg-3 d-sm-none d-none d-md-none">
                 <div class="main-widget-left">
-                    <h3 class="main-widget-title">Стрічка новин</h3>
+{{--                    <h3 class="main-widget-title">Стрічка новин</h3>--}}
                     @widget('recentNews')
                 </div>
             </div>

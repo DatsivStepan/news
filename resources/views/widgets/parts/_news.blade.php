@@ -1,10 +1,10 @@
  <a href="{{$news->getUrl()}}" class="widget-news-link" style="text-decoration: none; color:#131313">
-     <div class="{{$news->isImportment() ? 'main' : '' }} ">
-         <p class="news-description">{{$news->getTitle()}}</p>
+     <div class="widget-news-container {{$news->isImportment() ? 'main' : '' }} ">
          @if(isset($type) && $type == 'popular')
-             <p class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }} {{ \Carbon\Carbon::parse($news->getPublicationDate())->format('d-m-Y ') }}</p>
+             <span class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }} {{ \Carbon\Carbon::parse($news->getPublicationDate())->format('d-m-Y ') }}</span>
          @else
-             <p class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }}</p>
+             <spam class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }}</spam>
          @endif
+         <p class="news-description">{{$news->getTitle()}}</p>
      </div>
  </a>
