@@ -1,10 +1,8 @@
- <a href="{{$news->getUrl()}}" class="widget-news-link" style="text-decoration: none; color:#131313">
-     <div class="{{$news->isImportment() ? 'main' : '' }} ">
-         <p class="news-description">{{$news->getTitle()}}</p>
-         @if(isset($type) && $type == 'popular')
-             <p class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }} {{ \Carbon\Carbon::parse($news->getPublicationDate())->format('d-m-Y ') }}</p>
-         @else
-             <p class="news-time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }}</p>
-         @endif
-     </div>
- </a>
+
+<div class="lastnews__list">
+    <a href="{{$news->getUrl()}}" class="lastnews__item {{$news->isImportment() ? 'lastnews__item_important' : '' }}">
+     <span class="lastnews__time">{{ \Carbon\Carbon::parse($news->getPublicationDate())->format('H:i') }}</span>
+     <span class="lastnews__title">{{$news->getTitle()}}<i class="qas qa-camera"></i></span>
+    </a>
+</div>
+
