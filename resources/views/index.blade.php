@@ -46,94 +46,24 @@
                     </div>
                 </div>
             </div>
-            <div class="covid-block" style="justify-content: center;">
-                <p id="slava">
-                    Слава ЗСУ!   Смерть ворогам!
-                </p>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-md-12 d-sm-none d-none d-md-block d-md-block">
-                <div class="main-widget-left">
-                    @widget('recentNews')
+            <div class="content">
+                <div class="covid-wrap">
+                    <div class="covid-block" style="justify-content: center;">
+                        <p id="slava" style="color: #ed1e24;font-size: 37px;">
+                            Слава ЗСУ!   Смерть ворогам!
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-8 home-left-block">
-{{--                <div class="row">--}}
-{{--                    @foreach($sliderNews as $key => $slide)--}}
-{{--                        @if ($key == 0)--}}
-{{--                            <div class="col-sm-12">--}}
-{{--                                <div class="home-big-news" style="background-image: url('{{ $slide->news->getImageUrl() }}');">--}}
-{{--                                    <div class="home-big-news-footer">--}}
-{{--                                        <div class="home-big-news-footer-right">--}}
-{{--                                            <a href={{ $slide->news->getCategory()->getUrl() }}>{{ $slide->news->getCategoryName() }}</a>--}}
-{{--                                            <a href="{{$slide->news->getUrl()}}">--}}
-{{--                                                <span class="card-title">--}}
-{{--                                                    {{ $slide->news->title }}--}}
-{{--                                                </span>--}}
-{{--                                            </a>--}}
-{{--                                            <div class="newslist__desc">--}}
-{{--                                                Головні теми ефіру: Яка ймовірність того, що Росія застосує ракету РС-26--}}
-{{--                                                “Рубіж”? Чи є варіанти її перехопити? Скільки в Росії...--}}
-{{--                                            </div>--}}
-{{--                                            <a class="home-big-news-read-more" href="{{$slide->news->getUrl()}}"></a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @elseif(in_array($key, [1,2,3]))--}}
-{{--                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 three-news-blocks">--}}
-{{--                                <div class="card">--}}
-{{--                                    <div class="three-news-blocks-category">--}}
-{{--                                        <div class="triangle">--}}
-{{--                                            <a class="category-link" href={{ $slide->news->getCategory() ? $slide->news->getCategory()->getUrl() : '' }}>{{ $slide->news->getCategoryName() }}</a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <img class="card-img-top" src="{{ $slide->news->getImageUrl() }}" alt="Card image cap">--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <a href="{{$slide->news->getUrl()}}"><h5 class="card-title">{{ $slide->news->title }}</h5></a>--}}
-{{--                                        <p class="card-text">{{ $slide->news->mini_description }}</p>--}}
-{{--                                        <div class="read-more-container">--}}
-{{--                                            <a href="{{$slide->news->getUrl()}}">--}}
-{{--                                                <p class="read-more">Далі > </p>--}}
-{{--                                            </a>--}}
-{{--                                            <p class="date-news">{{ \Carbon\Carbon::parse($slide->news->date_of_publication)->format('d.m.Y') }}</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            --}}
 
-{{--                        @endif--}}
-{{--                    @endforeach--}}
-{{--                    @if ($mainBlock)--}}
-{{--                            <div class="col-sm-12">--}}
-{{--                                <div class="home-big-news-main-title">--}}
-{{--                                    <div class="category">--}}
-{{--                                        <div class="home-big-news-category">--}}
-{{--                                            <a href="{{ $mainBlock->getCategory()->getUrl() }}">{{ $mainBlock->getCategoryName() }}</a>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="card-body">--}}
-{{--                                            <a href="{{$mainBlock->getUrl()}}">--}}
-{{--                                                <span class="card-title">--}}
-{{--                                                    {{ $mainBlock->title }}--}}
-{{--                                                </span>--}}
-{{--                                                @if($author = $mainBlock->getAuthor())--}}
-{{--                                                    <p class="card-text-author">{{ $author->getFullName() }} — {{ getDates($mainBlock->date_of_publication) }}</p>--}}
-{{--                                                @endif--}}
-{{--                                            </a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="home-big-news" style="background-image: url('{{ $mainBlock->getImageUrl() }}'); margin-bottom: 0">--}}
-{{--                                    <div class="home-big-news-footer">--}}
-{{--                                        <div class="home-big-news-footer-right">--}}
-{{--                                            <p><span>Джерело:</span> {{ $mainBlock->subtitle }}</p>--}}
-{{--                                            <a class="home-big-news-read-more" href="{{$mainBlock->getUrl()}}">Деталі> </a>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
+            <div class="content main__row">
+
+                <aside class="main__aside aside">
+                    <aside id="news-widget-3" class="aside__widget widget lastnews">
+                        @widget('recentNews')
+                    </aside>
+                </aside>
+
                 <div class="main__content">
 
 
@@ -150,7 +80,7 @@
                                 <div class="newslist__title"><a href="https://www.nta.ua/patriot-raketu-ne-zibye/">Patriot ракету не зіб’є: експерт про нову ракету Путіна</a></div>
                                 <div class="newslist__desc">Головні теми ефіру: Яка ймовірність того, що Росія застосує ракету РС-26 “Рубіж”? Чи є варіанти її перехопити? Скільки в Росії...</div>
                                 <!--   <div class="newslist__info">
-                                       <div class="newslist__view view-info icon-view nr-views-556880">354</div>
+                                       <div class="newslist__view view-info icon-view nr-views-556880">444</div>
                                        <a href="https://www.nta.ua/patriot-raketu-ne-zibye/#respond" class="newslist__comments comments-info icon-comment"><span class="fb-comments-count" data-href="https://www.nta.ua/patriot-raketu-ne-zibye/"></span></a>
                                    </div>-->
                             </div>
@@ -167,7 +97,7 @@
                                 <div class="newslist__title"><a href="https://www.nta.ua/koly-demobilizacziya-vidpovid-narodnogo-deputata/">Коли демобілізація: відповідь народного депутата</a></div>
                                 <div class="newslist__desc">Чи вирішать 18 грудня питання щодо демобілізації? Мобілізація жінок: за чи проти? Росія піднімає ставки, що чекає на Україну? Яка...</div>
                                 <!--   <div class="newslist__info">
-                                       <div class="newslist__view view-info icon-view nr-views-555512">896</div>
+                                       <div class="newslist__view view-info icon-view nr-views-555512">984</div>
                                        <a href="https://www.nta.ua/koly-demobilizacziya-vidpovid-narodnogo-deputata/#respond" class="newslist__comments comments-info icon-comment"><span class="fb-comments-count" data-href="https://www.nta.ua/koly-demobilizacziya-vidpovid-narodnogo-deputata/"></span></a>
                                    </div>-->
                             </div>
@@ -184,7 +114,7 @@
                                 <div class="newslist__title"><a href="https://www.nta.ua/motoroshne-dtp-bilya-vinnyczi-zagynulo-shestero-lyudej-z-yakyh-dvoye-nepovnolitni/">Моторошна ДТП біля Вінниці: загинуло шестеро людей, з яких двоє – неповнолітні</a></div>
                                 <div class="newslist__desc">Учора ввечері, 16 жовтня, на трасі поблизу села Писарівка зіткнулися вантажний автомобіль та мікроавтобус. Внаслідок ДТП загинули шестеро людей, з...</div>
                                 <!--   <div class="newslist__info">
-                                       <div class="newslist__view view-info icon-view nr-views-549311">3541</div>
+                                       <div class="newslist__view view-info icon-view nr-views-549311">3628</div>
                                        <a href="https://www.nta.ua/motoroshne-dtp-bilya-vinnyczi-zagynulo-shestero-lyudej-z-yakyh-dvoye-nepovnolitni/#respond" class="newslist__comments comments-info icon-comment"><span class="fb-comments-count" data-href="https://www.nta.ua/motoroshne-dtp-bilya-vinnyczi-zagynulo-shestero-lyudej-z-yakyh-dvoye-nepovnolitni/"></span></a>
                                    </div>-->
                             </div>

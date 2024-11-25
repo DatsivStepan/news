@@ -73,7 +73,6 @@
         gtag('config', 'G-SYYQ5EWE81');
     </script>
     <body class="{{ app(\Illuminate\Routing\Route::class)->getActionMethod() == 'contacts' ? 'contact-bg' : ''  }}">
-    <div class="container">
 
 {{--        <header>--}}
 {{--            <section class="top-bar mobile-hide">--}}

@@ -1,10 +1,6 @@
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home{{$type}}" type="button"
-                role="tab" aria-controls="home" aria-selected="true">Останні новини
-        </button>
-    </li>
-</ul>
+<div class="widget-title">
+    Останні новини
+</div>
 
 <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active " id="home{{$type}}" role="tabpanel" aria-labelledby="home-tab">
@@ -59,6 +55,8 @@
             <p>Відсутні</p>
         @endif
     </div>
-    <a class="read-all-news" href="/news"> Читати всі новини </a>
+    <div class="lastnews__more">
+        <a href="/news" class="button-style">більше</a>
+    </div>
 </div>
 
