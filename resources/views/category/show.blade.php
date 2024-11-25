@@ -17,10 +17,8 @@
 
     <main class="main">
         <div class="content">
-            <div class="bread">
-
-                <!-- Breadcrumb NavXT 7.3.1 -->
-                <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to НТА." href="https://www.nta.ua" class="home"><span property="name">НТА</span></a><meta property="position" content="1"></span> &gt; <span property="itemListElement" typeof="ListItem"><span property="name" class="archive taxonomy post_tag current-item">Війна</span><meta property="url" content="https://www.nta.ua/tag/vijna/"><meta property="position" content="2"></span></div>	   </div>
+            {{ Breadcrumbs::render('category' , $category) }}
+        </div>
 
 
 
@@ -107,7 +105,10 @@
                     <span aria-current="page" class="current">1</span><a class="page larger" title="Сторінка 2" href="https://www.nta.ua/tag/vijna/page/2/">2</a><a class="page larger" title="Сторінка 3" href="https://www.nta.ua/tag/vijna/page/3/">3</a><a class="page larger" title="Сторінка 4" href="https://www.nta.ua/tag/vijna/page/4/">4</a><a class="page larger" title="Сторінка 5" href="https://www.nta.ua/tag/vijna/page/5/">5</a><span class="extend">...</span><a class="nextpostslink" rel="next" aria-label="Наступна сторінка" href="https://www.nta.ua/tag/vijna/page/2/">&nbsp;<i></i></a><a class="last" aria-label="Last Page" href="https://www.nta.ua/tag/vijna/page/360/">360</a>
                 </div>            </div>
             <aside class="main__aside aside" id="aside">
-                <aside id="news-widget-2" class="aside__widget widget lastnews"><div class="widget-title">Новини</div><div class="lastnews__list"><a href="https://www.nta.ua/ssha-pidtverdyly-dozvil-ukrayini-vykorystovuvaty-atacms-dlya-udariv-po-rosiyi/" class="lastnews__item">
+                <aside id="news-widget-2" class="aside__widget widget lastnews">
+                    <div class="widget-title">Новини</div>
+                    <div class="lastnews__list">
+                        <a href="https://www.nta.ua/ssha-pidtverdyly-dozvil-ukrayini-vykorystovuvaty-atacms-dlya-udariv-po-rosiyi/" class="lastnews__item">
 
                             <span class="lastnews__time">21:06</span>
                             <span class="lastnews__title">США підтвердили дозвіл Україні використовувати ATACMS для ударів по Росії</span>
@@ -190,7 +191,9 @@
                         </a></div><div class="lastnews__more"><a href="https://www.nta.ua/news/" class="button-style">більше</a></div></aside><aside id="custom_html-4" class="widget_text aside__widget widget widget_custom_html"><div class="widget-title">банер прямий ефір</div><div class="textwidget custom-html-widget"><a href="http://nta.ua/%d0%bd%d0%b0%d0%b6%d0%b8%d0%b2%d0%be/" class="live-link">
                             <img src="http://nta.ua/wp-content/themes/nta/images/logo/logo-nta-2.svg" alt="" class="live-link__logo" loading="lazy">
                             <span class="live-link__text">Прямий <span>ефір</span></span>
-                        </a></div></aside>    </aside>
+                        </a></div>
+                </aside>
+            </aside>
         </div>
 
 
