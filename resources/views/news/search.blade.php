@@ -102,90 +102,10 @@
                 <span aria-current="page" class="current">1</span><a class="page larger" title="Сторінка 2" href="https://www.nta.ua/page/2/?s=%D0%94%D0%B6%D0%BE%D0%BD">2</a><a class="page larger" title="Сторінка 3" href="https://www.nta.ua/page/3/?s=%D0%94%D0%B6%D0%BE%D0%BD">3</a><a class="page larger" title="Сторінка 4" href="https://www.nta.ua/page/4/?s=%D0%94%D0%B6%D0%BE%D0%BD">4</a><a class="page larger" title="Сторінка 5" href="https://www.nta.ua/page/5/?s=%D0%94%D0%B6%D0%BE%D0%BD">5</a><span class="extend">...</span><a class="nextpostslink" rel="next" aria-label="Наступна сторінка" href="https://www.nta.ua/page/2/?s=%D0%94%D0%B6%D0%BE%D0%BD">&nbsp;<i></i></a><a class="last" aria-label="Last Page" href="https://www.nta.ua/page/39/?s=%D0%94%D0%B6%D0%BE%D0%BD">39</a>
             </div>            </div>
         <aside class="main__aside aside" id="aside">
-            <aside id="news-widget-2" class="aside__widget widget lastnews"><div class="widget-title">Новини</div><div class="lastnews__list"><a href="https://www.nta.ua/u-kyyivskomu-shpytali-vid-vazhkyh-poranen-pomer-voyin-zi-lvivshhyny/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">20:55</span>
-                        <span class="lastnews__title">У київському шпиталі від важких поранень помер воїн зі Львівщини<i class="qas qa-camera"></i></span>
-                    </a><a href="https://www.nta.ua/na-volyni-pyanyj-vodij-zbyv-lyudynu-v-invalidnomu-krisli-shho-vyrishyv-sud/" class="lastnews__item">
-
-                        <span class="lastnews__time">20:44</span>
-                        <span class="lastnews__title">На Волині п’яний водій збив людину в інвалідному кріслі: що вирішив суд</span>
-                    </a><a href="https://www.nta.ua/na-lvivshhyni-onovyly-grafik-vidklyuchen-svitla-na-26-lystopada/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">20:24</span>
-                        <span class="lastnews__title">На Львівщині оновили графік відключень світла на 26 листопада</span>
-                    </a><a href="https://www.nta.ua/verhovnyj-lider-iranu-vymagaye-smertnoyi-kary-dlya-izrayilskogo-premyera-netanyagu/" class="lastnews__item">
-
-                        <span class="lastnews__time">20:20</span>
-                        <span class="lastnews__title">Верховний лідер Ірану вимагає смертної кари для ізраїльського прем’єра Нетаньягу</span>
-                    </a><a href="https://www.nta.ua/u-lvovi-ozbroyenyj-cholovik-pogrozhuvav-u-banku/" class="lastnews__item">
-
-                        <span class="lastnews__time">19:46</span>
-                        <span class="lastnews__title">У Львові озброєний чоловік погрожував у банку<i class="qas qa-play-circle"></i></span>
-                    </a><a href="https://www.nta.ua/u-moskvi-goryt-sklad-iz-freonom-zmi/" class="lastnews__item">
-
-                        <span class="lastnews__time">19:36</span>
-                        <span class="lastnews__title">У Москві горить склад із фреоном – ЗМІ<i class="qas qa-play-circle"></i></span>
-                    </a><a href="https://www.nta.ua/na-zakarpatti-pyanyj-cholovik-do-smerti-pobyv-odnoselczya/" class="lastnews__item">
-
-                        <span class="lastnews__time">19:23</span>
-                        <span class="lastnews__title">На Закарпатті п’яний чоловік до смерті побив односельця</span>
-                    </a><a href="https://www.nta.ua/na-donechchyni-zagynuv-zhurnalist-i-zahysnyk-ukrayiny-andrij-buchak/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">19:00</span>
-                        <span class="lastnews__title">На Донеччині загинув журналіст і захисник України Андрій Бучак</span>
-                    </a><a href="https://www.nta.ua/peremovyny-nastupnogo-roku-informaczijnyj-strim/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">18:50</span>
-                        <span class="lastnews__title">Перемовини наступного року – Інформаційний стрім<i class="qas qa-play-circle"></i></span>
-                    </a><a href="https://www.nta.ua/26-lystopada-na-lvivshhyni-zastosuyut-grafiky-vidklyuchen-svitla/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">18:41</span>
-                        <span class="lastnews__title">26 листопада на Львівщині застосують графіки відключень світла</span>
-                    </a><a href="https://www.nta.ua/pidryadnyka-yakyj-restavruvav-lvivskyj-universytet-zasudyly-do-5-rokiv-uvyaznennya/" class="lastnews__item">
-
-                        <span class="lastnews__time">18:20</span>
-                        <span class="lastnews__title">Підрядника, який реставрував львівський університет, засудили до 5 років ув’язнення</span>
-                    </a><a href="https://www.nta.ua/u-rumuniyi-zavershyvsya-pershyj-tur-prezydentskyh-vyboriv-yak-vony-vplynut-na-ukrayinu/" class="lastnews__item">
-
-                        <span class="lastnews__time">17:54</span>
-                        <span class="lastnews__title">У Румунії завершився перший тур президентських виборів: Як вони вплинуть на Україну</span>
-                    </a><a href="https://www.nta.ua/nezakonne-polyuvannya-na-lvivshhyni-u-myslyvskyh-ugiddyah-poblyzu-lagodova-vbyly-troh-kozul/" class="lastnews__item">
-
-                        <span class="lastnews__time">17:40</span>
-                        <span class="lastnews__title">Незаконне полювання на Львівщині: у мисливських угіддях поблизу Лагодова вбили трьох козуль<i class="qas qa-camera"></i></span>
-                    </a><a href="https://www.nta.ua/na-prykarpatti-policziya-vstanovlyuye-osobu-zagybloyi-u-dtp/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">17:17</span>
-                        <span class="lastnews__title">На Прикарпатті поліція встановлює особу загиблої у ДТП</span>
-                    </a><a href="https://www.nta.ua/na-odeshhyni-vykryly-spivrobitnykiv-tczk-yaki-vymagaly-habari-za-vidstrochku-vid-mobilizacziyi/" class="lastnews__item">
-
-                        <span class="lastnews__time">16:55</span>
-                        <span class="lastnews__title">На Одещині викрили співробітників ТЦК, які вимагали хабарі за відстрочку від мобілізації</span>
-                    </a><a href="https://www.nta.ua/na-bukovyni-vstanovlyuyut-prychynu-smerti-cholovika-pislya-dtp/" class="lastnews__item">
-
-                        <span class="lastnews__time">16:40</span>
-                        <span class="lastnews__title">На Буковині встановлюють причину смерті чоловіка після ДТП</span>
-                    </a><a href="https://www.nta.ua/u-hmelnyczkomu-cholovik-pograbuvav-budynok-majzhe-na-piv-miljona-gryven/" class="lastnews__item">
-
-                        <span class="lastnews__time">16:20</span>
-                        <span class="lastnews__title">У Хмельницькому чоловік пограбував будинок майже на пів мільйона гривень</span>
-                    </a><a href="https://www.nta.ua/na-lvivshhyni-serzhanta-zasudyly-do-145-rokiv-tyurmy-za-vbyvstvo-tovarysha-po-sluzhbi/" class="lastnews__item">
-
-                        <span class="lastnews__time">15:59</span>
-                        <span class="lastnews__title">На Львівщині сержанта засудили до 14,5 років тюрми за вбивство товариша по службі</span>
-                    </a><a href="https://www.nta.ua/vodij-vidvoliksya-pid-chas-ruhu-na-odeshhyni-u-dtp-postrazhdalo-11-cholovik/" class="lastnews__item lastnews__item_important">
-
-                        <span class="lastnews__time">15:47</span>
-                        <span class="lastnews__title">Водій відволікся під час руху: На Одещині у ДТП постраждало 11 чоловік<i class="qas qa-camera"></i></span>
-                    </a><a href="https://www.nta.ua/velyka-brytaniya-zaprovadyla-najbilshi-sankcziyi-proty-rosijskogo-tinovogo-flotu/" class="lastnews__item">
-
-                        <span class="lastnews__time">15:28</span>
-                        <span class="lastnews__title">Велика Британія запровадила найбільші санкції проти російського тіньового флоту</span>
-                    </a></div><div class="lastnews__more"><a href="https://www.nta.ua/news/" class="button-style">більше</a></div></aside><aside id="custom_html-4" class="widget_text aside__widget widget widget_custom_html"><div class="widget-title">банер прямий ефір</div><div class="textwidget custom-html-widget"><a href="http://nta.ua/%d0%bd%d0%b0%d0%b6%d0%b8%d0%b2%d0%be/" class="live-link">
-                        <img src="http://nta.ua/wp-content/themes/nta/images/logo/logo-nta-2.svg" alt="" class="live-link__logo" loading="lazy">
-                        <span class="live-link__text">Прямий <span>ефір</span></span>
-                    </a></div></aside>    </aside>
+            <aside id="news-widget-2" class="aside__widget widget lastnews">
+                @widget('recentNews')
+            </aside>
+        </aside>
     </div>
 </main>
 

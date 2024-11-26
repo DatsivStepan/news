@@ -1,21 +1,37 @@
 @foreach ($news as $new)
-    @if(empty($date))
-        @php {{ $date = $new->date_of_publication; }} @endphp
-        <p data-date="{{ $date }} " class="date-news">{{ \App\Helpers\DateHelper::getMonthByDay($date) }}</p>
-    @endif
-
-    @if((\Carbon\Carbon::parse($date)->format('Y-m-d')  != \Carbon\Carbon::parse($new->date_of_publication)->format('Y-m-d')))
-        @php {{ $date = $new->date_of_publication; }} @endphp
-        <p data-date="{{ $date }} " class="date-news">{{ \App\Helpers\DateHelper::getMonthByDay($date) }}</p>
-    @endif
-    <div class="col-sm-12 three-news-blocks {{ $new->isImportment() ? ' main-news' : '' }}">
-        <a href="{{$new->getUrl()}}" style="text-decoration: none; color:black">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ \Carbon\Carbon::parse($new->date_of_publication)->format('h:i') . ' ' . $new->title }}</h5>
-                </div>
-            </div>
+    @if($new->isImportment())
+        <a href="{{$new->getUrl()}}" class="lastnews__item lastnews__item_important_2">
+            <span class="lastnews__time">
+                {{\Carbon\Carbon::parse($new->date_of_publication)->format('h:i')}}
+            </span>
+            <span class="lastnews__title">
+                <span class="lastnews__thumb">
+                    <img width="400" height="400"
+                         src="{{ $new->getImageUrl() }}"
+                         class="attachment-medium size-medium wp-post-image"
+                         alt="467673054 900191808873021 2713997016007249662 n"
+                         decoding="async"
+                         sizes="(max-width: 400px) 100vw, 400px"
+                         title="Смертельна ДТП поблизу Пісочної на Львівщині: Стали відомі деталі 4"
+                         loading="lazy">
+                </span>
+                {{ $new->title }}
+                <span class="lastnews__desc">
+                    {!! $new->mini_description !!}
+                </span>
+            </span>
         </a>
-    </div>
-
+        @else
+        <a href="{{$new->getUrl()}}" class="lastnews__item">
+            <span class="lastnews__time">
+                {{\Carbon\Carbon::parse($new->date_of_publication)->format('h:i')}}
+            </span>
+            <span class="lastnews__title">
+                {{ $new->title }}
+                <span class="lastnews__desc">
+                    {!! $new->mini_description !!}
+                </span>
+            </span>
+        </a>
+    @endif
 @endforeach

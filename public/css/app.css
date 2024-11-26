@@ -6584,6 +6584,29 @@ html.wpra-share-popup-active {
     }
 }
 
+.page-link {
+    border: none !important;
+}
+
+.page-item .page-link {
+    color: #030303;
+}
+
+.page-item.active .page-link {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+
+.disabled>.page-link {
+    background-color: transparent;
+}
+
+.more.text-center button {
+    background-color: #ff0000;
+    border: none;
+    border-radius: 0;
+}
+
 /*# sourceMappingURL=front.css.map */
 
 
