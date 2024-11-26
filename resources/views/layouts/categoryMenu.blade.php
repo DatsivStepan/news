@@ -6,9 +6,9 @@
         <div class="header__social" data-da="navigation__content,4,1000" data-da-index="2">
             <ul class="social">
                   @if($telegramLink = getSetting('telegram_link'))
-                  <a href="{{ $telegramLink }}" rel=”nofollow” style="text-decoration: none !important;">
-                      <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
-                  </a>
+                      <a href="{{ $telegramLink }}" rel=”nofollow” style="text-decoration: none !important;">
+                          <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>
+                      </a>
                  @endif
 
                 @if($facebookLink = getSetting('facebook_link'))
@@ -16,14 +16,14 @@
                         <a href="{{ $facebookLink }}" class="social__link icon-facebook" target="_blank" rel="nofollow"></a>
                     </li>
                 @endif
-                @if($telegramLink = getSetting('telegram_link'))
+                @if($twitterLink = getSetting('twitter_link'))
                     <li>
-                        <a href="{{ $telegramLink }}" class="social__link icon-twitter" target="_blank" rel="nofollow"></a>
+                        <a href="{{ $twitterLink }}" class="social__link icon-twitter" target="_blank" rel="nofollow"></a>
                     </li>
                 @endif
-                @if($telegramLink = getSetting('telegram_link'))
+                @if($instagramLink = getSetting('instagram_link'))
                     <li>
-                        <a href="{{ $telegramLink }}" class="social__link icon-instagram" target="_blank" rel="nofollow"></a>
+                        <a href="{{ $instagramLink }}" class="social__link icon-instagram" target="_blank" rel="nofollow"></a>
                     </li>
                 @endif
 
@@ -33,7 +33,7 @@
                     </li>
                 @endif
                 <li>
-                    <a href="mailto:TelekanalNTA@gmail.com" class="social__link icon-email" target="_blank" rel="nofollow">
+                    <a href="mailto:{{ getSetting('email_address') }}" class="social__link icon-email" target="_blank" rel="nofollow">
                         <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                             <polygon points="339.392,258.624 512,367.744 512,144.896"></polygon>
                             <polygon points="0,144.896 0,367.744 172.608,258.624"></polygon>

