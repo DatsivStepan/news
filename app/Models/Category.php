@@ -53,6 +53,12 @@ class Category extends Model implements Viewable
     {
         return $this->hasOne(CategoryRelative::class, 'parent_id','id');
     }
+
+    public function childrenCategories()
+    {
+        return $this->belongsToMany(Category::class, 'category_relation', 'parent_id', 'category_id')
+            ->withTimestamps();
+    }
     /**
      * @var string
      */
