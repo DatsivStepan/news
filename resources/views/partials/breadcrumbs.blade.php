@@ -1,14 +1,19 @@
 @unless ($breadcrumbs->isEmpty())
-    <ol class="breadcrumb mobile-hide">
+    <div class="bread">
+        <span property="itemListElement" typeof="ListItem">
         @foreach ($breadcrumbs as $breadcrumb)
 
             @if (!is_null($breadcrumb->url) && !$loop->last)
-                <img class="back-home-icon" src="{{ asset('/img/home-img.png') }}" alt="">
-                <li class="breadcrumb-item"><a href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></li>
+                    <a property="item" typeof="WebPage" href="{{ $breadcrumb->url }}" class="home">
+                        <span property="name">{{ $breadcrumb->title }}</span>
+                    </a> >
             @else
-                <li class="breadcrumb-item active">{{ $breadcrumb->title }}</li>
+                    <span property="name" class="post post-post current-item">
+                        {{ $breadcrumb->title }}
+                    </span>
             @endif
 
         @endforeach
-    </ol>
+        </span>
+    </div>
 @endunless

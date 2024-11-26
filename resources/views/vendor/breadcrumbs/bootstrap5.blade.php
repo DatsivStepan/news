@@ -1,15 +1,19 @@
 @unless ($breadcrumbs->isEmpty())
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <div class="bread">
+        <span property="itemListElement" typeof="ListItem">
             @foreach ($breadcrumbs as $breadcrumb)
 
                 @if ($breadcrumb->url && !$loop->last)
-                    <li class="breadcrumb-item"><a href="{{ $breadcrumb->url }}">{{ $breadcrumb->title }}</a></li>
+                    <a property="item" typeof="WebPage" href="{{ $breadcrumb->url }}" class="home">
+                        <span property="name">{{ $breadcrumb->title }}</span>
+                    </a>
                 @else
-                    <li class="breadcrumb-item active" aria-current="page">{{ $breadcrumb->title }}</li>
+                    <span property="name" class="post post-post current-item">
+                        {{ $breadcrumb->title }}
+                    </span>
                 @endif
 
             @endforeach
-        </ol>
-    </nav>
+        </span>
+    </div>
 @endunless
