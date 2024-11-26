@@ -66,7 +66,7 @@
                 @endforeach
             </ul>
         </div>
-        <a href="https://www.nta.ua/nazhyvo/" class="header__online online-link icon-play">дивитися онлайн</a>
+        <a href="/nazhyvo/" class="header__online online-link icon-play">дивитися онлайн</a>
         <div class="header__search search">
             <div class="search__toggle icon-search js-search-toggle"></div>
 

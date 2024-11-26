@@ -104,14 +104,14 @@ class News extends Model implements Viewable
 
     public function getMetaTitle()
     {
-        return $this->getTitle() . " | Король Данило";
+        return $this->getTitle() . " | Новини НТА ";
     }
 
     public function getMetaDescription()
     {
         $description = strip_tags($this->description);
 
-        return "Інформаційне агентство “Король Данило” ⏩ " . mb_substr($description, 0, 150) . '...';
+        return "Інформаційне агентство “Новини НТА ” ⏩ " . mb_substr($description, 0, 150) . '...';
     }
 
     public function isImportment()
@@ -122,6 +122,11 @@ class News extends Model implements Viewable
     public function getDescription()
     {
         return $this->description;
+    }
+
+    public function getShortDescription()
+    {
+        return $this->mini_description;
     }
 
     public function getPublicationDate($time = true, $format = 'd.m.Y')

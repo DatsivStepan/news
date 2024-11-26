@@ -15,9 +15,10 @@
         <meta name="google-site-verification" content="f0keE2RFQFMrpYgtuv84yqvMN8JOHswSe5tl9bsvetU"/>
 
         <title>
-            @yield('pageTitle', 'Інформаційне агентство “Король Данило” | Найсвіжіші новини України і Світу')
+            @yield('pageTitle', 'Новини НТА | NTA - онлайн новини за сьогодні в Україні, світу')
         </title>
-
+        <link rel="icon" href="/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" href="/favicon.ico">
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link rel="stylesheet" href="{{ asset("/css/app.css") }}">
