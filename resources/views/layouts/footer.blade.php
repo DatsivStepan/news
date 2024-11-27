@@ -71,7 +71,7 @@
             <div class="footer__bottom footer-bottom">
                 <div class="footer-bottom__logo">
                     <div class="logo">
-                        <a href="/" title="НТА"><img src="https://www.nta.ua/wp-content/themes/nta/images/logo/logo.svg" alt="НТА" loading="lazy"></a>
+                        <a href="/" title="НТА"><img src="/img/logo.svg" alt="НТА" loading="lazy"></a>
                     </div>
                 </div>
                 <div class="footer-bottom__copyright"><p>© ПП «НТА – Незалежне телевізійне агентство» Усі права захищені. При цитуванні і використанні будь-яких матеріалів з сайту, відкрите гіперпосилання на сайт “Телеканалу НТА” www.nta.ua є обов’язкове .</p>

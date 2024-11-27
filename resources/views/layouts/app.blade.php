@@ -160,8 +160,8 @@
             <div class="content header__content">
                 <div class="header__col header__col_1">
                     <a href="/" title="НТА" class="logo header__logo">
-                        <img src="https://www.nta.ua/wp-content/themes/nta/images/logo/logo.svg" alt="НТА" loading="lazy">
-                        <img src="https://www.nta.ua/wp-content/themes/nta/images/logo/logo-red.svg" alt="НТА" class="logo__hide" loading="lazy">
+                        <img src="/img/logo.svg" alt="НТА" loading="lazy">
+                        <img src="/img/logo-red.svg" alt="НТА" class="logo__hide" loading="lazy">
                     </a>
                     <div class="header__date icon-calendar" data-da="navigation__row-mobile,1,1000" data-da-index="0"><span><?= \Carbon\Carbon::now()->translatedFormat('l, j F, Y');?></span></div>
                 </div>
