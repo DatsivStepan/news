@@ -178,64 +178,26 @@
                 <div class="content navigation__content">
                     <div class="navigation__row-mobile"></div>
                     <div class="navigation__row">
-                        <ul id="menu-col-1-menu" class="navigation__menu"><li id="menu-item-311291" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311291"><a href="https://www.nta.ua/news/">НОВИНИ</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-311455" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311455"><a href="https://www.nta.ua/news/lviv/">Львівські новини</a></li>
-                                    <li id="menu-item-311293" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311293"><a href="https://www.nta.ua/news/politics/">Новини політики</a></li>
-                                    <li id="menu-item-311292" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311292"><a href="https://www.nta.ua/news/events/">Надзвичайні події</a></li>
-                                    <li id="menu-item-311294" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311294"><a href="https://www.nta.ua/news/calture/">Культура</a></li>
-                                    <li id="menu-item-311295" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311295"><a href="https://www.nta.ua/news/sport/">Спорт</a></li>
-                                    <li id="menu-item-311296" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311296"><a href="https://www.nta.ua/news/economy/">Економіка</a></li>
-                                    <li id="menu-item-311456" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311456"><a href="https://www.nta.ua/news/svit/">Новини світу</a></li>
-                                    <li id="menu-item-311457" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311457"><a href="https://www.nta.ua/news/kryminal/">Кримінал</a></li>
-                                    <li id="menu-item-311458" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311458"><a href="https://www.nta.ua/news/helth/">Медицина та здоров’я</a></li>
-                                    <li id="menu-item-311459" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311459"><a href="https://www.nta.ua/news/tech/">Технології та ІТ</a></li>
-                                    <li id="menu-item-311460" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311460"><a href="https://www.nta.ua/news/kuriozy/">Курйози</a></li>
-                                    <li id="menu-item-311461" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311461"><a href="https://www.nta.ua/news/miscia/">Місця</a></li>
-                                    <li id="menu-item-365779" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365779"><a href="https://www.nta.ua/news/nauka/">Новини науки</a></li>
-                                    <li id="menu-item-365780" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365780"><a href="https://www.nta.ua/news/shoubiznes/">Шоу бізнес</a></li>
-                                    <li id="menu-item-365781" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365781"><a href="https://www.nta.ua/news/osvita/">Освіта</a></li>
-                                    <li id="menu-item-365782" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365782"><a href="https://www.nta.ua/news/pogoda/">Погода</a></li>
-                                    <li id="menu-item-365783" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365783"><a href="https://www.nta.ua/news/suspilstvo-news/">Суспільство</a></li>
-                                    <li id="menu-item-365784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365784"><a href="https://www.nta.ua/news/novyny-turyzmu/">Новини туризму</a></li>
-                                    <li id="menu-item-365785" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365785"><a href="https://www.nta.ua/news/strimy/">Стріми</a></li>
-                                </ul>
-                                <span class="show-sub-menu"></span></li>
-                        </ul><ul id="menu-col-2-menu" class="navigation__menu"><li id="menu-item-311306" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311306"><a href="https://www.nta.ua/teleproekty/">Проєкти</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-311309" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311309"><a href="https://www.nta.ua/tok-shou/govoryt-velykyj-lviv/">ГОВОРИТЬ ВЕЛИКИЙ ЛЬВІВ</a></li>
-                                    <li id="menu-item-311308" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311308"><a href="https://www.nta.ua/tok-shou/narodne-tolk-shou/">НАРОДНЕ ТОЛК-ШОУ</a></li>
-                                    <li id="menu-item-311310" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311310"><a href="https://www.nta.ua/projects/gen-ukrayincziv/">ГЕН УКРАЇНЦІВ</a></li>
-                                    <li id="menu-item-350809" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350809"><a href="https://www.nta.ua/projects/ukrayinska-istoriya-iks/">УКРАЇНСЬКА ІСТОРІЯ ІКС</a></li>
-                                    <li id="menu-item-311311" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311311"><a href="https://www.nta.ua/projects/yurkevych-akczenty/">ЮРКЕВИЧ. АКЦЕНТИ</a></li>
-                                    <li id="menu-item-312023" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-312023"><a href="https://www.nta.ua/teleproekty/pravda-nagyvo/">ПРАВДА.НАЖИВО</a></li>
-                                    <li id="menu-item-350808" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350808"><a href="https://www.nta.ua/teleproekty/pidsumky-nazhyvo/">ПІДСУМКИ. НАЖИВО</a></li>
-                                    <li id="menu-item-312152" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-312152"><a href="https://www.nta.ua/projects/govoryt-velykyj-lviv-intervyu/">ГОВОРИТЬ ВЕЛИКИЙ ЛЬВІВ. ІНТЕРВ’Ю</a></li>
-                                    <li id="menu-item-311307" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311307"><a href="https://www.nta.ua/projects/pryama-mova-lvova/">ПРЯМА МОВА ЛЬВОВА</a></li>
-                                    <li id="menu-item-311313" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311313"><a href="https://www.nta.ua/projects/formula-zdorovya/">ФОРМУЛА ЗДОРОВ`Я</a></li>
-                                    <li id="menu-item-311314" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311314"><a href="https://www.nta.ua/projects/vse-mozhlyvo/">ВСЕ МОЖЛИВО</a></li>
-                                    <li id="menu-item-311316" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311316"><a href="https://www.nta.ua/projects/bez-grymu-z-mariyeyu-shymanskoyu/">БЕЗ ГРИМУ</a></li>
-                                    <li id="menu-item-311317" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311317"><a href="https://www.nta.ua/projects/hvylyna-pravdy/">ХВИЛИНА ПРАВДИ</a></li>
-                                    <li id="menu-item-350814" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350814"><a href="https://www.nta.ua/projects/zmovy/">ЗМОВИ</a></li>
-                                    <li id="menu-item-484835" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-484835"><a href="https://www.nta.ua/ukrzdol/">УКРАЇНСЬКОЮ_ЗДОЛАЄМ</a></li>
-                                </ul>
-                                <span class="show-sub-menu"></span></li>
-                        </ul><ul id="menu-col-3-menu" class="navigation__menu"><li id="menu-item-311297" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-311297"><a href="#">Архів</a>
-                                <ul class="sub-menu">
-                                    <li id="menu-item-311300" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311300"><a href="https://www.nta.ua/tok-shou/drozdov-pryamym-tekstom/">Drozdov</a></li>
-                                    <li id="menu-item-311299" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311299"><a href="https://www.nta.ua/projects/pravda-u-hrysti/">ПРАВДА У ХРИСТІ</a></li>
-                                    <li id="menu-item-312025" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-312025"><a href="https://www.nta.ua/projects/pravda-investigation/">ТЕОРІЯ ПРАВДИ</a></li>
-                                    <li id="menu-item-311298" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311298"><a href="https://www.nta.ua/projects/pravova-revolyucziya/">ПРАВОВА [Р]ЕВОЛЮЦІЯ</a></li>
-                                    <li id="menu-item-311301" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311301"><a href="https://www.nta.ua/projects/nagolo/">NАГОЛО</a></li>
-                                    <li id="menu-item-311302" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311302"><a href="https://www.nta.ua/projects/antykryza/">АНТИКРИЗА</a></li>
-                                    <li id="menu-item-311303" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311303"><a href="https://www.nta.ua/projects/realnyj-futbol/">РЕАЛЬНИЙ ФУТБОЛ</a></li>
-                                    <li id="menu-item-311304" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311304"><a href="https://www.nta.ua/projects/kulturnyj_blog/">КУЛЬТУРНИЙ БЛОГ</a></li>
-                                    <li id="menu-item-311305" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311305"><a href="https://www.nta.ua/teleproekty/nagolos/">НАГОЛОС</a></li>
-                                    <li id="menu-item-350758" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350758"><a href="https://www.nta.ua/projects/vse-mozhlyvo/">ВСЕ МОЖЛИВО</a></li>
-                                    <li id="menu-item-350757" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350757"><a href="https://www.nta.ua/projects/otakoyi/">ОТАКОЇ</a></li>
-                                </ul>
-                                <span class="show-sub-menu"></span></li>
-                        </ul><ul id="menu-col-4-menu" class="navigation__menu"><li id="menu-item-366866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366866"><a href="https://www.nta.ua/telekanal/">Телеканал НТА</a></li>
+
+                        @foreach(\App\Services\HomeServices::getCategoryLeftMenu() as $category)
+                            <ul id="menu-col-1-menu" class="navigation__menu"><li id="menu-item-311291" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311291">
+                                    <a href="{{ $category->getUrl() }}">{{ $category->name }}</a>
+                                    @if(!$category->childrenCategories->isEmpty())
+                                        <ul class="sub-menu">
+                                            @foreach($category->childrenCategories as $cCategory)
+                                                <li id="menu-item-311455" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311455">
+                                                    <a href="{{ $cCategory->getUrl() }}">{{ $cCategory->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                        <span class="show-sub-menu"></span>
+                                    @endif
+                                </li>
+                            </ul>
+                        @endforeach
+
+
+                           <ul id="menu-col-4-menu" class="navigation__menu"><li id="menu-item-366866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366866"><a href="https://www.nta.ua/telekanal/">Телеканал НТА</a></li>
                             <li id="menu-item-311988" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311988"><a href="https://www.nta.ua/statti/">Статті</a></li>
                             <li id="menu-item-314656" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-314656"><a href="https://www.nta.ua/blogy/">Блоги</a></li>
                             <li id="menu-item-311463" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311463"><a href="https://www.nta.ua/pro-nas/">ПРО НАС</a></li>
@@ -243,7 +205,8 @@
                             <li id="menu-item-311465" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311465"><a href="https://www.nta.ua/kontakty/">Контакти НТА</a></li>
                             <li id="menu-item-311464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311464"><a href="https://www.nta.ua/reklama/">Реклама</a></li>
                             <li id="menu-item-427785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-427785"><a href="https://www.nta.ua/teleshkola-nta/">Телешкола «NTA»</a></li>
-                        </ul>                </div>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>

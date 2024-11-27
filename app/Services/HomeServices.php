@@ -78,12 +78,7 @@ class HomeServices
     public static function getCategoryLeftMenu()
     {
         $setting = app(SettingRepository::class)->getOne(Setting::HEADER_ITEMS_LEFT_MENU, 'key');
-
-        $categoryIds = explode( ',', $setting->value);
-
-        $category = app(CategoryRepository::class)->getCategoryWhereIn($categoryIds);
-
-        return $category;
+        return app(CategoryRepository::class)->getCategoryWhereIn(explode( ',', $setting->value));
     }
 
     public static function getTopTags()
