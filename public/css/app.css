@@ -138,6 +138,10 @@ a {
     width: 13px;
     height: 13px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/calendar_mobile.png");
+    }
+
 }
 
 .icon-cloud:before {
@@ -182,6 +186,9 @@ a {
     width: 20px;
     height: 20px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/red-play-button-icon.png");
+    }
 }
 
 .icon-search:before {
@@ -3382,8 +3389,18 @@ input[type=checkbox]:checked + label:before { background: #ff0000 url(images/ico
 }
 
 .wi-cloudy:before {
-    content: "\f013"
+    /*content: "\f013"*/
+    content: '';
+    background-image: url("/img/cloud_icon.png");
+    background-size: 20px 14px;
+    width: 20px;
+    height: 14px;
+    display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/cloud_mobile.png");
+    }
 }
+
 
 .wi-cloudy-gusts:before {
     content: "\f011"
@@ -3477,6 +3494,9 @@ input[type=checkbox]:checked + label:before { background: #ff0000 url(images/ico
     width: 20px;
     height: 17px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/cloud_mobile.png");
+    }
 }
 
 .wi-windy:before {
@@ -6609,7 +6629,16 @@ html.wpra-share-popup-active {
 
 /*# sourceMappingURL=front.css.map */
 
-
+.mobile-hidden {
+    @media (max-width: 991px) {
+        display: none !important;
+    }
+}
+.desctop-hidden {
+    @media (min-width: 992px) {
+        display: none !important;
+    }
+}
 
 
 
