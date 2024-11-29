@@ -165,7 +165,7 @@
                     </a>
                     <div class="header__date icon-calendar" data-da="navigation__row-mobile,1,1000" data-da-index="0"><span><?= \Carbon\Carbon::now()->translatedFormat('l, j F, Y');?></span></div>
                 </div>
-                @include('layouts.categoryMenu')
+                @include('layouts._category-menu')
             </div>
             <nav class="navigation">
                 <div class="content">
@@ -178,15 +178,15 @@
                 <div class="content navigation__content">
                     <div class="navigation__row-mobile"></div>
                     <div class="navigation__row">
-
-                        @foreach(\App\Services\HomeServices::getCategoryLeftMenu() as $category)
-                            <ul id="menu-col-1-menu" class="navigation__menu"><li id="menu-item-311291" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311291">
-                                    <a href="{{ $category->getUrl() }}">{{ $category->name }}</a>
-                                    @if(!$category->childrenCategories->isEmpty())
+                        @foreach(\App\Services\HomeServices::getPopupMenuOptions() as $option)
+                            <ul id="menu-col-1-menu" class="navigation__menu">
+                                <li id="menu-item-311291" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311291">
+                                    <a href="{{ $option['info']['url'] }}">{{ $option['info']['name'] }}</a>
+                                    @if($option['child'])
                                         <ul class="sub-menu">
-                                            @foreach($category->childrenCategories as $cCategory)
+                                            @foreach($option['child'] as $cOption)
                                                 <li id="menu-item-311455" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311455">
-                                                    <a href="{{ $cCategory->getUrl() }}">{{ $cCategory->name }}</a>
+                                                    <a href="{{ $cOption['url'] }}">{{ $cOption['name']  }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -195,17 +195,6 @@
                                 </li>
                             </ul>
                         @endforeach
-
-
-                           <ul id="menu-col-4-menu" class="navigation__menu"><li id="menu-item-366866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366866"><a href="https://www.nta.ua/telekanal/">Телеканал НТА</a></li>
-                            <li id="menu-item-311988" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311988"><a href="https://www.nta.ua/statti/">Статті</a></li>
-                            <li id="menu-item-314656" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-314656"><a href="https://www.nta.ua/blogy/">Блоги</a></li>
-                            <li id="menu-item-311463" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311463"><a href="https://www.nta.ua/pro-nas/">ПРО НАС</a></li>
-                            <li id="menu-item-312681" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-312681"><a href="https://www.nta.ua/struktura-vlasnosti/">Структура власності</a></li>
-                            <li id="menu-item-311465" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311465"><a href="https://www.nta.ua/kontakty/">Контакти НТА</a></li>
-                            <li id="menu-item-311464" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-311464"><a href="https://www.nta.ua/reklama/">Реклама</a></li>
-                            <li id="menu-item-427785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-427785"><a href="https://www.nta.ua/teleshkola-nta/">Телешкола «NTA»</a></li>
-                        </ul>
                     </div>
                 </div>
             </nav>
