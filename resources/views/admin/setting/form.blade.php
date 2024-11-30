@@ -1,5 +1,4 @@
 <head>
-    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.0/classic/ckeditor.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel 8 Tags System Example</title>
@@ -7,59 +6,84 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
-    <script src="https://cdn.tiny.cloud/1/xpu0y53v3k0hf6axlu37gm26g4ixqyidve0pfclq15j6nval/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="{{ asset("/css/css.css") }}">
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 </head>
 
 <div class="box box-info padding-1">
 
-    <div class="accordion" id="accordionExample">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
         @foreach($settingsCategories as $key => $settingsCategory)
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="heading{{$key}}">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$key}}" aria-expanded="true" aria-controls="collapse{{$key}}">
-                        {{\App\Models\Setting::getSettingsCategory($key)}}
-                    </button>
-                </h2>
-                <div id="collapse{{$key}}" class="accordion-collapse collapse show" aria-labelledby="heading{{$key}}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        @foreach($settingsCategory as $setting)
-                                @if($setting->type == 5)
-                                    {{ Form::label('text',  $setting->name, ['class' => 'form-label']) }}
-                                    {{ Form::file($setting->key, [ 'class' => 'form-control' . ($errors->has('$setting->key') ? ' is-invalid' : ''), 'onchange'=> "getImagePreview(event)", "id" => "selectImage"]) }}
-                                    {!! $errors->first('image', '<div class="invalid-feedback">:message</div>') !!}
-                                    <img id="preview" width="270" height="100" src="{{ $setting->image ? Storage::url($setting->image->name) : '' }}" alt="/" class="mt-3" style="{{$setting->image ? 'display:none' : ''}}" />
-                                @elseif($setting->type == 1)
+            <li class="nav-item" role="presentation">
+                <button class="nav-link {{ $key == \App\Models\Setting::CATEGORY_HEADER ? 'active' : '' }}" id="{{$key}}-tab" data-bs-toggle="tab" data-bs-target="#s-{{$key}}"
+                        type="button" role="tab" aria-controls="s-{{$key}}" aria-selected="true">
+                    {{\App\Models\Setting::getSettingsCategory($key)}}
+                </button>
+            </li>
+        @endforeach
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        @foreach($settingsCategories as $key => $settingsCategory)
+            <div class="tab-pane fade show {{ $key == \App\Models\Setting::CATEGORY_HEADER ? 'active' : '' }}" id="s-{{ $key }}" role="tabpanel" aria-labelledby="{{ $key }}-tab">
+                <div class="row">
+                    @foreach($settingsCategory as $setting)
+                        @if($setting->type == \App\Models\Setting::TYPE_IMAGE)
+                            <div class="col-sm-6">
+                                {{ Form::label('text',  $setting->name, ['class' => 'form-label']) }}
+                                {{ Form::file($setting->key, [ 'class' => 'form-control' . ($errors->has('$setting->key') ? ' is-invalid' : ''), 'onchange'=> "getImagePreview(event)", "id" => "selectImage"]) }}
+                                {!! $errors->first('image', '<div class="invalid-feedback">:message</div>') !!}
+                                <img id="preview" width="270" height="100" src="{{ $setting->image ? Storage::url($setting->image->name) : '' }}" alt="/" class="mt-3" style="{{$setting->image ? 'display:none' : ''}}" />
+                            </div>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_INPUT)
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     {{ Form::label($setting->name) }}
                                     {{ Form::text($setting->key, $setting->value, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '' ]) }}
                                     {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                                @elseif($setting->type == 2)
-                                    {{ Form::label($setting->name) }}
-                                    {{ Form::checkbox($setting->key, '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '']) }}
-                                    {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                                @elseif($setting->type == 3)
+                                </div>
+                            </div>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_CHECKBOX)
+                            {{ Form::label($setting->name) }}
+                            {{ Form::checkbox($setting->key, '', ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '']) }}
+                            {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+                            <hr>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_TEXTAREA)
+                            <div class="col-sm-12">
+                                <div class="form-group">
                                     {{ Form::label($setting->name) }}
                                     {{ Form::textArea($setting->key, $setting->value, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '']) }}
                                     {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                                @elseif($setting->type == 4)
+                                    <small class="form-text text-muted">{{ $setting->description }}</small>
+                                </div>
+                            </div>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_SELECT)
+                            {{ Form::label($setting->name) }}
+                            {{ Form::select($setting->key, $setting->getParams(), $setting->value, ['class' => 'form-select' . ($errors->has('name') ? ' is-invalid' : '')]) }}
+                            {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+                            <hr>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_MULTIPLE)
+                            {{ Form::label($setting->name) }}
+                            {{ Form::select($setting->key.'[]', $setting->getParams(), explode(',', $setting->value), ['class' => "form-select" . ($errors->has('name') ? ' is-invalid' : ''), 'multiple'=>'multiple']) }}
+                            {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
+                            <hr>
+                        @elseif($setting->type == \App\Models\Setting::TYPE_TAGS)
+                            <div class="col-sm-12">
+                                <div class="form-group">
                                     {{ Form::label($setting->name) }}
-                                    {{ Form::select($setting->key, json_decode($setting->params), '', ['class' => 'form-select' . ($errors->has('name') ? ' is-invalid' : '')]) }}
+                                    {{ Form::text($setting->key, $setting->value, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => '', 'data-role' => 'tagsinput']) }}
                                     {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                                @elseif($setting->type == 6)
-                                    {{ Form::label($setting->name) }}
-                                    {{ Form::select($setting->key.'[]', $setting->getParams($setting->key), explode(',', $setting->value), ['class' => "form-select" . ($errors->has('name') ? ' is-invalid' : ''), 'multiple'=>'multiple']) }}
-                                    {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                                @endif
-                        @endforeach
-                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         @endforeach
     </div>
 
     <div class="box-footer mt20">
-        <br><button type="submit" class="btn btn-primary">{{ __('Додати') }}</button>
+        <br><button type="submit" class="btn btn-primary">{{ __('Зберегти') }}</button>
     </div>
 </div>
 

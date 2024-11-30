@@ -2,43 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Classes\Enum\NewsPublicationType;
-use App\Filters\NewsFilter;
-use App\Filters\SearchNews;
-use App\Models\Category;
 use App\Models\News;
-use App\Repositories\CategoryRepository;
+use App\Models\Setting;
 use App\Repositories\HomeSliderRepository;
 use App\Repositories\NewsRepository;
 use App\Repositories\SettingRepository;
-use App\Services\CategoryServices;
 use App\Services\HomeServices;
 use App\Services\NewsServices;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 
 class NewsController extends Controller
 {
     private $newsRepository;
     private $homeSliderRepository;
     private $newsServices;
+    private $homeService;
 
     public function __construct(NewsRepository $newsRepository,
                                 HomeSliderRepository $homeSliderRepository,
-                                NewsServices $newsServices)
+                                NewsServices $newsServices,
+                                HomeServices $homeServices)
     {
         $this->newsRepository = $newsRepository;
         $this->homeSliderRepository = $homeSliderRepository;
         $this->newsServices = $newsServices;
+        $this->homeService = $homeServices;
     }
 
     public function index()
     {
         $sliderNews = $this->homeSliderRepository->getSliderNews();
-        $mainBlock = HomeServices::getHeaderMainBlockCategory();
-        $mainBlocktwo = HomeServices::getHeaderMainBlockCategorytwo();
+        $topNews = $this->homeService->getMainPageTopNews();
+        $topCentralBlockNews = $this->homeService->getMainPageCentralNews();
+        $bottomPageBlockNews = $this->homeService->getMainPageBottomNews();
 
-        return view('index', compact('sliderNews', 'mainBlock', 'mainBlocktwo'));
+        return view('index', compact('bottomPageBlockNews','sliderNews', 'topNews', 'topCentralBlockNews'));
     }
 
     public function listNews(Request $request)
@@ -75,8 +73,6 @@ class NewsController extends Controller
         $news = $this->newsRepository->getOneOrFail($slug, 'slug');
 
         $news->description = $this->newsServices->prepareGallery($news->description);
-
-//        dd($news->description);
 
         views($news)->record();
 

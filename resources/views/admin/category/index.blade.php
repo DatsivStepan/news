@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>@lang('main.no')</th>
                                         <th>Назва</th>
+                                        <th>слаг</th>
                                         <th>Відвідування</th>
                                         <th></th>
                                     </tr>
@@ -49,6 +50,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $category->name }}</td>
+											<td>{{ $category->slug }}</td>
 											<td>{{ $category->views()->count() }}</td>
                                             <td>
                                                 <form action="{{ route('admin.categories.destroy',$category->id) }}" method="POST">

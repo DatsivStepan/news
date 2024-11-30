@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\CategoryChanged;
 use App\Filters\AuthorFilter;
 use App\Filters\CategoryFilter;
 use App\Http\Controllers\Controller;
@@ -91,6 +92,8 @@ class CategoryController extends Controller
             ]);
         }
 
+        event(new CategoryChanged());
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Категорія успішно створена.');
     }
@@ -164,6 +167,9 @@ class CategoryController extends Controller
         } elseif($category->parent) {
             $this->categoryRelativeRepisitory->delete($category->parent);
         }
+
+        event(new CategoryChanged());
+
         return redirect()->route('admin.categories.index')
             ->with('success', 'Категорія успішно редагована');
     }
@@ -176,6 +182,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->categoryRepository->getOneOrFail($id)->delete();
+
+        event(new CategoryChanged());
 
         return redirect()->route('admin.categories.index')
             ->with('success', 'Категорія успішно видалена.');

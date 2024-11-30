@@ -124,8 +124,11 @@ class News extends Model implements Viewable
         return $this->description;
     }
 
-    public function getShortDescription()
+    public function getShortDescription($substr = null)
     {
+        if ($substr) {
+            return mb_substr($this->mini_description, 0, $substr) . '...';
+        }
         return $this->mini_description;
     }
 

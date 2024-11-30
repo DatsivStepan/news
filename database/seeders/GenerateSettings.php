@@ -15,6 +15,7 @@ class GenerateSettings extends Seeder
     {
         $this->settingRepository = $settingRepository;
     }
+
     /**
      * Seed the application's database.
      *
@@ -23,144 +24,61 @@ class GenerateSettings extends Seeder
     public function run()
     {
         $settingsData = [
+            //HEADER
             [
-                'name' => 'Логотип сайту',
+                'name' => 'Елементи на "Головному меню"',
                 'value' => '',
-                'key' => Setting::HEADER_IMAGE,
+                'key' => Setting::HEADER_MAIN_MENU_OPTIONS,
                 'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_IMAGE,
-                'description' => ''
-            ],
-            [
-                'name' => 'Назва сайту',
-                'value' => '',
-                'key' => Setting::SITE_NAME,
-                'category' => Setting::CATEGORY_GENERAL,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Лого футера',
-                'value' => '',
-                'key' => Setting::FOOTER_IMAGE,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_IMAGE,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш Facebook',
-                'value' => '',
-                'key' => Setting::FACEBOOK_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш Twitter',
-                'value' => '',
-                'key' => Setting::TWITTER_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш Telegram',
-                'value' => '',
-                'key' => Setting::TELEGRAM_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш Youtube',
-                'value' => '',
-                'key' => Setting::YOUTUBE_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш Instagram',
-                'value' => '',
-                'key' => Setting::INSTAGRAM_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Додаткові скріпти. Підключення сторонніх сервісів.',
-                'value' => '',
-                'key' => Setting::OTHER_SCRIPTS,
-                'category' => Setting::CATEGORY_FOOTER,
                 'type' => Setting::TYPE_TEXTAREA,
                 'description' => ''
             ],
             [
-                'name' => 'Наш Адрес',
+                'name' => 'Елементи в "Попап меню"',
                 'value' => '',
-                'key' => Setting::ADDRESS,
+                'key' => Setting::HEADER_POPUP_MENU_OPTIONS,
                 'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
+                'type' => Setting::TYPE_TEXTAREA,
                 'description' => ''
             ],
             [
-                'name' => 'Наш Email',
+                'name' => 'Теги головного меню',
                 'value' => '',
-                'key' => Setting::EMAIL_ADDRESS,
+                'key' => Setting::HEADER_MAIN_MENU_TAGS,
                 'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
+                'type' => Setting::TYPE_TAGS,
                 'description' => ''
             ],
-            [
-                'name' => 'Консультація та замовлення',
-                'value' => '',
-                'key' => Setting::EMAIL_CONSULTATION,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Для ЗМІ',
-                'value' => '',
-                'key' => Setting::EMAIL_ZMI,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Для авторів',
-                'value' => '',
-                'key' => Setting::EMAIL_AUTHOR,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Маркетинг',
-                'value' => '',
-                'key' => Setting::EMAIL_MARKETING,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Для корпоративних клієнтів',
-                'value' => '',
-                'key' => Setting::EMAIL_CORPORATE,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
-            [
-                'name' => 'Наш номер телефону',
-                'value' => '',
-                'key' => Setting::PHONE,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_INPUT,
-                'description' => ''
-            ],
+            //HEADER
 
-            // Мета
+            // General
+            [
+                'name' => 'Категорія верхнього блоку',
+                'value' => '',
+                'key' => Setting::MAIN_PAGE_TOP_BLOCK_CATEGORY,
+                'category' => Setting::CATEGORY_MAIN_PAGE,
+                'type' => Setting::TYPE_SELECT,
+                'description' => ''
+            ],
+            [
+                'name' => 'Категорії центральний блок',
+                'value' => '',
+                'key' => Setting::MAIN_PAGE_CENTRAL_BLOCK_CATEGORY,
+                'category' => Setting::CATEGORY_MAIN_PAGE,
+                'type' => Setting::TYPE_MULTIPLE,
+                'description' => ''
+            ],
+            [
+                'name' => 'Категорії нижній блок',
+                'value' => '',
+                'key' => Setting::MAIN_PAGE_BOTTOM_BLOCK_CATEGORY,
+                'category' => Setting::CATEGORY_MAIN_PAGE,
+                'type' => Setting::TYPE_MULTIPLE,
+                'description' => ''
+            ],
+            // General
+
+            // МЕТА
             [
                 'name' => 'Мета Title',
                 'value' => '',
@@ -187,62 +105,84 @@ class GenerateSettings extends Seeder
             ],
             // МЕТА
 
+            // Contact
             [
-                'name' => 'Наш TikTok',
+                'name' => 'Наш Адрес',
                 'value' => '',
-                'key' => Setting::TIKTOK_LINK,
-                'category' => Setting::CATEGORY_FOOTER,
+                'key' => Setting::ADDRESS,
+                'category' => Setting::CATEGORY_CONTACT,
                 'type' => Setting::TYPE_INPUT,
                 'description' => ''
             ],
             [
-                'name' => 'Про компанію',
+                'name' => 'Наш Email',
                 'value' => '',
-                'key' => Setting::PAGE_COMPANY,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_MULTIPLE,
+                'key' => Setting::EMAIL_ADDRESS,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
                 'description' => ''
             ],
             [
-                'name' => 'Контакти',
+                'name' => 'Наш номер телефону',
                 'value' => '',
-                'key' => Setting::PAGE_CONTACTS,
-                'category' => Setting::CATEGORY_FOOTER,
-                'type' => Setting::TYPE_MULTIPLE,
-                'description' => ''
-            ],
-//            [
-//                'name' => 'Добавлення пунктів меню',
-//                'value' => '',
-//                'key' => Setting::HEADER_ITEMS_MENU,
-//                'category' => Setting::CATEGORY_HEADER,
-//                'type' => Setting::TYPE_TEXTAREA,
-//                'description' => ''
-//            ],
-            [
-                'name' => 'Головне меню',
-                'value' => '',
-                'key' => Setting::HEADER_CATEGORY_MENU,
-                'category' => Setting::CATEGORY_HEADER,
-                'type' => Setting::TYPE_MULTIPLE,
+                'key' => Setting::PHONE,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
                 'description' => ''
             ],
             [
-                'name' => 'КатегоріЇ на головній сторінці',
+                'name' => 'Наш Facebook',
                 'value' => '',
-                'key' => Setting::BLOCKS_CATEGORY_HOME_PAGE,
-                'category' => Setting::CATEGORY_GENERAL,
-                'type' => Setting::TYPE_MULTIPLE,
+                'key' => Setting::FACEBOOK_LINK,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
                 'description' => ''
             ],
             [
-                'name' => 'Добавлення категорій в бокове меню',
+                'name' => 'Наш Twitter',
                 'value' => '',
-                'key' => Setting::HEADER_ITEMS_LEFT_MENU,
-                'category' => Setting::CATEGORY_GENERAL,
-                'type' => Setting::TYPE_MULTIPLE,
+                'key' => Setting::TWITTER_LINK,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
                 'description' => ''
             ],
+            [
+                'name' => 'Наш Telegram',
+                'value' => '',
+                'key' => Setting::TELEGRAM_LINK,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
+                'description' => ''
+            ],
+            [
+                'name' => 'Наш Youtube',
+                'value' => '',
+                'key' => Setting::YOUTUBE_LINK,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
+                'description' => ''
+            ],
+            [
+                'name' => 'Наш Instagram',
+                'value' => '',
+                'key' => Setting::INSTAGRAM_LINK,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_INPUT,
+                'description' => ''
+            ],
+            // Contact
+
+
+            // CATEGORY_OTHER
+            [
+                'name' => 'Додаткові скріпти. Підключення сторонніх сервісів.',
+                'value' => '',
+                'key' => Setting::OTHER_SCRIPTS,
+                'category' => Setting::CATEGORY_CONTACT,
+                'type' => Setting::TYPE_TEXTAREA,
+                'description' => ''
+            ],
+            // CATEGORY_OTHER
         ];
 
         foreach ($settingsData as $settingData) {

@@ -59,12 +59,11 @@ class SettingServices
                     $image = $this->imageRepository->uploadAndCreate($value);
                     $data['value'] = $image->id;
                     break;
-                case Setting::TYPE_TEXTAREA:
-                case Setting::TYPE_INPUT:
-                    $data['value'] = $value;
-                    break;
                 case Setting::TYPE_MULTIPLE:
                     $data['value'] = implode(",", $value);
+                    break;
+                default:
+                    $data['value'] = $value;
                     break;
             }
 

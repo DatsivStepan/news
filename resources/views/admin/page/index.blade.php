@@ -36,6 +36,8 @@
                                     <tr>
 										<th>@lang('main.no')</th>
 										<th>@lang('main.title')</th>
+										<th>Слаг</th>
+										<th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,6 +45,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $page->title }}</td>
+											<td>{{ $page->slug }}</td>
                                             <td>
                                                 <form action="{{ route('admin.pages.destroy',$page->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " target="_blank" href="{{ $page->getUrl() }}"><i class="fa fa-fw fa-eye"></i></a>

@@ -22,11 +22,33 @@ class Setting extends Model
     const TYPE_SELECT = 4;
     const TYPE_IMAGE = 5;
     const TYPE_MULTIPLE = 6;
+    const TYPE_TAGS = 7;
+
 
     const CATEGORY_GENERAL = 1;
     const CATEGORY_HEADER = 2;
-    const CATEGORY_FOOTER = 3;
+    const CATEGORY_CONTACT = 3;
     const CATEGORY_META = 4;
+    const CATEGORY_OTHER = 5;
+    const CATEGORY_MAIN_PAGE = 6;
+
+    const MENU_OPTION_CATEGORY = 'category';
+    const MENU_OPTION_PAGE = 'page';
+
+    // HEADER
+    const HEADER_MAIN_MENU_OPTIONS = 'header_main_menu_options';
+    const HEADER_POPUP_MENU_OPTIONS = 'header_popup_menu_options';
+    const HEADER_MAIN_MENU_TAGS = 'header_main_menu_tags';
+    // HEADER
+
+    // GENERAL
+    const MAIN_PAGE_TOP_BLOCK_CATEGORY = 'main_page_top_block_category';
+    const MAIN_PAGE_CENTRAL_BLOCK_CATEGORY = 'main_page_central_block_category';
+    const MAIN_PAGE_BOTTOM_BLOCK_CATEGORY = 'main_page_bottom_block_category';
+    // GENERAL
+
+
+
 
     const HEADER_IMAGE = 'header_image';
     const SITE_NAME = 'site_name';
@@ -34,6 +56,7 @@ class Setting extends Model
     const HEADER_ITEMS_MENU = 'header_items_menu';
     const HEADER_CATEGORY_MENU = 'header_category_menu';
     const BLOCKS_CATEGORY_HOME_PAGE = 'blocks_cateory_home_page';
+    const BLOCKS_PAGE_HOME_PAGE = 'blocks_PAGE_home_page';
     const HEADER_ITEMS_LEFT_MENU = 'header_items_left_menu';
 
     const FACEBOOK_LINK = 'facebook_link';
@@ -54,11 +77,6 @@ class Setting extends Model
     //Мета
 
     const ADDRESS = 'address';
-    const EMAIL_CONSULTATION = 'email_consultation';
-    const EMAIL_ZMI = 'email_zmi';
-    const EMAIL_AUTHOR = 'email_author';
-    const EMAIL_MARKETING = 'email_marketing';
-    const EMAIL_CORPORATE = 'email_corporate';
     const PHONE = 'phone';
     const OTHER_SCRIPTS = 'other_scripts';
 
@@ -69,10 +87,11 @@ class Setting extends Model
 
     public static function settingsCategory() {
         return [
-            self::CATEGORY_GENERAL => __('main.general'),
-            self::CATEGORY_HEADER => __('main.header'),
-            self::CATEGORY_FOOTER => __('main.footer'),
-            self::CATEGORY_META => __('settings.category.meta')
+            self::CATEGORY_MAIN_PAGE => __('Головна сторінка'),
+            self::CATEGORY_HEADER => __('Шапка сайту'),
+            self::CATEGORY_CONTACT => __('Контактна інформація'),
+            self::CATEGORY_META => __('Мета теги'),
+            self::CATEGORY_OTHER => __('Інші')
         ];
     }
 
@@ -90,22 +109,24 @@ class Setting extends Model
         return $setting->type;
     }
 
-    public static function getParams($key)
+    public function getParams()
     {
-        if ($key == self::HEADER_ITEMS_LEFT_MENU) {
-            return Category::doesnthave('parent',)->pluck('name', 'id')->toArray();;
+        switch ($this->key) {
+            case self::MAIN_PAGE_CENTRAL_BLOCK_CATEGORY:
+            case self::MAIN_PAGE_BOTTOM_BLOCK_CATEGORY:
+            case self::HEADER_ITEMS_LEFT_MENU:
+            case self::BLOCKS_CATEGORY_HOME_PAGE:
+            case self::HEADER_CATEGORY_MENU:
+            case self::MAIN_PAGE_TOP_BLOCK_CATEGORY:
+                return Category::doesnthave('parent')->pluck('name', 'id')->toArray();
+                break;
+            case self::PAGE_COMPANY:
+            case self::BLOCKS_PAGE_HOME_PAGE:
+            case self::PAGE_CONTACTS:
+                return Page::active()->pluck('title', 'id')->toArray();
+                break;
         }
-        if ($key == self::BLOCKS_CATEGORY_HOME_PAGE) {
-            return Category::doesnthave('parent',)->pluck('name', 'id')->toArray();;
-        }
-        if ($key == self::HEADER_CATEGORY_MENU) {
-            return Category::doesnthave('parent',)->pluck('name', 'id')->toArray();;
-        }
-        if ($key == self::PAGE_COMPANY) {
-            return Page::active()->pluck('title', 'id')->toArray();;
-        }
-        if ($key == self::PAGE_CONTACTS) {
-            return Page::active()->pluck('title', 'id')->toArray();;
-        }
+
+        return json_decode($this->params);
     }
 }

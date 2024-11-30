@@ -32,32 +32,34 @@
                         <a href="{{ $youtubeLink }}" class="social__link icon-youtube" target="_blank" rel="nofollow"></a>
                     </li>
                 @endif
-                <li>
-                    <a href="mailto:{{ getSetting('email_address') }}" class="social__link icon-email" target="_blank" rel="nofollow">
-                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                            <polygon points="339.392,258.624 512,367.744 512,144.896"></polygon>
-                            <polygon points="0,144.896 0,367.744 172.608,258.624"></polygon>
-                            <path
-                                d="M480,80H32C16.032,80,3.36,91.904,0.96,107.232L256,275.264l255.04-168.032C508.64,91.904,495.968,80,480,80z"></path>
-                            <path
-                                d="M310.08,277.952l-45.28,29.824c-2.688,1.76-5.728,2.624-8.8,2.624c-3.072,0-6.112-0.864-8.8-2.624l-45.28-29.856	L1.024,404.992C3.488,420.192,16.096,432,32,432h448c15.904,0,28.512-11.808,30.976-27.008L310.08,277.952z"></path>
-                        </svg>
-                    </a>
-                </li>
+                @if($emailLink = getSetting('email_address'))
+                    <li>
+                        <a href="mailto:{{ $emailLink }}" class="social__link icon-email" target="_blank" rel="nofollow">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <polygon points="339.392,258.624 512,367.744 512,144.896"></polygon>
+                                <polygon points="0,144.896 0,367.744 172.608,258.624"></polygon>
+                                <path
+                                    d="M480,80H32C16.032,80,3.36,91.904,0.96,107.232L256,275.264l255.04-168.032C508.64,91.904,495.968,80,480,80z"></path>
+                                <path
+                                    d="M310.08,277.952l-45.28,29.824c-2.688,1.76-5.728,2.624-8.8,2.624c-3.072,0-6.112-0.864-8.8-2.624l-45.28-29.856	L1.024,404.992C3.488,420.192,16.096,432,32,432h448c15.904,0,28.512-11.808,30.976-27.008L310.08,277.952z"></path>
+                            </svg>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
     <div class="header__row header__row_middle">
         <div class="header__nav">
             <ul id="menu-header-menu" class="header__menu">
-                @foreach(\App\Services\HomeServices::getCategoryMainMenu() as $category)
-                    <li id="menu-item-311239" class="menu-item menu-item-type-taxonomy menu-item-object-category @if(!$category->childrenCategories->isEmpty()) menu-item-has-children @endif menu-item-311239">
-                        <a href="{{ $category->getUrl() }}">{{ $category->name }}</a>
-                        @if(!$category->childrenCategories->isEmpty())
+                @foreach(\App\Services\HomeServices::getMainMenuOptions() as $option)
+                    <li id="menu-item-311239" class="menu-item menu-item-type-taxonomy menu-item-object-category @if(!empty($option['child'])) menu-item-has-children @endif menu-item-311239">
+                        <a href="{{ $option['info']['url'] }}">{{ $option['info']['name'] }}</a>
+                        @if(!empty($option['child']))
                             <ul class="sub-menu">
-                                @foreach($category->childrenCategories as $cCategory)
+                                @foreach($option['child'] as $cCategory)
                                     <li id="menu-item-311446" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311446">
-                                        <a href="{{ $cCategory->getUrl() }}">{{ $cCategory->name }}</a>
+                                        <a href="{{ $cCategory['url'] }}">{{ $cCategory['name'] }}</a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -83,14 +85,15 @@
     </div>
     <div class="header__row">
         <div data-da="navigation__content,3,1000" data-da-index="4">
-            <ul id="menu-themes-menu" class="header__tags tags">
-                <li id="menu-item-311263" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-311263">
-                    <a href="/tag-search?query=Коронавірус">#&nbsp;Коронавірус</a>
-                </li>
-                <li id="menu-item-311265" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-311265">
-                    <a href="/tag-search?query=Війна">#&nbsp;Війна</a>
-                </li>
-            </ul>
+            @if($tags = \App\Services\HomeServices::getMainMenuTags())
+                <ul id="menu-themes-menu" class="header__tags tags">
+                    @foreach($tags as $tag)
+                        <li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag">
+                            <a href="/tag-search?query={{$tag}}">#&nbsp;{{$tag}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 </div>

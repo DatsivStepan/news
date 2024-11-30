@@ -124,17 +124,20 @@ class  NewsRepository extends BaseRepository
         return $new->forceDelete();
     }
 
-    public function getLastNewsForCategoory($id)
+    public function getLastNewsForCategoory($id, $limit = 1)
     {
         $news = News::with('news_category')
             ->whereHas('news_category', function ($q) use($id){
                 $q->where('category_id', $id)
                     ->where('news.date_of_publication','<=', now());
             })
-            ->orderBy('created_at', 'DESC')
-            ->first();
+            ->orderBy('created_at', 'DESC');
 
-        return $news;
+        if ($limit == 1) {
+            return $news->first();
+        }
+
+        return $news->limit($limit)->get();
     }
 
     protected function getSearchFields(): array
