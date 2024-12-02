@@ -159,6 +159,11 @@ a {
     width: 10px;
     height: 19px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/fb_mobile.png");
+        background-size: 15px 19px;
+        width: 15px;
+    }
 }
 
 .icon-youtube:before {
@@ -177,6 +182,35 @@ a {
     width: 17px;
     height: 17px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/instagram_mobile.png");
+    }
+}
+
+.qa-play-circle:before {
+    content: '';
+    background-image: url("/img/news_play.png");
+    background-size: 17px 17px;
+    width: 17px;
+    height: 17px;
+    display: block;
+}
+
+.lastnews__item:hover .qa-play-circle:before {
+    background-image: url("/img/news_play_red.png");
+}
+
+.qa-camera:before {
+    content: '';
+    background-image: url("/img/news_photo.png");
+    background-size: 19px 17px;
+    width: 19px;
+    height: 17px;
+    display: block;
+}
+
+.lastnews__item:hover .qa-camera:before {
+    background-image: url("/img/news_photo_red.png");
 }
 
 .icon-play:before {
@@ -207,6 +241,9 @@ a {
     width: 17px;
     height: 17px;
     display: block;
+    @media (max-width: 991px) {
+        background-image: url("/img/tw_mobile.png");
+    }
 }
 
 .icon-view:before {

@@ -262,7 +262,7 @@
                                             <li id="menu-item-365784" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365784"><a href="https://www.nta.ua/news/novyny-turyzmu/">Новини туризму</a></li>
                                             <li id="menu-item-365785" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-365785"><a href="https://www.nta.ua/news/strimy/">Стріми</a></li>
                                         </ul>
-                                        <span class="show-sub-menu"></span></li>
+                                    </li>
                                 </ul><ul id="menu-col-2-menu" class="navigation__menu"><li id="menu-item-311306" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-311306"><a href="https://www.nta.ua/teleproekty/">Проєкти</a>
                                         <ul class="sub-menu">
                                             <li id="menu-item-311309" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311309"><a href="https://www.nta.ua/tok-shou/govoryt-velykyj-lviv/">ГОВОРИТЬ ВЕЛИКИЙ ЛЬВІВ</a></li>
@@ -281,7 +281,8 @@
                                             <li id="menu-item-350814" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350814"><a href="https://www.nta.ua/projects/zmovy/">ЗМОВИ</a></li>
                                             <li id="menu-item-484835" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-484835"><a href="https://www.nta.ua/ukrzdol/">УКРАЇНСЬКОЮ_ЗДОЛАЄМ</a></li>
                                         </ul>
-                                        <span class="show-sub-menu"></span></li>
+{{--                                        <span class="show-sub-menu"></span>--}}
+                                    </li>
                                 </ul><ul id="menu-col-3-menu" class="navigation__menu"><li id="menu-item-311297" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-311297"><a href="#">Архів</a>
                                         <ul class="sub-menu">
                                             <li id="menu-item-311300" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311300"><a href="https://www.nta.ua/tok-shou/drozdov-pryamym-tekstom/">Drozdov</a></li>
@@ -296,7 +297,8 @@
                                             <li id="menu-item-350758" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350758"><a href="https://www.nta.ua/projects/vse-mozhlyvo/">ВСЕ МОЖЛИВО</a></li>
                                             <li id="menu-item-350757" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-350757"><a href="https://www.nta.ua/projects/otakoyi/">ОТАКОЇ</a></li>
                                         </ul>
-                                        <span class="show-sub-menu"></span></li>
+{{--                                        <span class="show-sub-menu"></span>--}}
+                                    </li>
                                 </ul><ul id="menu-col-4-menu" class="navigation__menu"><li id="menu-item-366866" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-366866"><a href="https://www.nta.ua/telekanal/">Телеканал НТА</a></li>
                                     <li id="menu-item-311988" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-311988"><a href="https://www.nta.ua/statti/">Статті</a></li>
                                     <li id="menu-item-314656" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-314656"><a href="https://www.nta.ua/blogy/">Блоги</a></li>
