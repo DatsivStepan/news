@@ -35,8 +35,9 @@ class NewsController extends Controller
         $topNews = $this->homeService->getMainPageTopNews();
         $topCentralBlockNews = $this->homeService->getMainPageCentralNews();
         $bottomPageBlockNews = $this->homeService->getMainPageBottomNews();
+        $blockTopBanner = $this->homeService->getMainPageTopBanner();
 
-        return view('index', compact('bottomPageBlockNews','sliderNews', 'topNews', 'topCentralBlockNews'));
+        return view('index', compact('blockTopBanner', 'bottomPageBlockNews','sliderNews', 'topNews', 'topCentralBlockNews'));
     }
 
     public function listNews(Request $request)

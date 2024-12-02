@@ -64,13 +64,7 @@
             </div>
 
             <div class="content">
-                <div class="covid-wrap">
-                    <div class="covid-block" style="justify-content: center;">
-                        <p id="slava" style="color: #ed1e24;font-size: 37px;">
-                            Слава ЗСУ! Смерть ворогам!
-                        </p>
-                    </div>
-                </div>
+                {!! $blockTopBanner !!}
             </div>
 
             <div class="content main__row">

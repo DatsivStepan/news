@@ -186,7 +186,7 @@ class HomeServices
                 case Setting::MENU_OPTION_CATEGORY:
                     $category = $categoryRepository->getOne($slug, 'slug');
                     if (!$category) {
-                        continue;
+                        break;
                     }
 
                     $childCategories = [];
@@ -246,6 +246,24 @@ class HomeServices
         return $items;
     }
 
+    public static function getMainPageTopBanner($resetCache = false)
+    {
+        if (($value = Cache::get('main-page-top-banner')) && !$resetCache) {
+            return $value;
+        }
+
+        $sRepository = app(SettingRepository::class);
+        $setting = $sRepository->getOne(Setting::MAIN_PAGE_TOP_BANNER, 'key');
+        $html = $setting->value;
+        if (!$html) {
+            return '';
+        }
+
+        Cache::put('main-page-top-banner', $html);
+
+        return $html;
+    }
+
     public function getMainPageCentralNews()
     {
         $setting = app(SettingRepository::class)->getOne(Setting::MAIN_PAGE_CENTRAL_BLOCK_CATEGORY, 'key');
@@ -263,7 +281,7 @@ class HomeServices
                 })->get();
     }
 
-    public function getMainPageBottomNews()
+   public function getMainPageBottomNews()
     {
         $setting = app(SettingRepository::class)->getOne(Setting::MAIN_PAGE_BOTTOM_BLOCK_CATEGORY, 'key');
         $categoryIds = explode(",", $setting->value);

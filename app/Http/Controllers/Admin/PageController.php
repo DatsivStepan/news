@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\PageChanged;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\Setting;
@@ -81,6 +82,8 @@ class PageController extends Controller
         $data['slug'] = Str::slug($data['title'], '_');
         $this->pageRepository->create($data);
 
+        event(new PageChanged());
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page created successfully.');
     }
@@ -124,6 +127,8 @@ class PageController extends Controller
 
         $this->pageRepository->update($page, $data);
 
+        event(new PageChanged());
+
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page updated successfully');
     }
@@ -136,6 +141,8 @@ class PageController extends Controller
     public function destroy($id)
     {
         $this->pageRepository->getOneOrFail($id)->delete();
+
+        event(new PageChanged());
 
         return redirect()->route('admin.pages.index')
             ->with('success', 'Page deleted successfully');

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Cache;
 
-class ClearCategoryCache
+class ClearMenuCache
 {
     /**
      * Create the event listener.
@@ -20,7 +20,7 @@ class ClearCategoryCache
     /**
      * Handle the event.
      */
-    public function handle(CategoryChanged $event): void
+    public function handle(): void
     {
         Cache::forget('main-menu');
         Cache::forget('popup-menu');

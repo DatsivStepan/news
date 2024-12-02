@@ -23,6 +23,7 @@ class Setting extends Model
     const TYPE_IMAGE = 5;
     const TYPE_MULTIPLE = 6;
     const TYPE_TAGS = 7;
+    const TYPE_EDITOR = 8;
 
 
     const CATEGORY_GENERAL = 1;
@@ -45,6 +46,7 @@ class Setting extends Model
     const MAIN_PAGE_TOP_BLOCK_CATEGORY = 'main_page_top_block_category';
     const MAIN_PAGE_CENTRAL_BLOCK_CATEGORY = 'main_page_central_block_category';
     const MAIN_PAGE_BOTTOM_BLOCK_CATEGORY = 'main_page_bottom_block_category';
+    const MAIN_PAGE_TOP_BANNER = 'main_page_top_banner';
     // GENERAL
 
 

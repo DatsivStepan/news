@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use App\Events\CategoryChanged;
-use App\Listeners\ClearCategoryCache;
+use App\Events\PageChanged;
+use App\Listeners\ClearMenuCache;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -21,7 +22,10 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         CategoryChanged::class => [
-            ClearCategoryCache::class,
+            ClearMenuCache::class,
+        ],
+        PageChanged::class => [
+            ClearMenuCache::class,
         ],
     ];
 

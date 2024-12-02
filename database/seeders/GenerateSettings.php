@@ -76,6 +76,14 @@ class GenerateSettings extends Seeder
                 'type' => Setting::TYPE_MULTIPLE,
                 'description' => ''
             ],
+            [
+                'name' => 'Верхній блок "Банер"',
+                'value' => '',
+                'key' => Setting::MAIN_PAGE_TOP_BANNER,
+                'category' => Setting::CATEGORY_MAIN_PAGE,
+                'type' => Setting::TYPE_EDITOR,
+                'description' => ''
+            ],
             // General
 
             // МЕТА
