@@ -232,12 +232,12 @@
                                     <div class="article-item article-big">
                                         <a href="{{ $firstBottom->getUrl() }}" class="article-thumb">
                                             <img width="1024" height="768"
-                                                  src="{{ $firstBottom->getImageUrl() }}"
-                                                  class="attachment-large size-large wp-post-image"
-                                                  alt="photo 2024 08 19 06 32 06" decoding="async"
-                                                  sizes="(max-width: 1024px) 100vw, 1024px"
-                                                  title="{{ $firstBottom->getTitle() }}"
-                                                  loading="lazy">
+                                                 src="{{ $firstBottom->getImageUrl() }}"
+                                                 class="attachment-large size-large wp-post-image"
+                                                 alt="photo 2024 08 19 06 32 06" decoding="async"
+                                                 sizes="(max-width: 1024px) 100vw, 1024px"
+                                                 title="{{ $firstBottom->getTitle() }}"
+                                                 loading="lazy">
                                         </a>
                                         <div class="article-entry">
                                             <div class="article-title">
@@ -254,12 +254,12 @@
                                         <div class="article-item">
                                             <a href="{{ $lastBottomNew->getUrl() }}" class="article-thumb">
                                                 <img width="400" height="223"
-                                                      src="{{ $lastBottomNew->getImageUrl() }}"
-                                                      class="attachment-medium size-medium wp-post-image"
-                                                      alt="04023bmh ca15 1376x768 1" decoding="async"
-                                                      sizes="(max-width: 400px) 100vw, 400px"
-                                                      title="{{ $lastBottomNew->getTitle() }}"
-                                                      loading="lazy">
+                                                     src="{{ $lastBottomNew->getImageUrl() }}"
+                                                     class="attachment-medium size-medium wp-post-image"
+                                                     alt="04023bmh ca15 1376x768 1" decoding="async"
+                                                     sizes="(max-width: 400px) 100vw, 400px"
+                                                     title="{{ $lastBottomNew->getTitle() }}"
+                                                     loading="lazy">
                                             </a>
                                             <div class="article-entry">
                                                 <div class="article-title">

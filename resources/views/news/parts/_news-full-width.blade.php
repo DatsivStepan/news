@@ -12,10 +12,18 @@
                          alt="467673054 900191808873021 2713997016007249662 n"
                          decoding="async"
                          sizes="(max-width: 400px) 100vw, 400px"
-                         title="Смертельна ДТП поблизу Пісочної на Львівщині: Стали відомі деталі 4"
+                         title="{{ $new->title }}"
                          loading="lazy">
                 </span>
                 {{ $new->title }}
+                @switch($new->show_type)
+                    @case(\App\Models\News::SHOW_TYPE_IMAGE)
+                        <i class="qas qa-camera"></i>
+                        @break
+                    @case(\App\Models\News::SHOW_TYPE_VIDEO)
+                        <i class="qas qa-play-circle"></i>
+                        @break
+                @endswitch
                 <span class="lastnews__desc">
                     {!! $new->mini_description !!}
                 </span>

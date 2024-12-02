@@ -38,6 +38,10 @@ class News extends Model implements Viewable
 {
     use SoftDeletes, InteractsWithViews;
 
+    const SHOW_TYPE_TEXT = 0;
+    const SHOW_TYPE_IMAGE = 1;
+    const SHOW_TYPE_VIDEO = 2;
+
     static $rules = [
         'tags' => 'required',
         'title' => 'required',
@@ -51,6 +55,7 @@ class News extends Model implements Viewable
 		'category_id' => 'required',
 		'type_publication' => 'required',
 		'type' => 'required',
+		'show_type' => 'required',
 		'date_of_publication' => 'required',
     ];
 
@@ -63,7 +68,7 @@ class News extends Model implements Viewable
      */
     protected $fillable = [
         'title', 'slug', 'subtitle', 'mini_description', 'description', 'type_publication',
-        'type', 'date_of_publication', 'show_author'
+        'type', 'date_of_publication', 'show_author', 'show_type'
     ];
 
     protected $perPage = 20;

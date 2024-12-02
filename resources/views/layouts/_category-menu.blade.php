@@ -68,7 +68,7 @@
                 @endforeach
             </ul>
         </div>
-        <a href="/nazhyvo/" class="header__online online-link icon-play">дивитися онлайн</a>
+        <a href="/page/divitis_onlain" class="header__online online-link icon-play">дивитися онлайн</a>
         <div class="header__search search">
             <div class="search__toggle icon-search js-search-toggle"></div>
 

@@ -87,7 +87,26 @@
                     {{ Form::label(__('main.importantNews')) }}
                     {{ Form::radio('type', 2, $news->type == 2 ? true : false) }}
                     {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}
-                </div><br><br>
+                </div>
+
+                <br> <br>
+                <div class="form-check form-check-inline">
+                    {{ Form::label(__('Текст')) }}
+                    {{ Form::radio('show_type', \App\Models\News::SHOW_TYPE_TEXT, $news->show_type == \App\Models\News::SHOW_TYPE_TEXT, ['checked' => 'checked']) }}
+                    {!! $errors->first('show_type', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ Form::label(__('Фото')) }}
+                    {{ Form::radio('show_type', \App\Models\News::SHOW_TYPE_IMAGE, $news->show_type == \App\Models\News::SHOW_TYPE_IMAGE) }}
+                    {!! $errors->first('show_type', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+                <div class="form-check form-check-inline">
+                    {{ Form::label(__('Відео')) }}
+                    {{ Form::radio('show_type', \App\Models\News::SHOW_TYPE_VIDEO, $news->show_type == \App\Models\News::SHOW_TYPE_VIDEO) }}
+                    {!! $errors->first('show_type', '<div class="invalid-feedback">:message</div>') !!}
+                </div>
+
+                <br><br>
                 <div class="mb-3">
                     {{ Form::label(__('main.dateOfPublication')) }}
                     {{ Form::dateTimelocal('date_of_publication', date('Y-m-d H:i', strtotime($news->date_of_publication ? date('Y-m-d H:i', strtotime($news->date_of_publication)) : now())), ['class' => 'form-control' . ($errors->has('date_of_publication') ? ' is-invalid' : ''), 'placeholder' => 'Date Of Publication']) }}

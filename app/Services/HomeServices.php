@@ -254,14 +254,13 @@ class HomeServices
 
         $sRepository = app(SettingRepository::class);
         $setting = $sRepository->getOne(Setting::MAIN_PAGE_TOP_BANNER, 'key');
-        $html = $setting->value;
-        if (!$html) {
+        if (empty($setting->value)) {
             return '';
         }
 
-        Cache::put('main-page-top-banner', $html);
+        Cache::put('main-page-top-banner', $setting->value);
 
-        return $html;
+        return $setting->value;
     }
 
     public function getMainPageCentralNews()
