@@ -222,63 +222,105 @@
     </div>
     @if($bottomPageBlockNews)
         <div class="content">
-            @foreach($bottomPageBlockNews as $bottomPageBlockNew)
-                @if (!$bottomPageBlockNew->news->isEmpty())
-                    <div class="home-articles-bottom">
-                        <h2 class="title">{{ $bottomPageBlockNew->getName() }}</h2>
-                        <div class="row">
-                            @if ($firstBottom = $bottomPageBlockNew->news->first())
-                                <div class="col-md-6">
-                                    <div class="article-item article-big">
-                                        <a href="{{ $firstBottom->getUrl() }}" class="article-thumb">
-                                            <img width="1024" height="768"
-                                                  src="{{ $firstBottom->getImageUrl() }}"
-                                                  class="attachment-large size-large wp-post-image"
-                                                  alt="photo 2024 08 19 06 32 06" decoding="async"
-                                                  sizes="(max-width: 1024px) 100vw, 1024px"
-                                                  title="{{ $firstBottom->getTitle() }}"
-                                                  loading="lazy">
-                                        </a>
-                                        <div class="article-entry">
-                                            <div class="article-title">
-                                                <a href="{{ $firstBottom->getUrl() }}">{{ $firstBottom->getTitle() }}</a>
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                        @foreach($bottomPageBlockNews as $bottomPageBlockNew)
+                            @if (!$bottomPageBlockNew->news->isEmpty())
+                            <div class="slider-item">
+                                <div class="home-articles-bottom">
+                                    <h2 class="title">{{ $bottomPageBlockNew->getName() }}</h2>
+                                    <div class="row">
+                                        @if ($firstBottom = $bottomPageBlockNew->news->first())
+                                            <div class="col-md-6">
+                                                <div class="article-item article-big">
+                                                    <a href="{{ $firstBottom->getUrl() }}" class="article-thumb">
+                                                        <img width="1024" height="768"
+                                                              src="{{ $firstBottom->getImageUrl() }}"
+                                                              class="attachment-large size-large wp-post-image"
+                                                              alt="photo 2024 08 19 06 32 06" decoding="async"
+                                                              sizes="(max-width: 1024px) 100vw, 1024px"
+                                                              title="{{ $firstBottom->getTitle() }}"
+                                                              loading="lazy">
+                                                    </a>
+                                                    <div class="article-entry">
+                                                        <div class="article-title">
+                                                            <a href="{{ $firstBottom->getUrl() }}">{{ $firstBottom->getTitle() }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
+
+                                        @if ($lastBottomNews = $bottomPageBlockNew->news->slice(1))
+                                            @foreach($lastBottomNews as $lastBottomNew)
+                                                <div class="col-sm-6 col-md-3">
+                                                    <div class="article-item">
+                                                        <a href="{{ $lastBottomNew->getUrl() }}" class="article-thumb">
+                                                            <img width="400" height="223"
+                                                                  src="{{ $lastBottomNew->getImageUrl() }}"
+                                                                  class="attachment-medium size-medium wp-post-image"
+                                                                  alt="04023bmh ca15 1376x768 1" decoding="async"
+                                                                  sizes="(max-width: 400px) 100vw, 400px"
+                                                                  title="{{ $lastBottomNew->getTitle() }}"
+                                                                  loading="lazy">
+                                                        </a>
+                                                        <div class="article-entry">
+                                                            <div class="article-title">
+                                                                <a href="{{ $lastBottomNew->getUrl() }}">{{ $lastBottomNew->getTitle() }}</a>
+                                                            </div>
+                                                            <div class="article-desc">
+                                                                {{ $lastBottomNew->getShortDescription(150) }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
+                            </div>
                             @endif
-
-                            @if ($lastBottomNews = $bottomPageBlockNew->news->slice(1))
-                                @foreach($lastBottomNews as $lastBottomNew)
-                                    <div class="col-sm-6 col-md-3">
-                                        <div class="article-item">
-                                            <a href="{{ $lastBottomNew->getUrl() }}" class="article-thumb">
-                                                <img width="400" height="223"
-                                                      src="{{ $lastBottomNew->getImageUrl() }}"
-                                                      class="attachment-medium size-medium wp-post-image"
-                                                      alt="04023bmh ca15 1376x768 1" decoding="async"
-                                                      sizes="(max-width: 400px) 100vw, 400px"
-                                                      title="{{ $lastBottomNew->getTitle() }}"
-                                                      loading="lazy">
-                                            </a>
-                                            <div class="article-entry">
-                                                <div class="article-title">
-                                                    <a href="{{ $lastBottomNew->getUrl() }}">{{ $lastBottomNew->getTitle() }}</a>
-                                                </div>
-                                                <div class="article-desc">
-                                                    {{ $lastBottomNew->getShortDescription(150) }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            @endif
-
-                        </div>
-                    </div>
-                @endif
-            @endforeach
+                        @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="navigation-slider">
+            <button class="nav-button prev">
+                <img src="/img/left-arrow.png" alt="">
+            </button>
+            <button class="nav-button next">
+                <img src="/img/right-arrow.png" alt="">
+            </button>
         </div>
     @endif
+    <script>
+        const sliderWrapper = document.querySelector('.slider-wrapper');
+        const slides = document.querySelectorAll('.slider-item');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+        let currentSlide = 0;
 
+        function updateSlider() {
+            sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            prevButton.disabled = currentSlide === 0;
+            nextButton.disabled = currentSlide === slides.length - 1;
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlider();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlider();
+            }
+        });
+
+        // Ініціалізація
+        updateSlider();
+    </script>
 @endsection

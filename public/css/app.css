@@ -1421,6 +1421,14 @@ select::-ms-expand {
     font-size: 14px;
     font-weight: 300;
 }
+.navigation__menu:last-child {
+    .sub-menu {
+        li {
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+        }
+    }
+}
 @media screen and (max-width: 991px) {
     .navigation__menu > li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1670,6 +1678,9 @@ select::-ms-expand {
     font-weight: 900;
     text-transform: uppercase;
     position: relative;
+}
+.slider-item .title {
+    transform: translateX(15px);
 }
 .title:before {
     position: absolute;
@@ -6677,5 +6688,143 @@ html.wpra-share-popup-active {
     }
 }
 
+.slider-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.navigation-slider {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.nav-button {
+    padding: 10px;
+    cursor: pointer;
+    background: #ed1e24;
+    color: white;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+}
+.nav-button.next,
+.nav-button.prev {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 100%;
+    }
+}
+
+.nav-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* =General CSS
+-------------------------------------------------------------- */
+.full_width,
+.one_half,
+.one_third,
+.two_third,
+.one_fourth,
+.three_fourth,
+.one_fifth,
+.two_fifth,
+.three_fifth,
+.four_fifth,
+.one_sixth,
+.five_sixth {
+    float: left;
+}
+.clear_column {
+    clear:both;
+    display:block;
+    font-size:0; height:0;
+    line-height:0; width:100%;
+    overflow: hidden;
+}
+
+/* =Shortcodes Templates
+-------------------------------------------------------------- */
+
+/* =Default Template (no margin)
+-------------------------------------------------------------- */
+.full_width  {
+    width: 100%;
+}
+.one_half  {
+    width: 50%;
+}
+.one_third  {
+    width: 33.3%;
+}
+.two_third  {
+    width: 66.6%;
+}
+.one_fourth  {
+    width: 25%;
+}
+.three_fourth  {
+    width: 75%;
+}
+.one_fifth  {
+    width: 20%;
+}
+.two_fifth  {
+    width: 40%;
+}
+.three_fifth  {
+    width: 60%;
+}
+.four_fifth  {
+    width: 80%;
+}
+.one_sixth  {
+    width: 16.6%;
+}
+.five_sixth  {
+    width: 83.4%;
+}
+
+/* =Responsive
+-------------------------------------------------------------- */
+/* Maximum width of 600 pixels. */
+@media screen and (max-width: 600px) {
+    .full_width,
+    .one_half,
+    .one_third,
+    .two_third,
+    .one_fourth,
+    .three_fourth,
+    .one_fifth,
+    .two_fifth,
+    .three_fifth,
+    .four_fifth,
+    .one_sixth,
+    .five_sixth {
+        clear: both;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+}
 
 
