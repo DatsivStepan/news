@@ -2467,6 +2467,10 @@ label.leave-comment__item {
     margin: 0 -15px;
     padding-bottom: 22px;
 }
+.footer__nav .footer__col:last-child li .sub-menu li {
+    font-weight: 900;
+    text-transform: uppercase;
+}
 @media screen and (max-width: 767px) {
     .footer__nav {
         margin: 0 0;
