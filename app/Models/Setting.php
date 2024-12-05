@@ -32,9 +32,15 @@ class Setting extends Model
     const CATEGORY_META = 4;
     const CATEGORY_OTHER = 5;
     const CATEGORY_MAIN_PAGE = 6;
+    const CATEGORY_SPECIAL_BLOCK = 7;
 
     const MENU_OPTION_CATEGORY = 'category';
     const MENU_OPTION_PAGE = 'page';
+
+    // CATEGORY_SPECIAL_BLOCK
+    const SPECIAL_BLOCK_LINK = 'special_block_link';
+    const SPECIAL_BLOCK_IMAGE = 'special_block_image';
+    // CATEGORY_SPECIAL_BLOCK
 
     // HEADER
     const HEADER_MAIN_MENU_OPTIONS = 'header_main_menu_options';
@@ -82,6 +88,11 @@ class Setting extends Model
     const PHONE = 'phone';
     const OTHER_SCRIPTS = 'other_scripts';
 
+    public function getImageUrl()
+    {
+        return $this->image ? $this->image->getPath() : '/public/default.png';
+    }
+
     public function image()
     {
         return $this->hasOne(File::class, 'id','value');
@@ -93,7 +104,8 @@ class Setting extends Model
             self::CATEGORY_HEADER => __('Шапка сайту'),
             self::CATEGORY_CONTACT => __('Контактна інформація'),
             self::CATEGORY_META => __('Мета теги'),
-            self::CATEGORY_OTHER => __('Інші')
+            self::CATEGORY_OTHER => __('Інші'),
+            self::CATEGORY_SPECIAL_BLOCK => __('Спец. Блок')
         ];
     }
 

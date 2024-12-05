@@ -9,6 +9,7 @@ use App\Repositories\NewsRepository;
 use App\Repositories\SettingRepository;
 use App\Services\HomeServices;
 use App\Services\NewsServices;
+use CyrildeWit\EloquentViewable\Visitor;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -90,6 +91,7 @@ class NewsController extends Controller
 
     public function search(Request $request)
     {
+        $search = $request['query'];
         $options = [
             'search' => $request['query'],
             'viewType' => $request['type']
@@ -106,10 +108,10 @@ class NewsController extends Controller
 
             $view = view('news.parts._news-search', compact('news'))->render();
 
-            return response()->json(['html' => $view, 'pagin' => $news->hasMorePages()	]);
+            return response()->json(['html' => $view, 'pagin' => $news->hasMorePages()]);
         }
 
-        return view('news.search', compact('news'));
+        return view('news.search', compact('news', 'search'));
     }
 
     public function tagSearch(Request $request)

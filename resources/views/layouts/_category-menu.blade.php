@@ -1,8 +1,20 @@
 <div class="header__col header__col_2">
     <div class="header__row">
-        <div class="header__weather" data-da="navigation__row-mobile,2,1000" title="сніг" data-da-index="1">
-            <i class="wi wi-snowflake-cold"></i><span>-0<sup>0</sup> Львів</span>
-        </div>
+        @if($wData = getWeatherData())
+            <div class="header__weather" data-da="navigation__row-mobile,2,1000" title="сніг" data-da-index="1">
+                <div class="weather-icon" style="background-image: url('{{ $wData['icon'] }}');"></div>
+                <span>{{ $wData['temperature'] }}<sup>{{ $wData['temperature'] }}</sup> {{ $wData['city'] }} </span>
+            </div>
+            <style>
+                .weather-icon {
+                    display: inline-block;
+                    width: 20px;
+                    height: 17px;
+                    background-size: 120%;
+                    background-repeat: no-repeat;
+                }
+            </style>
+        @endif
         <div class="header__social" data-da="navigation__content,4,1000" data-da-index="2">
             <ul class="social">
                   @if($telegramLink = getSetting('telegram_link'))

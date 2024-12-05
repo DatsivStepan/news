@@ -34,7 +34,7 @@
                                     {{ Form::label('text',  $setting->name, ['class' => 'form-label']) }}
                                     {{ Form::file($setting->key, [ 'class' => 'form-control' . ($errors->has('$setting->key') ? ' is-invalid' : ''), 'onchange'=> "getImagePreview(event)", "id" => "selectImage"]) }}
                                     {!! $errors->first('image', '<div class="invalid-feedback">:message</div>') !!}
-                                    <img id="preview" width="270" height="100" src="{{ $setting->image ? Storage::url($setting->image->name) : '' }}" alt="/" class="mt-3" style="{{$setting->image ? 'display:none' : ''}}" />
+                                    <img id="preview" width="270" height="200" src="{{ $setting->getImageUrl() }}" alt="/" class="mt-3"/>
                                 </div>
                             @break
 

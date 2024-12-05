@@ -47,11 +47,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CategoryFilter $request)
+    public function index(CategoryFilter $requestf)
     {
-        $categories = Category::filter($request)->paginate('20');
+        $parentCategory = $this->categoryRepository->getOne($requestf->request->get('parent'));
 
-        return view('admin.category.index', compact('categories', ))
+        $categories = Category::filter($requestf)->paginate('20');
+
+        return view('admin.category.index', compact('categories', 'parentCategory'))
             ->with('i', (request()->input('page', 1) - 1) * $categories->perPage());
     }
 

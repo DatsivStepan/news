@@ -25,7 +25,17 @@ class SettingRepository extends BaseRepository
         }
 
         $setting = $this->getOneByConditions($params);
+        $value = '';
+        if (!empty($setting)) {
+            switch ($setting->type) {
+                case Setting::TYPE_IMAGE:
+                    $value = $setting->getImageUrl();
+                    break;
+                default:
+                    $value = $setting->value;
+            }
+        }
 
-        return $setting ? $setting->value : '';
+        return $value;
     }
 }

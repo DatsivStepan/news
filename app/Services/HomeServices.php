@@ -311,6 +311,45 @@ class HomeServices
         return app(PageRepository::class)->getPageWhereIn(explode( ',', $setting->value));
     }
 
+    public static function getWeatherData()
+    {
+//        if (($value = Cache::get('header-weather-data'))) {
+//            return $value;
+//        }
+
+        $weatherData = [];
+        $apiKey = env('WEATHER_API_KEY');
+        $city = env('WEATHER_API_CITY');
+        $apiUrl = "https://api.openweathermap.org/data/2.5/weather?q={$city}&units=metric&lang=uk&appid={$apiKey}";
+
+        try {
+            $response = file_get_contents($apiUrl);
+            if ($response === FALSE) {
+                die('Помилка при отриманні даних');
+            }
+            $weatherData = json_decode($response, true);
+
+            if ($weatherData && $weatherData['cod'] == 200) {
+                $temperature = round($weatherData['main']['temp']);
+                $icon = $weatherData['weather'][0]['icon'];
+                $iconUrl = "https://openweathermap.org/img/wn/{$icon}@2x.png";
+                $weatherData = [
+                    'icon' => $iconUrl,
+                    'temperature' => $temperature,
+                    'city' => 'Львів',
+                ];
+            }
+        } catch (\Throwable $e) {
+            // TODO: save to log.
+        }
+
+        if ($weatherData) {
+            Cache::put('header-weather-data', $weatherData, 1800);
+        }
+
+        return $weatherData;
+    }
+
     public static function getTopTags()
     {
         return app(TagRepository::class)->getTopTags();

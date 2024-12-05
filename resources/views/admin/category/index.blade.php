@@ -12,7 +12,12 @@
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">
-                                {{ __('main.categories') }}
+                                @if($parentCategory)
+                                    <a href="categories" class="btn btn-primary">Назад</a>
+                                    Дочірні категорії "{{$parentCategory->getName()}}"
+                                @else
+                                    {{ __('main.categories') }}
+                                @endif
                             </span>
                             <form action="{{ route('admin.categories.index')  }}" method="get" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                                 <div class="input-group">
@@ -49,7 +54,13 @@
                                     @foreach ($categories as $category)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-											<td>{{ $category->name }}</td>
+                                            <td>
+                                                @if(!$category->childrenCategories->isEmpty())
+                                                    <a href="categories?parent={{ $category->id }}">{{$category->name}}</a>
+                                                @else
+                                                    {{ $category->name }}
+                                                @endif
+                                            </td>
 											<td>{{ $category->slug }}</td>
 											<td>{{ $category->views()->count() }}</td>
                                             <td>

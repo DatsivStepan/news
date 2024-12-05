@@ -17,7 +17,20 @@
 
     <main class="main">
         <div class="content">
-            {{ Breadcrumbs::render('category' , $category) }}
+            <div class="bread">
+                <span property="itemListElement" typeof="ListItem">
+                    <a property="item" typeof="WebPage" href="/" class="home">
+                        <span property="name">Головна сторінка</span>
+                    </a>
+
+                    @foreach($category->getParentsList() as $item)
+                        ><span property="name" class="post post-post current-item">
+                            <a href="{{$item['url']}}">{{$item['name']}}</a>
+                        </span>
+                    @endforeach
+
+                </span>
+            </div>
         </div>
         <div class="content main__row">
             <div class="main__content main__content_pt" id="main">

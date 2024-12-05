@@ -13,14 +13,16 @@
     <div class="content">
         <div class="bread">
 
-            <!-- Breadcrumb NavXT 7.3.1 -->
-            <span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Go to НТА." href="https://www.nta.ua" class="home"><span property="name">НТА</span></a><meta property="position" content="1"></span> &gt; <span class="search current-item">Search results for 'Джон'</span></div>	   </div>
-
-
+        <span property="itemListElement" typeof="ListItem">
+            <a property="item" typeof="WebPage" title="Go to НТА." href="/" class="home">
+                <span property="name">НТА</span>
+            </a><meta property="position" content="1"></span> &gt; <span class="search current-item">Search results for '{{ $search }}'</span>
+        </div>
+    </div>
 
     <div class="content main__row">
         <div class="main__content main__content_pt" id="main">
-            <h1 class="title">Результати пошуку для: <span>Джон</span></h1>
+            <h1 class="title">Результати пошуку для: <span>{{ $search }}</span></h1>
 
             <div class="news">
                 @include('news.parts._news-search', ['type' => 1])

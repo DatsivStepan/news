@@ -98,6 +98,40 @@ class Category extends Model implements Viewable
         return "Читати ⏩ " . $this->getName() . " | Інформаційне агентство “Король Данило” - головні новини України та Світу";
     }
 
+    public function relation()
+    {
+        return $this->hasOne(CategoryRelative::class, 'category_id', 'id');
+    }
+
+    public function parentRelation()
+    {
+        return $this->hasOne(CategoryRelative::class, 'category_id', 'id');
+    }
+
+    public function getParentsList()
+    {
+        $parents = [];
+        $current = $this;
+
+        while ($current->parentRelation && $current->parentRelation->parent_id) {
+            $parent = Category::find($current->parentRelation->parent_id);
+            if (!$parent) {
+                break;
+            }
+            $parents[] = [
+                'url' => $parent->getUrl(),
+                'name' => $parent->getName(),
+            ];
+            $current = $parent;
+        }
+
+        $parents[] = [
+            'url' => $this->getUrl(),
+            'name' => $this->getName(),
+        ];
+        return $parents;
+    }
+
     /**
      * @var string
      */

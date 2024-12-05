@@ -191,6 +191,26 @@ class GenerateSettings extends Seeder
                 'description' => ''
             ],
             // CATEGORY_OTHER
+
+
+            //CATEGORY_SPECIAL_BLOCK
+            [
+                'name' => 'Лінк',
+                'value' => '',
+                'key' => Setting::SPECIAL_BLOCK_LINK,
+                'category' => Setting::CATEGORY_SPECIAL_BLOCK,
+                'type' => Setting::TYPE_INPUT,
+                'description' => ''
+            ],
+            [
+                'name' => 'Картинка',
+                'value' => '',
+                'key' => Setting::SPECIAL_BLOCK_IMAGE,
+                'category' => Setting::CATEGORY_SPECIAL_BLOCK,
+                'type' => Setting::TYPE_IMAGE,
+                'description' => ''
+            ],
+            //CATEGORY_SPECIAL_BLOCK
         ];
 
         foreach ($settingsData as $settingData) {

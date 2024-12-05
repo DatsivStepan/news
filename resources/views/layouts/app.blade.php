@@ -240,7 +240,23 @@
                         <div class="content navigation__content">
                             <div class="navigation__row-mobile">
                                 <div class="header__date icon-calendar _dynamic_adapt_1000" data-da="navigation__row-mobile,1,1000" data-da-index="0"><span><?= \Carbon\Carbon::now()->translatedFormat('l, j F, Y');?></span></div>
-                                <div class="header__weather _dynamic_adapt_1000" data-da="navigation__row-mobile,2,1000" title="хмарно" data-da-index="1"><i class="wi wi-cloudy"></i><span>4<sup>0</sup> Львів</span></div>
+
+                                @if($wData = getWeatherData())
+                                    <div class="header__weather _dynamic_adapt_1000" data-da="navigation__row-mobile,2,1000" title="хмарно" data-da-index="1">
+                                        <div class="weather-icon" style="background-image: url('{{ $wData['icon'] }}');"></div>
+                                        <span>{{ $wData['temperature'] }}<sup>0</sup> {{ $wData['city'] }}</span>
+                                    </div>
+                                    <style>
+                                        .weather-icon {
+                                            display: inline-block;
+                                            width: 20px;
+                                            height: 17px;
+                                            background-size: 120%;
+                                            background-repeat: no-repeat;
+                                        }
+                                    </style>
+                                @endif
+
                             </div>
                             <form method="get" id="searchform" class="search__form search-form _dynamic_adapt_1000" data-da="navigation__content,1,1000" action="{{ route('search')  }}" data-da-index="3">
                                 <input type="text" placeholder="Пошук по сайту" name="query" class="search-form__input">

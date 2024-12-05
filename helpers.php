@@ -11,6 +11,11 @@ function getSetting(string $key, int $category = null)
     return (new \App\Repositories\SettingRepository())->getSetting($key, $category);
 }
 
+function getWeatherData()
+{
+    return \App\Services\HomeServices::getWeatherData();
+}
+
 function getMetaData($pageMeta = [])
 {
     $metaData = app(\App\Services\MetaServices::class)->getMetaData();
