@@ -288,10 +288,8 @@ class HomeServices
             return [];
         }
 
-        return \App\Models\Category::with(['news' => function ($query) {
-            $query->orderBy('created_at', 'desc')->limit(3);
-        }])
-            ->whereIn('id', $categoryIds)
+        return \App\Models\Category::withCount('news')
+            ->having('news_count', '>', 3)->whereIn('id', $categoryIds)
             ->get();
     }
 

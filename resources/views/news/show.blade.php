@@ -118,9 +118,10 @@
                         <span class="single__date date-info"><time datetime="">{{ $news->getPublicationDate(false) }}</time></span>
                         <div class="single__view view-info icon-view nr-views-556530">103</div>
                         <div class="single__share">
+
                             <div class="addtoany_shortcode">
-                                <div class="a2a_kit a2a_kit_size_40 addtoany_list" data-a2a-url="https://www.nta.ua/zbytky-dovkillyu-ukrayiny-za-1000-dniv-vijny-nazvaly-sumu/" data-a2a-title="Збитки довкіллю України за 1000 днів війни: назвали суму" style="line-height: 40px;">
-                                    <a class="a2a_button_facebook" href="/#facebook" title="Facebook" rel="nofollow noopener" target="_blank">
+                                <div class="a2a_kit a2a_kit_size_40 addtoany_list">
+                                    <a class="a2a_button_facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ $news->getUrl() }}" title="Facebook" rel="nofollow noopener" target="_blank">
                                         <span class="a2a_svg a2a_s__default a2a_s_facebook" style="background-color: rgb(8, 102, 255); width: 40px; line-height: 40px; height: 40px; background-size: 40px; border-radius: 6px;">
                                             <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                                 <path fill="#fff" d="M28 16c0-6.627-5.373-12-12-12S4 9.373 4 16c0 5.628 3.875 10.35 9.101 11.647v-7.98h-2.474V16H13.1v-1.58c0-4.085 1.849-5.978 5.859-5.978.76 0 2.072.15 2.608.298v3.325c-.283-.03-.775-.045-1.386-.045-1.967 0-2.728.745-2.728 2.683V16h3.92l-.673 3.667h-3.247v8.245C23.395 27.195 28 22.135 28 16"></path>
@@ -128,7 +129,7 @@
                                         </span>
                                         <span class="a2a_label">Facebook</span>
                                     </a>
-                                    <a class="a2a_button_twitter" href="/#twitter" title="Twitter" rel="nofollow noopener" target="_blank">
+                                    <a class="a2a_button_twitter" href="https://twitter.com/intent/tweet?text=fd&amp;url={{ $news->getUrl() }}" title="Twitter" rel="nofollow noopener" target="_blank">
                                         <span class="a2a_svg a2a_s__default a2a_s_twitter" style="background-color: rgb(29, 155, 240); width: 40px; line-height: 40px; height: 40px; background-size: 40px; border-radius: 6px;">
                                             <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                                 <path fill="#FFF" d="M28 8.557a10 10 0 0 1-2.828.775 4.93 4.93 0 0 0 2.166-2.725 9.7 9.7 0 0 1-3.13 1.194 4.92 4.92 0 0 0-3.593-1.55 4.924 4.924 0 0 0-4.794 6.049c-4.09-.21-7.72-2.17-10.15-5.15a4.94 4.94 0 0 0-.665 2.477c0 1.71.87 3.214 2.19 4.1a5 5 0 0 1-2.23-.616v.06c0 2.39 1.7 4.38 3.952 4.83-.414.115-.85.174-1.297.174q-.476-.001-.928-.086a4.935 4.935 0 0 0 4.6 3.42 9.9 9.9 0 0 1-6.114 2.107q-.597 0-1.175-.068a13.95 13.95 0 0 0 7.55 2.213c9.056 0 14.01-7.507 14.01-14.013q0-.32-.015-.637c.96-.695 1.795-1.56 2.455-2.55z"></path>
@@ -136,7 +137,7 @@
                                         </span>
                                         <span class="a2a_label">Twitter</span>
                                     </a>
-                                    <a class="a2a_button_telegram" href="/#telegram" title="Telegram" rel="nofollow noopener" target="_blank">
+                                    <a class="a2a_button_telegram" href="https://telegram.me/share/url?url={{ $news->getUrl() . '&text=' . $news->getTitle() }}" title="Telegram" rel="nofollow noopener" target="_blank">
                                         <span class="a2a_svg a2a_s__default a2a_s_telegram" style="background-color: rgb(44, 165, 224); width: 40px; line-height: 40px; height: 40px; background-size: 40px; border-radius: 6px;">
                                             <svg focusable="false" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
                                                 <path fill="#FFF" d="M25.515 6.896 6.027 14.41c-1.33.534-1.322 1.276-.243 1.606l5 1.56 1.72 5.66c.226.625.115.873.77.873.506 0 .73-.235 1.012-.51l2.43-2.363 5.056 3.734c.93.514 1.602.25 1.834-.863l3.32-15.638c.338-1.363-.52-1.98-1.41-1.577z"></path>
@@ -147,6 +148,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="single__content entry-content">
                         <div class="single-thumb">
@@ -230,6 +232,16 @@
                 <aside id="news-widget-2" class="aside__widget widget lastnews">
                     @widget('recentNews')
                 </aside>
+
+                @if(($link = getSetting(\App\Models\Setting::SPECIAL_BLOCK_LINK)) && ($image = getSetting(\App\Models\Setting::SPECIAL_BLOCK_IMAGE)))
+                    <aside class="widget_text aside__widget widget widget_custom_html">
+                        <div class="textwidget custom-html-widget">
+                            <a href="{{ $link }}" class="live-link" style="padding: 0px">
+                                <img src="{{ $image }}" alt="" class="live-link__logo" loading="lazy" style="width: 100%">
+                            </a>
+                        </div>
+                    </aside>
+                @endif
             </aside>
         </div>
     </main>

@@ -44,6 +44,15 @@
                 <aside id="news-widget-2" class="aside__widget widget lastnews">
                     @widget('recentNews')
                 </aside>
+                @if(($link = getSetting(\App\Models\Setting::SPECIAL_BLOCK_LINK)) && ($image = getSetting(\App\Models\Setting::SPECIAL_BLOCK_IMAGE)))
+                    <aside class="widget_text aside__widget widget widget_custom_html">
+                        <div class="textwidget custom-html-widget">
+                            <a href="{{ $link }}" class="live-link" style="padding: 0px">
+                                <img src="{{ $image }}" alt="" class="live-link__logo" loading="lazy" style="width: 100%">
+                            </a>
+                        </div>
+                    </aside>
+                @endif
             </aside>
         </div>
     </main>

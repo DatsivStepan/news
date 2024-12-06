@@ -216,7 +216,7 @@
                         <div class="header__col header__col_2">
                             <div class="header__row"></div>
                             <div class="header__row header__row_middle">
-                                <a href="/page/divitis_onlain" class="header__online online-link icon-play">дивитися онлайн</a>
+                                <a href="/page/divitisia_onlain" class="header__online online-link icon-play">дивитися онлайн</a>
                                 <div class="header__search search">
                                     <div class="search__toggle icon-search js-search-toggle"></div>
                                 </div>
