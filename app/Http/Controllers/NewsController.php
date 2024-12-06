@@ -134,8 +134,8 @@ class NewsController extends Controller
 
             return response()->json(['html' => $view, 'pagin' => $news->hasMorePages()	]);
         }
-
-        return view('news.tag-search', compact('news'));
+        $tag = $options['tagSearch'];
+        return view('news.tag-search', compact('news', 'tag'));
     }
 
     public function allNews(Request $request)

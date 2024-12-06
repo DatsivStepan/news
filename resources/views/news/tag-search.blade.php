@@ -9,38 +9,43 @@
 @endsection
 
 @section('content')
-<a class="back-home-btn mobile-hide" href="{{ route('/') }}"><spann class="arrow-left"></spann> Повернутися на головну</a>
+    <main class="main">
+        <div class="content">
+            <div class="bread">
 
-    <div class="container">
-        <div class="row home-content">
-            <div class="col-xl-3 col-lg-3 col-md-4 d-sm-none d-none d-md-block d-md-block">
-                <div class="main-widget-left">
-<!--                    <h3 class="main-widget-title">Стрічка новин</h3>-->
-                    @widget('recentNews')
-                </div>
+        <span property="itemListElement" typeof="ListItem">
+            <a property="item" typeof="WebPage" title="Go to НТА." href="/" class="home">
+                <span property="name">НТА</span>
+            </a><meta property="position" content="1"></span> &gt; <span class="search current-item">{{ $tag }}</span>
             </div>
-            <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <form action="{{ route('tag.search')  }}" method="get">
-                            <div class="input-group full-search-input">
-                                <input name="query" value="{{ isset($_GET['query']) ? $_GET['query'] : '' }}" class="form-control"
-                                       type="text" placeholder="Магате...." aria-label="Пошук.."
-                                       aria-describedby="btnNavbarSearch"/>
-                                <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                            <br>
-                        </form>
-                     </div>
-                </div>
-                <div class="news row">
+        </div>
+
+        <div class="content main__row">
+            <div class="main__content main__content_pt" id="main">
+                <h1 class="title">{{ $tag }}</h1>
+
+                <div class="news">
                     @include('news.parts._news-search', ['type' => 1])
                 </div>
             </div>
+            <aside class="main__aside aside" id="aside">
+                <aside id="news-widget-2" class="aside__widget widget lastnews">
+                    @widget('recentNews')
+                </aside>
+                @if(($link = getSetting(\App\Models\Setting::SPECIAL_BLOCK_LINK)) && ($image = getSetting(\App\Models\Setting::SPECIAL_BLOCK_IMAGE)))
+                    <aside class="widget_text aside__widget widget widget_custom_html">
+                        <div class="textwidget custom-html-widget">
+                            <a href="{{ $link }}" class="live-link" style="padding: 0px">
+                                <img src="{{ $image }}" alt="" class="live-link__logo" loading="lazy" style="width: 100%">
+                            </a>
+                        </div>
+                    </aside>
+                @endif
+            </aside>
         </div>
-    </div>
+    </main>
+
+
     @if($news->hasMorePages())
         <div class="more text-center">
             <button class="btn btn-success load-more-data">Переглянути більше</button>
