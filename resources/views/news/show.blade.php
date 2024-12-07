@@ -196,7 +196,7 @@
                         <div style="margin-top: 25px;">
                             @if($telegramLink = getSetting('telegram_link'))
                                 <div class="social_item" style="display: flex; align-items: center; padding-bottom: 8px; font-weight: bold;">
-                                    <img style="border: #111 2px solid; border-radius: 50%;" src="https://nta.ua/telega.svg" alt="" loading="lazy">
+                                    <img style="border: #111 2px solid; border-radius: 50%;" src="/images/telega.svg" alt="" loading="lazy">
                                     <span style="padding: 0 0 0 9px; font-size: 14px; line-height: 1em;">
                                         Читайте нас у Telegram. Підписуйтесь на наш канал
                                         <a href="{{ $telegramLink }}" target="_blank" style="color: #ed1e24; border-bottom: #ed1e24 1px dashed;">
@@ -208,8 +208,8 @@
 
                             @if($facebookLink = getSetting('facebook_link'))
                                 <div class="social_item" style="display: flex; align-items: center; padding-bottom: 8px; font-weight: bold;">
-                                    <img style="/* border: #111 2px solid; */border-radius: 50%;width: 35px;height: 35px;" alt="" data-src="https://nta.ua/facebook.png" class=" lazyloaded" src="https://nta.ua/facebook.png">
-                                    <noscript><img style="border: #111 2px solid; border-radius: 50%;" src="https://nta.ua/facebook.png" alt=""></noscript>
+                                    <img style="/* border: #111 2px solid; */border-radius: 50%;width: 35px;height: 35px;" alt="" data-src="/images/facebook.png" class=" lazyloaded" src="https://nta.ua/facebook.png">
+                                    <noscript><img style="border: #111 2px solid; border-radius: 50%;" src="/images/facebook.png" alt=""></noscript>
                                     <span style="padding: 0 0 0 9px; font-size: 14px; line-height: 1em; font-weight: bold;">Підписуйтеся на
                                         <a href="{{ $facebookLink }}" target="_blank" style="color: #ed1e24; border-bottom: #ed1e24 1px solid;">
                                             нашу сторінку у Facebook
