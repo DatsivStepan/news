@@ -36,23 +36,21 @@
             <div class="main__content main__content_pt" id="main">
                 <h1 class="title">{{$category->getName()}}</h1>
                 <div class="entry-content">
-                    <p>Наймасштабніше суспільно-політичне ток-шоу Західної України</p>
-                    <p>Головний розмовний майданчик, рупор філософії і поглядів Львова на всеукраїнські теми</p>
-                    <p>Вмикайте щочетверга о 19:15</p>
-                    <p>
-                        <a href="https://t.me/pryamamova">
-                            Telegram
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCWPwgwziiWq4dfC5aiN4IbA?fbclid=IwAR0pMNzN8f1hPABcu3tnDYv-yR3QtgeKRxdUdi0y9OxcTNCBktA399cgQis">
-                            YouTube &nbsp;
-                        </a>
-                        <a href="https://www.facebook.com/govoryt.velykyi.LVIV/">
-                            Facebook &nbsp;
-                        </a>
-                        <a href="https://www.instagram.com/pryama_mova/">
-                            Instagram
-                        </a>
-                    </p>
+                    <p>{{$category->getShortDescription()}}</p>
+{{--                    <p>--}}
+{{--                        <a href="https://t.me/pryamamova">--}}
+{{--                            Telegram--}}
+{{--                        </a>--}}
+{{--                        <a href="https://www.youtube.com/channel/UCWPwgwziiWq4dfC5aiN4IbA?fbclid=IwAR0pMNzN8f1hPABcu3tnDYv-yR3QtgeKRxdUdi0y9OxcTNCBktA399cgQis">--}}
+{{--                            YouTube &nbsp;--}}
+{{--                        </a>--}}
+{{--                        <a href="https://www.facebook.com/govoryt.velykyi.LVIV/">--}}
+{{--                            Facebook &nbsp;--}}
+{{--                        </a>--}}
+{{--                        <a href="https://www.instagram.com/pryama_mova/">--}}
+{{--                            Instagram--}}
+{{--                        </a>--}}
+{{--                    </p>--}}
                 </div>
                 <div class="news">
                         @include('news.parts._list-news')
