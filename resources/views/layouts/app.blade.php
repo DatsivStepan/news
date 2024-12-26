@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/0ff4885dcd.js" crossorigin="anonymous"></script>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="google-site-verification" content="f0keE2RFQFMrpYgtuv84yqvMN8JOHswSe5tl9bsvetU"/>
@@ -147,7 +148,10 @@
                         </div>
                         <div class="content navigation__content">
                             <div class="navigation__row-mobile">
-                                <div class="header__date icon-calendar _dynamic_adapt_1000" data-da="navigation__row-mobile,1,1000" data-da-index="0"><span><?= \Carbon\Carbon::now()->translatedFormat('l, j F, Y');?></span></div>
+                                <div class="_dynamic_adapt_1000" data-da="navigation__row-mobile,1,1000" data-da-index="0">
+                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                    <span><?= \Carbon\Carbon::now()->translatedFormat('l, j F, Y');?></span>
+                                </div>
 
                                 @if($wData = getWeatherData())
                                     <div class="header__weather _dynamic_adapt_1000" data-da="navigation__row-mobile,2,1000" title="хмарно" data-da-index="1">
@@ -218,22 +222,30 @@
                                 <ul class="social ">
                                     @if($facebookLink = getSetting('facebook_link'))
                                         <li>
-                                            <a href="{{ $facebookLink }}" class="social__link icon-facebook" target="_blank" rel="nofollow"></a>
+                                            <a href="{{ $facebookLink }}" class="social__link" target="_blank" rel="nofollow">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
                                         </li>
                                     @endif
                                     @if($twitterLink = getSetting('twitter_link'))
                                         <li>
-                                            <a href="{{ $twitterLink }}" class="social__link icon-twitter" target="_blank" rel="nofollow"></a>
+                                            <a href="{{ $twitterLink }}" class="social__link" target="_blank" rel="nofollow">
+                                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                            </a>
                                         </li>
                                     @endif
                                     @if($instagramLink = getSetting('instagram_link'))
                                         <li>
-                                            <a href="{{ $instagramLink }}" class="social__link icon-instagram" target="_blank" rel="nofollow"></a>
+                                            <a href="{{ $instagramLink }}" class="social__link" target="_blank" rel="nofollow">
+                                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                            </a>
                                         </li>
                                     @endif
                                     @if($youtubeLink = getSetting('youtube_link'))
                                         <li>
-                                            <a href="{{ $youtubeLink }}" class="social__link icon-youtube" target="_blank" rel="nofollow"></a>
+                                            <a href="{{ $youtubeLink }}" class="social__link" target="_blank" rel="nofollow">
+                                                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                            </a>
                                         </li>
                                     @endif
                                     @if($emailLink = getSetting('email_address'))

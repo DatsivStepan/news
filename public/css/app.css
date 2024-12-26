@@ -6846,3 +6846,8 @@ html.wpra-share-popup-active {
         background-image: url("/img/calendar_mobile.png");
     }
 }
+
+.fa.fa-calendar-o {
+    font-size: 12px;
+}
+
