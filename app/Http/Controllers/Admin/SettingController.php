@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\SettingChanged;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Repositories\CategoryRepository;
@@ -10,6 +11,7 @@ use App\Repositories\PageRepository;
 use App\Repositories\SettingRepository;
 use App\Services\SettingServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use function Illuminate\Events\queueable;
 
@@ -95,6 +97,8 @@ class SettingController extends Controller
     {
         $this->settingServices->saveSettings($request);
 
+        event(new SettingChanged());
+
         return redirect()->route('admin.settings.index')
             ->with('success', 'Setting created successfully.');
     }
@@ -107,7 +111,7 @@ class SettingController extends Controller
      */
     public function show($id)
     {
-        return view('setting.show', compact('setting'));
+//        return view('setting.show', compact('setting'));
     }
 
     /**

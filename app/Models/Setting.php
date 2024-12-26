@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\CategoryServices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,6 +37,7 @@ class Setting extends Model
 
     const MENU_OPTION_CATEGORY = 'category';
     const MENU_OPTION_PAGE = 'page';
+    const MENU_OPTION_HASH = '#';
 
     // CATEGORY_SPECIAL_BLOCK
     const SPECIAL_BLOCK_LINK = 'special_block_link';
@@ -132,7 +134,9 @@ class Setting extends Model
             case self::BLOCKS_CATEGORY_HOME_PAGE:
             case self::HEADER_CATEGORY_MENU:
             case self::MAIN_PAGE_TOP_BLOCK_CATEGORY:
-                return Category::doesnthave('parent')->pluck('name', 'id')->toArray();
+                $categories = Category::doesnthave('parent')->with('childrenCategories')->get();
+                $categoryService = app(CategoryServices::class);
+                return $categoryService->getCategoriesList($categories);
                 break;
             case self::PAGE_COMPANY:
             case self::BLOCKS_PAGE_HOME_PAGE:

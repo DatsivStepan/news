@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Google\Client;
 use Google\Service\YouTube;
+use Spatie\Image\Image;
+
 
 class HomeController extends Controller
 {
@@ -26,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
 
 # Configs
         $apiKey = 'AIzaSyDFR4o3aghXswuUYZr2YChwQrPJ2nZ4w08';

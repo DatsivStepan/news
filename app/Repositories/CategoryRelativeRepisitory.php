@@ -12,5 +12,4 @@ class CategoryRelativeRepisitory extends BaseRepository
     {
         return CategoryRelative ::class;
     }
-
 }

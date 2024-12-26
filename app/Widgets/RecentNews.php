@@ -58,12 +58,12 @@ class RecentNews extends AbstractWidget
 
         $lastNews = $this->newsRepository->getPaginationNews($options, $this->config['limit'], $sort);
 
-        $options['viewType'] = 'popular';
-        $popularNews = $this->newsRepository->getPaginationNews($options, $this->config['limit'], $sort);
+//        $options['viewType'] = 'popular';
+//        $popularNews = $this->newsRepository->getPaginationNews($options, $this->config['limit'], $sort);
+//
+//        $options['viewType'] = 'main';
+//        $mainNews = $this->newsRepository->getPaginationNews($options, $this->config['limit'], $sort);
 
-        $options['viewType'] = 'main';
-        $mainNews = $this->newsRepository->getPaginationNews($options, $this->config['limit'], $sort);
-
-        return view('widgets.recent_news', compact('type' ,'lastNews', 'mainNews', 'popularNews'));
+        return view('widgets.recent_news', compact('type' ,'lastNews'));
     }
 }

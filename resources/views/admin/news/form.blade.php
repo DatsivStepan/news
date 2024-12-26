@@ -6,6 +6,10 @@
 {{--<script src="https://cdn.tiny.cloud/1/y26a029ydyylmsnf30o7fgdvjj6kudbynz7ukktszbvev5r6/tinymce/5-stable/tinymce.min.js" referrerpolicy="origin"></script>--}}
 <script src="https://cdn.tiny.cloud/1/y26a029ydyylmsnf30o7fgdvjj6kudbynz7ukktszbvev5r6/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <div class="box box-info padding-1">
@@ -51,9 +55,17 @@
                 </div>
 
                 <div class="mb-3">
-                    {{ Form::label( __('main.category')) }}
-                    {{ Form::select('category_id', $categories, $news->category, ['class' => 'form-select' . ($errors->has('category_id') ? ' is-invalid' : '')]) }}
-                    {!! $errors->first('category_id', '<div class="invalid-feedback">:message</div>') !!}
+
+                    <div class="form-group">
+                        <label for="categories">Категорії</label>
+                        <select id="categories" name="categories[]" class="form-control" multiple="multiple" required>
+                            {!! buildCategoryOptions($categories, $selectedCategories ?? []) !!}
+                        </select>
+                    </div>
+
+{{--                    {{ Form::label( __('main.category')) }}--}}
+{{--                    {{ Form::select('category_id', $categories, $news->category, ['class' => 'form-select' . ($errors->has('category_id') ? ' is-invalid' : '')]) }}--}}
+{{--                    {!! $errors->first('category_id', '<div class="invalid-feedback">:message</div>') !!}--}}
                 </div>
                 <div class="mb-3">
                     {{ Form::label( __('main.author')) }}
@@ -123,6 +135,13 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        $('#categories').select2({
+            placeholder: "Виберіть категорії",
+            allowClear: true
+        });
+    });
+
     // Функція для отримання оновленого конфігураційного об'єкта для діалога відповідно до введеного тексту
     function getUpdatedDialogConfig(inputText, editorlink, selectValue) {
         // Реалізуйте ваш логіку для генерації оновленого конфігураційного об'єкта

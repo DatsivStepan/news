@@ -138,10 +138,6 @@ a {
     width: 13px;
     height: 13px;
     display: block;
-    @media (max-width: 991px) {
-        background-image: url("/img/calendar_mobile.png");
-    }
-
 }
 
 .icon-cloud:before {
@@ -6845,3 +6841,8 @@ html.wpra-share-popup-active {
 }
 
 
+@media (max-width: 991px) {
+    .icon-calendar:before {
+        background-image: url("/img/calendar_mobile.png");
+    }
+}

@@ -74,5 +74,23 @@ class CategoryServices
 
         return $data;
     }
+
+    public function getCategoriesList($categories, $prefix = '')
+    {
+        $result = [];
+
+        foreach ($categories as $category) {
+            // Додаємо батьківську категорію
+            $result[$category->slug] = $prefix . $category->name;
+
+            // Якщо є дочірні категорії, додаємо їх рекурсивно
+            if ($category->childrenCategories()->exists()) {
+                $children = $this->getCategoriesList($category->childrenCategories, $prefix . '--');
+                $result = $result + $children; // Об'єднуємо масиви
+            }
+        }
+
+        return $result;
+    }
 }
 ?>

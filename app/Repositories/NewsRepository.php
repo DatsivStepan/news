@@ -87,7 +87,7 @@ class  NewsRepository extends BaseRepository
 
         if (isset($options['type'])) {
             if ($options['type'] == 'slider') {
-                return $query->limit(20)->get();
+                return $query->limit($perPage)->get();
             }
         }
 
@@ -100,12 +100,12 @@ class  NewsRepository extends BaseRepository
 
     public function getNewsDrafts($request)
     {
-        return News::filter($request)->where('type_publication', NewsType::DRAFT)->orderBy('created_at', 'desc')->paginate('20');
+        return News::filter($request)->where('type_publication', NewsType::DRAFT)->orderBy('date_of_publication', 'desc')->paginate('20');
     }
 
     public function getNews($request)
     {
-        return News::filter($request)->where('type_publication', NewsType::PUBLISH)->orderBy('created_at', 'desc')->paginate('20');
+        return News::filter($request)->where('type_publication', NewsType::PUBLISH)->orderBy('date_of_publication', 'desc')->paginate('20');
     }
 
     public function restoreNews($id)
@@ -131,7 +131,7 @@ class  NewsRepository extends BaseRepository
                 $q->where('category_id', $id)
                     ->where('news.date_of_publication','<=', now());
             })
-            ->orderBy('created_at', 'DESC');
+            ->orderBy('date_of_publication', 'DESC');
 
         if ($limit == 1) {
             return $news->first();

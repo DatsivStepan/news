@@ -55,7 +55,7 @@ class CategoryController extends Controller
             'viewType' => $request['type'],
         ];
         $sort = [
-            'field' => 'created_at',
+            'field' => 'date_of_publication',
             'direction' => 'DESC'
         ];
 

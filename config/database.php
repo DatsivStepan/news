@@ -63,6 +63,21 @@ return [
             ]) : [],
         ],
 
+        'wp_connection' => [
+            'driver' => 'mysql',
+            'host' => env('WP_DB_HOST'),
+            'port' => env('WP_DB_PORT'),
+            'database' => env('WP_DB_DATABASE'),
+            'username' => env('WP_DB_USERNAME'),
+            'password' => env('WP_DB_PASSWORD'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '', // замініть на свій префікс
+            'strict' => false,
+            'engine' => null,
+        ],
+
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

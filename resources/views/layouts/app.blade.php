@@ -3,12 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-        <link style="height:20px" rel="icon" type="image/x-icon" href="{{ asset('/img/KD-Logo.ico') }}">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,16 +14,7 @@
         </title>
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" href="/favicon.ico">
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
         <link rel="stylesheet" href="{{ asset("/css/app.css") }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         @yield('meta_tags')
         <style>
@@ -65,7 +51,7 @@
             }
         </style>
     </head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SYYQ5EWE81"></script>
+{{--    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SYYQ5EWE81"></script>--}}
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -78,87 +64,9 @@
     @endphp
     <body class="{{ app(\Illuminate\Routing\Route::class)->getActionMethod() == 'contacts' ? 'contact-bg' : ''  }}">
 
-{{--        <header>--}}
-{{--            <section class="top-bar mobile-hide">--}}
-{{--                <div class="custom-container">--}}
-{{--                    <div class="left-side">--}}
-{{--                        <span><img src="{{ asset('/img/map_marker.png') }}" >{{ getSetting('address') }}</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="right-side">--}}
-{{--                        <div class="top-bar-email">--}}
-{{--                            <a href="mailto:{{ getSetting('email_address') }}" rel=”nofollow”><img src="{{ asset('/img/email_icon.png') }}">{{ getSetting('email_address') }}</a>--}}
-{{--                        </div>--}}
-{{--                        <div class="top-bar-phone">--}}
-{{--                            <a href="tel:{{ getSetting('phone') }}" rel=”nofollow”><img src="{{ asset('/img/Phone_icon.png') }}">{{ getSetting('phone') }}</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </section>--}}
-
-{{--            <section class="main-header">--}}
-{{--                <div class="main-header-container">--}}
-{{--                    <div class="main-header-left-side">--}}
-{{--                        <div class="dropdown">--}}
-{{--                          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">--}}
-{{--                            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="butt" stroke-linejoin="arcs"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>--}}
-{{--                          </button>--}}
-{{--                          <ul class="dropdown-menu">--}}
-{{--                              <div class="main-menu-container">--}}
-{{--                                  <div class="menu-category">--}}
-{{--                                      <span class="menu-category-title">ВСІ КАТЕГОРІЇ </span>--}}
-{{--                                      @foreach(\App\Services\HomeServices::getCategoryLeftMenu() as $category)--}}
-{{--                                          <li><a class="menu-dropdown-item" href={{ '/category/' . $category->slug }}>{{ $category->name }}</a></li>--}}
-{{--                                      @endforeach--}}
-{{--                                  </div>--}}
-{{--                                  <div class="menu-category menu-sub-category">--}}
-{{--                                      <p class="social-header">--}}
-{{--                                          @if($facebookLink = getSetting('facebook_link'))--}}
-{{--                                              <a href="{{ $facebookLink }}" rel=”nofollow” style="text-decoration: none !important;">--}}
-{{--                                                  <span class="social-icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>--}}
-{{--                                              </a>--}}
-{{--                                          @endif--}}
-
-{{--                                          @if($youtubeLink = getSetting('youtube_link'))--}}
-{{--                                              <a href="{{ $youtubeLink }}" rel=”nofollow” style="text-decoration: none !important;">--}}
-{{--                                                  <span class="social-icon"><i class="fa fa-youtube" aria-hidden="true"></i></span>--}}
-{{--                                              </a>--}}
-{{--                                          @endif--}}
-
-{{--                                          @if($telegramLink = getSetting('telegram_link'))--}}
-{{--                                              <a href="{{ $telegramLink }}" rel=”nofollow” style="text-decoration: none !important;">--}}
-{{--                                                  <span class="social-icon"><i class="fa fa-telegram" aria-hidden="true"></i></span>--}}
-{{--                                              </a>--}}
-{{--                                         @endif--}}
-{{--                                      </p>--}}
-{{--                                  </div>--}}
-{{--                              </div>--}}
-
-{{--                          </ul>--}}
-{{--                        </div>--}}
-{{--                       <!-- <div class="chose-lang">--}}
-{{--                            <a class="language active" href="/">UA</a>--}}
-{{--                            <a class="language" href="/">EN</a>--}}
-{{--                        </div> -->--}}
-{{--                    </div>--}}
-{{--                    <div class="main-header-center">--}}
-{{--                        <a href="/"><img src="{{ asset('/img/KD-Logo-UA-FIN-01.png')}} "></a>--}}
-{{--                    </div>--}}
-{{--                    <div class="main-header-right-side">--}}
-{{--                        <form action="{{ route('search')  }}" method="get" style="float: right">--}}
-{{--                            <div class="input-group header-search">--}}
-{{--                                <input name="query" class="form-control search-input" type="text" placeholder="магате...." aria-label="магате...." aria-describedby="btnNavbarSearch" />--}}
-{{--                                <span class="search-show"><i class="fa fa-search" aria-hidden="true"></i></span>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </section>--}}
-{{--            <section class="app-menu">--}}
-{{--            </section>--}}
-{{--        </header>--}}
-@php
-    $menuOptions = \App\Services\HomeServices::getPopupMenuOptions();
-@endphp
+    @php
+        $menuOptions = \App\Services\HomeServices::getPopupMenuOptions();
+    @endphp
         <header class="header mobile-hidden">
             <div class="content header__content">
                 <div class="header__col header__col_1">
@@ -305,10 +213,7 @@
                                 @endif
                             </div>
 
-
-
                             <div class="header__social _dynamic_adapt_1000" data-da="navigation__content,4,1000"  data-da-index="2">
-
 
                                 <ul class="social ">
                                     @if($facebookLink = getSetting('facebook_link'))
@@ -365,6 +270,99 @@
           $( ".search-show" ).on( "click", function() {
             $(".header-search").toggleClass("show");
           } );
+
+            $(function() {
+                $(".home-big-news").each(function() {
+                    imgWidth = $(this).width() + 20;
+                    $(this).css("height", imgWidth / 2);
+                });
+            });
+
+            $(function() {
+                $(".home-news-container").each(function() {
+                    imgWidth = $(this).width();
+                    $(this).css("height", imgWidth / 2);
+                });
+            });
+
+            $(function() {
+                $(".card-img-top").each(function() {
+                    imgWidth = $(this).width();
+                    $(this).css("height", imgWidth / 2);
+                });
+            });
+
+
+            $( window ).on( "resize", function() {
+                $(function() {
+                    $(".card-img-top").each(function() {
+                        imgWidth = $(this).width();
+                        $(this).css("height", imgWidth / 2);
+                    });
+                });
+
+                $(function() {
+                    $(".home-big-news").each(function() {
+                        imgWidth = $(this).width() + 20;
+                        $(this).css("height", imgWidth / 2);
+                    });
+                });
+
+                $(function() {
+                    $(".home-news-container").each(function() {
+                        imgWidth = $(this).width();
+                        $(this).css("height", imgWidth / 2);
+                    });
+                });
+            } );
+
+            $('.icon-menu').click(function () {
+                if ($(window).width() < 1000) {
+                    $(this).toggleClass('active');
+                }
+
+                $('.navigation, .header__logo').toggleClass('active');
+
+            });
+            $('.js-search-toggle').click(function () {
+                $('.search').toggleClass('active');
+                if ($('.search').hasClass('active')) {
+                    setTimeout(function () {
+                        $('.search-form__input').focus();
+                    }, 50);
+                }
+            });
+            $(document).click(function (event) {
+                if ($(event.target).closest(".search").length) return;
+                $('.search').removeClass('active');
+                event.stopPropagation();
+            });
+            $(document).scroll(function () {
+                if ($(this).scrollTop() > 0) {
+                    $('.header').addClass('active');
+                } else {
+                    $('.header').removeClass('active');
+                }
+            });
+
+
+            if ($('.navigation__menu').length > 0) {
+                $('.navigation__menu .menu-item-has-children').append('<span class="show-sub-menu"></span>');
+            }
+            $('.show-sub-menu').click(function (e) {
+                e.preventDefault();
+                $(this).prev().slideToggle(200);
+                $(this).toggleClass('active');
+            });
+
+            //STICKY ASIDE
+            if ($('#main').outerHeight() > $('#aside').outerHeight()) {
+                $('#aside').stick_in_parent({
+                    inner_scrolling: true,
+                    offset_top: 155,
+                    spacer: false,
+                });
+            }
         });
     </script>
 

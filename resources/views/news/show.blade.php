@@ -6,7 +6,7 @@
     'meta' => [
         'title' => $news->getMetaTitle(),
         'description' => $news->getMetaDescription(),
-        'image' => $news->getImageUrl(),
+        'image' => '', //$news->getImageUrl(),
         'url' => $news->getUrl(),
     ]
 ])
@@ -105,7 +105,6 @@
             </div>
         </div>
 
-
         <!--content-->
         <div class="content main__row main__row_reverse">
             <div class="main__content" id="main">
@@ -152,7 +151,7 @@
                     </div>
                     <div class="single__content entry-content">
                         <div class="single-thumb">
-                            <img width="1024" height="683" src="{{ $news->getImageUrl() }}"
+                            <img width="1024" height="683" src="{{ $news->getImageUrl('') }}"
                                  class="attachment-large size-large wp-post-image"
                                  alt="{{ $news->getTitle() }}"
                                  decoding="async"
@@ -171,7 +170,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                            @include('news.parts._reactions')
+{{--                            @include('news.parts._reactions')--}}
                         </div>
 
                         @if($telegramLink = getSetting('telegram_link'))

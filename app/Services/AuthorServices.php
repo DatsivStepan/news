@@ -48,7 +48,7 @@ class AuthorServices
         $author = $this->authorsRepository->create($data);
 
         if (isset($data['image'])) {
-            $image = $this->fileRepository->uploadAndCreate($data['image'], $author->name);
+            $image = $this->fileRepository->uploadAndCreate($data['image'], 'author',$author->name);
 
             $data['author_id'] = $author->id;
             $data['image_id'] = $image->id;
@@ -71,7 +71,7 @@ class AuthorServices
                 $this->authorImagesRepository->delete($imageDelete);
             }
 
-            $image = $this->fileRepository->uploadAndCreate($data['image'], $author->name);
+            $image = $this->fileRepository->uploadAndCreate($data['image'], 'author', $author->name);
 
             $data['author_id'] = $author->id;
             $data['image_id'] = $image->id;

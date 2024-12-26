@@ -36,7 +36,7 @@
             <div class="main__content main__content_pt" id="main">
                 <h1 class="title">{{$category->getName()}}</h1>
                 <div class="entry-content">
-                    <p>{{$category->getShortDescription()}}</p>
+                    <p>{!! $category->getShortDescription() !!}</p>
 {{--                    <p>--}}
 {{--                        <a href="https://t.me/pryamamova">--}}
 {{--                            Telegram--}}

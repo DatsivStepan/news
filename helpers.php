@@ -38,3 +38,18 @@ function getDates($date)
     return $date->format( $day . ', ' . 'd' . ' ' . $month . ' ' . 'Y, h:i');
 }
 
+if (!function_exists('buildCategoryOptions')) {
+    function buildCategoryOptions($categories, $selectedCategories, $level = 0)
+    {
+        $html = '';
+        foreach ($categories as $category) {
+            $indent = str_repeat('&nbsp;&nbsp;', $level); // Відступ для вкладених категорій
+            $selected = in_array($category['id'], $selectedCategories) ? 'selected' : '';
+            $html .= "<option value='{$category['id']}' {$selected}>{$indent}{$category['name']}</option>";
+            if (!empty($category['children'])) {
+                $html .= buildCategoryOptions($category['children'], $selectedCategories, $level + 1);
+            }
+        }
+        return $html;
+    }
+}

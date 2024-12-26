@@ -129,7 +129,7 @@ class NewsServices
             $href = $link->getAttribute('href');
 
             // Перевіряємо, чи містить href 'koroldanylo.com'
-            if (strpos($href, 'koroldanylo.com') === false) {
+            if (strpos($href, 'nta.ua') === false) {
                 // Якщо не містить, додаємо атрибут rel="nofollow"
                 $link->setAttribute('rel', 'nofollow');
             }
@@ -161,42 +161,82 @@ class NewsServices
             $paidNews->delete();
         }
     }
+
     public function saveNews(array $data)
     {
+        $categories = [];
+        if (isset($data['categories'])) {
+            $categories = $data['categories'];
+            unset($data['categories']);
+        }
+
         $news = $this->newsRepository->create($data);
 
-        $data['slug'] = Str::slug($data['title']. ' _ ' . $news->id, '_');
-        $this->newsRepository->update($news, $data);
+        if (!isset($data['slug'])) {
+            $data['slug'] = Str::slug($data['title']. ' _ ' . $news->id, '_');
+            $this->newsRepository->update($news, $data);
+        }
 
-        if (isset($data['image'])) {
-            $image = $this->fileRepository->uploadAndCreate($data['image'], $news->title);
+        if (!empty($data['image'])) {
+            $image = $this->fileRepository->uploadAndCreate($data['image'], 'news', $news->title);
 
             $data['news_id'] = $news->id;
             $data['image_id'] = $image->id;
             $this->newsImageRepository->create($data);
         }
-        $tags = explode(',', $data['tags']);
 
-        foreach($tags as $tag) {
-            $data['name'] = $tag;
-            $tag = $this->tagRepository->create($data);
+        if (!empty($data['tags'])) {
+            $tags = explode(',', $data['tags']);
+            foreach($tags as $tag) {
+                $data['name'] = $tag;
+                $tag = $this->tagRepository->create($data);
 
-            $data['news_id'] = $news->id;
-            $data['tags_id'] = $tag->id;
-            $this->newsTagRepository ->create($data);
+                $data['news_id'] = $news->id;
+                $data['tags_id'] = $tag->id;
+                $this->newsTagRepository ->create($data);
+            }
         }
 
-        $data['news_id'] = $news->id;
-        $data['category_id'] = $data['category_id'];
-        $this->newsCategoryRepository->create($data);
+        if (isset($data['category_id'])) {
+            $this->newsCategoryRepository->create([
+                'news_id' => $news->id,
+                'category_id' => $news->category_id,
+            ]);
+        }
 
-        $data['author_id'] = $data['author_id'];
-        $data['news_id'] = $news->id;
-        $this->newsAuthorsRepository->create($data);
+        if ($categories) {
+            foreach ($categories as $categoryId) {
+                $this->newsCategoryRepository->create([
+                    'news_id' => $news->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
+        }
+
+        if (isset($data['category_ids'])) {
+            foreach ($data['category_ids'] as $categoryId) {
+                $this->newsCategoryRepository->create([
+                    'news_id' => $news->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
+        }
+
+        if (!empty($data['author_id'])) {
+            $this->newsAuthorsRepository->create([
+                'author_id' => $data['author_id'],
+                'news_id' => $news->id,
+            ]);
+        }
     }
     public function updateNews(object $news, array $data)
     {
         $data['slug'] = Str::slug($data['title']. ' _ ' . $news->id, '_');
+        $categories = [];
+        if (isset($data['categories'])) {
+            $categories = $data['categories'];
+            unset($data['categories']);
+        }
         $news->update($data);
 
         if (isset($data['image'])) {
@@ -204,14 +244,13 @@ class NewsServices
             if($imageDelete) {
                 $this->newsImageRepository->delete($imageDelete);
             }
-            $image = $this->fileRepository->uploadAndCreate($data['image'], $news->title);
+            $image = $this->fileRepository->uploadAndCreate($data['image'], 'news', $news->title);
 
             $data['news_id'] = $news->id;
             $data['image_id'] = $image->id;
             $this->newsImageRepository->create($data);
         }
         $tags = explode(',', $data['tags']);
-
         $this->newsTagRepository->massDeleteByConditions( ['news_id' => $news->id]);
 
         foreach($tags as $tag) {
@@ -222,15 +261,34 @@ class NewsServices
             $data['tags_id'] = $tag->id;
             $this->newsTagRepository ->create($data);
         }
-        $data['category_id'] = $data['category_id'];
-        $data['news_id'] = $news->id;
-        $category = $this->newsCategoryRepository->getOneOrFail($news->id, 'news_id');
-        $this->newsCategoryRepository->update($category, $data);
 
-        $data['author_id'] = isset($data['author_id']) ? $data['author_id'] : 0;
-        $data['news_id'] = $news->id;
-        $authors = $this->newsAuthorsRepository->getOneOrFail($news->id, 'news_id');
-        $this->newsAuthorsRepository->update($authors, $data);
+        if (isset($data['category_id'])) {
+            $category = $this->newsCategoryRepository->getOneOrFail($news->id, 'news_id');
+            $this->newsCategoryRepository->update($category, [
+                'category_id' => $data['category_id'],
+                'news_id' => $news->id,
+            ]);
+        }
+
+        if ($categories) {
+            $this->newsCategoryRepository->massDeleteByConditions(['news_id' => $news->id]);
+            foreach ($categories as $categoryId) {
+                $this->newsCategoryRepository->create([
+                    'news_id' => $news->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
+        }
+
+        if (!empty($data['author_id'])) {
+            $authors = $this->newsAuthorsRepository->getOne($news->id, 'news_id');
+            if ($authors) {
+                $this->newsAuthorsRepository->update($authors, [
+                    'author_id' => $data['author_id'],
+                    'news_id' => $news->id
+                ]);
+            }
+        }
     }
 }
 ?>

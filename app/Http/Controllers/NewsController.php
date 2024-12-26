@@ -11,6 +11,7 @@ use App\Services\HomeServices;
 use App\Services\NewsServices;
 use CyrildeWit\EloquentViewable\Visitor;
 use Illuminate\Http\Request;
+use Spatie\Image\Image;
 
 class NewsController extends Controller
 {
@@ -98,7 +99,7 @@ class NewsController extends Controller
         ];
 
         $sort = [
-            'field' => 'created_at',
+            'field' => 'date_of_publication',
             'direction' => 'DESC'
         ];
 
@@ -122,7 +123,7 @@ class NewsController extends Controller
         ];
 
         $sort = [
-            'field' => 'created_at',
+            'field' => 'date_of_publication',
             'direction' => 'DESC'
         ];
 

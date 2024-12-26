@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewsChanged;
 use App\Filters\NewsBasketFilter;
 use App\Filters\NewsDraftsFilter;
 use App\Filters\NewsFilter;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\News;
 use App\Repositories\AuthorsRepository;
@@ -18,6 +20,7 @@ use App\Repositories\UserRepository;
 use App\Services\NewsServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class NewsController
@@ -78,21 +81,17 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $categories = [];
         $tags = $image = '';
         $news = new News();
-        //$news->author = auth()->user()->author->id;
         $news->category = request()->get('category_id');
 
-        $categories += [
-            '' => 'Виберіть Батьківську Категорію'
-        ];
-        $categories += $this->categoryRepository->getParentsCategoriesForNews();
         $authors = $this->authorsRepository->getAuthors();
         $galleries = Gallery::orderBy('id', 'DESC')->get()->toArray();
         $galleries = json_encode(Arr::map($galleries, function ($value, $key) {
             return ['text' => $value['id'] . ' | ' . $value['name'], 'value' => (string)$value['id']];
         }));
+
+        $categories = Category::getCategoryHierarchy();
 
         return view('admin.news.create', compact('news', 'tags', 'image', 'categories', 'authors', 'galleries'));
     }
@@ -109,6 +108,8 @@ class NewsController extends Controller
 
         $this->newsServices->saveNews($data);
 
+        event(new NewsChanged());
+
         return redirect()->route('admin.news.index')
             ->with('success', 'News created successfully.');
     }
@@ -117,10 +118,6 @@ class NewsController extends Controller
         $fileName = $request->file('file')->getClientOriginalName();
         $path = $request->file('file')->storeAs('uploads', $fileName, 'public');
         return response()->json(['location' => "/storage/$path"]);
-
-        /*$imgpath = request()->file('file')->store('uploads', 'public');
-        return response()->json(['location' => "/storage/$imgpath"]);*/
-
     }
 
     /**
@@ -156,7 +153,13 @@ class NewsController extends Controller
             return ['text' => $value['id'] . ' | ' . $value['name'], 'value' => (string)$value['id']];
         }));
 
-        return view('admin.news.edit', compact('news','tags', 'image', 'categories', 'authors', 'galleries'));
+        $categories = Category::getCategoryHierarchy();
+        $selectedCategories = DB::table('news_categories')
+            ->where('news_id', $news->id)
+            ->pluck('category_id')
+            ->toArray();
+
+        return view('admin.news.edit', compact('selectedCategories', 'news','tags', 'image', 'categories', 'authors', 'galleries'));
     }
 
     /**
@@ -172,6 +175,8 @@ class NewsController extends Controller
 
         $data['show_author'] = isset($data['show_author']) ? 1 : 0;
         $this->newsServices->updateNews($news, $data);
+
+        event(new NewsChanged());
 
         return redirect()->route('admin.news.index')
             ->with('success', 'Новина успішно збережена');
@@ -201,6 +206,8 @@ class NewsController extends Controller
                 $this->paidNewsRepository->delete($paid_news);
             }
         }
+        event(new NewsChanged());
+
         return redirect()->route('admin.news.index')
             ->with('success', 'Новина успішно видалена');
     }

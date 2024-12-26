@@ -52,11 +52,13 @@ class News extends Model implements Viewable
 		'subtitle' => 'required',
 		'mini_description' => 'required',
 		'description' => 'required',
-		'category_id' => 'required',
+//		'category_id' => 'required',
 		'type_publication' => 'required',
 		'type' => 'required',
 		'show_type' => 'required',
 		'date_of_publication' => 'required',
+        'categories' => 'required|array',
+        'categories.*' => 'exists:categories,id',
     ];
 
     protected $dates = ['deleted_at'];
@@ -68,7 +70,7 @@ class News extends Model implements Viewable
      */
     protected $fillable = [
         'title', 'slug', 'subtitle', 'mini_description', 'description', 'type_publication',
-        'type', 'date_of_publication', 'show_author', 'show_type'
+        'type', 'date_of_publication', 'show_author', 'show_type', 'categories'
     ];
 
     protected $perPage = 20;
@@ -105,6 +107,36 @@ class News extends Model implements Viewable
     public function isShowAuthor()
     {
         return $this->show_author;
+    }
+
+    public function getDescriptionImages()
+    {
+        // URL вашого сайту
+        $baseUrl = env('APP_URL');
+
+        // Знаходимо всі теги <img> та витягуємо атрибути src
+        preg_match_all('/<img[^>]+src=["\']([^"\']+)["\']/i', $this->description, $matches);
+
+        // Масив для зберігання результатів
+        $sources = [];
+
+        if (!empty($matches[1])) {
+            foreach ($matches[1] as $src) {
+                // Видаляємо всі '../' із шляху
+                while (strpos($src, '../') !== false) {
+                    $src = preg_replace('#\.\./#', '', $src);
+                }
+
+                // Додаємо базовий URL, якщо шлях не абсолютний
+                if (!preg_match('#^https?://#', $src)) {
+                    $src = rtrim($baseUrl, '/') . '/' . ltrim($src, '/');
+                }
+
+                $sources[] = $src;
+            }
+        }
+
+        return $sources;
     }
 
     public function getMetaTitle()
@@ -165,15 +197,14 @@ class News extends Model implements Viewable
 
     public function getaDate()
     {
-
 //        return Date::parse($this->date_of_publication)->format('Y-M-D');
 //        return date('D d M Y, h:m', strtotime($this->date_of_publication)); ;
     }
 
-    public function getImageUrl()
+    public function getImageUrl($type = File::PATH_SMALL)
     {
         $image = $this->image->first();
-        return $image ? $image->getPath() : '/public/default.png';
+        return $image ? $image->getPath($type) : '/public/default.png';
     }
 
     public function tag()
@@ -183,6 +214,12 @@ class News extends Model implements Viewable
     public function news_category()
     {
         return $this->hasOne(NewsCategory::class, 'news_id','id');
+    }
+
+    public function getLastCategoryName()
+    {
+        $category = $this->category->last();
+        return $category ? $category->name : '';
     }
 
     public function getCategoryName()

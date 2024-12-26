@@ -15,10 +15,11 @@
                                     <div class="newslist__item">
                                         <div class="newslist__thumb">
                                             <img width="1024" height="576"
-                                                 src="{{ $topFirstNews->getImageUrl() }}"
+                                                 src="{{ $topFirstNews->getImageUrl(\App\Models\File::PATH_MEDIUM) }}"
                                                  class="attachment-large size-large wp-post-image"
                                                  alt="465590487 1227210765004364 8232227407550713649 n" decoding="async"
                                                  fetchpriority="high"
+                                                 loading="lazy"
                                                  sizes="(max-width: 1024px) 100vw, 1024px"
                                                  title="{{ $topFirstNews->getTitle() }}">
                                             <a href="{{ $topFirstNews->getUrl() }}" class="newslist__link"></a>
@@ -82,7 +83,7 @@
                                 <div class="newslist__item">
                                     <div class="newslist__thumb">
                                         <img width="1024" height="576"
-                                             src="{{ $slide->news->getImageUrl() }}"
+                                             src="{{ $slide->news->getImageUrl(\App\Models\File::PATH_MEDIUM) }}"
                                              class="attachment-large size-large wp-post-image" alt="5330364623100177813"
                                              decoding="async"
                                              sizes="(max-width: 1024px) 100vw, 1024px"
@@ -136,24 +137,24 @@
                             <div class="col-md-8">
                                 @if($firstsCentralNew = $firstsCentralNews->first())
                                     <div class="article-item article-big">
-                                        <a href="{{ $firstsCentralNew->getUrl() }}" class="article-thumb">
+                                        <a href="{{ $firstsCentralNew['url'] }}" class="article-thumb">
                                             <img width="843" height="500"
-                                                  src="{{ $firstsCentralNew->getImageUrl() }}"
+                                                  src="{{ $firstsCentralNew['image_url'] }}"
                                                   class="attachment-large size-large wp-post-image"
                                                   alt="200 1" decoding="async"
                                                   sizes="(max-width: 843px) 100vw, 843px"
-                                                  title="{{ $firstsCentralNew->getTitle() }}"
+                                                  title="{{ $firstsCentralNew['title'] }}"
                                                   loading="lazy">
-                                            <span class="cat-badge">{{ $firstsCentralNew->getCategoryName() }}</span>
+                                            <span class="cat-badge">{{ $firstsCentralNew['category_name'] }}</span>
                                         </a>
                                         <div class="article-entry">
                                             <div class="article-title">
-                                                <a href="{{ $firstsCentralNew->getUrl() }}">
-                                                    {{ $firstsCentralNew->getTitle() }}
+                                                <a href="{{ $firstsCentralNew['url'] }}">
+                                                    {{ $firstsCentralNew['title'] }}
                                                 </a>
                                             </div>
                                             <div class="article-desc">
-                                                {{ $firstsCentralNew->getShortDescription(150) }}
+                                                {{ $firstsCentralNew['short_description'] }}
                                             </div>
                                         </div>
                                     </div>
@@ -164,19 +165,19 @@
                                         @foreach($lastsCentralNews as $lastsCentralNew)
                                             <div class="col-sm-6">
                                                 <div class="article-item">
-                                                    <a href="{{ $lastsCentralNew->getUrl() }}" class="article-thumb">
+                                                    <a href="{{ $lastsCentralNew['url'] }}" class="article-thumb">
                                                         <img width="400" height="225"
-                                                              src="{{ $lastsCentralNew->getImageUrl() }}"
+                                                              src="{{ $lastsCentralNew['image_url'] }}"
                                                               class="attachment-medium size-medium wp-post-image"
                                                               alt="shvydka" decoding="async"
                                                               sizes="(max-width: 400px) 100vw, 400px"
-                                                              title="{{ $lastsCentralNew->getTitle() }}"
+                                                              title="{{ $lastsCentralNew['title'] }}"
                                                               loading="lazy">
-                                                        <span class="cat-badge">{{ $lastsCentralNew->getCategoryName() }}</span>
+                                                        <span class="cat-badge">{{ $lastsCentralNew['category_name'] }}</span>
                                                     </a>
                                                     <div class="article-entry">
                                                         <div class="article-title">
-                                                            <a href="{{ $lastsCentralNew->getUrl() }}">{{ $lastsCentralNew->getTitle() }}</a>
+                                                            <a href="{{ $lastsCentralNew['url'] }}">{{ $lastsCentralNew['title'] }}</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -193,19 +194,19 @@
                                     @foreach($lastCentralNews as $lastCentralNew)
                                         <div class="col-sm-6 col-md-12">
                                             <div class="article-item">
-                                                <a href="{{ $lastCentralNew->getUrl() }}" class="article-thumb">
+                                                <a href="{{ $lastCentralNew['url'] }}" class="article-thumb">
                                                     <img width="253" height="120"
-                                                          src="{{ $lastCentralNew->getImageUrl() }}"
+                                                          src="{{ $lastCentralNew['image_url'] }}"
                                                           class="attachment-medium size-medium wp-post-image"
                                                           alt="debaty" decoding="async"
                                                           sizes="(max-width: 253px) 100vw, 253px"
-                                                          title="{{ $lastCentralNew->getTitle() }}"
+                                                          title="{{ $lastCentralNew['title'] }}"
                                                           loading="lazy">
-                                                    <span class="cat-badge">{{ $lastCentralNew->getCategoryName() }}</span>
+                                                    <span class="cat-badge">{{ $lastCentralNew['category_name'] }}</span>
                                                 </a>
                                                 <div class="article-entry">
                                                     <div class="article-title">
-                                                        <a href="{{ $lastCentralNew->getUrl() }}">{{ $lastCentralNew->getTitle() }}</a>
+                                                        <a href="{{ $lastCentralNew['url'] }}">{{ $lastCentralNew['title'] }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -237,7 +238,7 @@
                                                 <div class="article-item article-big">
                                                     <a href="{{ $firstBottom->getUrl() }}" class="article-thumb">
                                                         <img width="1024" height="768"
-                                                              src="{{ $firstBottom->getImageUrl() }}"
+                                                              src="{{ $firstBottom->getImageUrl(\App\Models\File::PATH_MEDIUM) }}"
                                                               class="attachment-large size-large wp-post-image"
                                                               alt="photo 2024 08 19 06 32 06" decoding="async"
                                                               sizes="(max-width: 1024px) 100vw, 1024px"

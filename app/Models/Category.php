@@ -7,6 +7,7 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class Category
@@ -87,7 +88,7 @@ class Category extends Model implements Viewable
      */
     public function getMetaTitle():?string
     {
-        return $this->getName() . " | Інформаційне агентство “Король Данило”";
+        return $this->getName() . " | НТА - ПРЯМА МОВА ЛЬВОВА”";
     }
 
     /**
@@ -95,7 +96,12 @@ class Category extends Model implements Viewable
      */
     public function getMetaDescription():?string
     {
-        return "Читати ⏩ " . $this->getName() . " | Інформаційне агентство “Король Данило” - головні новини України та Світу";
+        return "Читати ⏩ " . $this->getName() . " | НТА - ПРЯМА МОВА ЛЬВОВА";
+    }
+
+    public function children()
+    {
+        return $this->hasMany(CategoryRelative::class, 'parent_id', 'id');
     }
 
     public function relation()
@@ -140,6 +146,13 @@ class Category extends Model implements Viewable
         return $this->description;
     }
 
+    public function latestNews()
+    {
+        return $this->belongsToMany(News::class, 'news_categories', 'category_id', 'news_id')
+            ->withTimestamps()
+            ->latest('news.date_of_publication');
+    }
+
     public function news()
     {
         return $this->belongsToMany(News::class, 'news_categories', 'category_id', 'news_id')
@@ -149,5 +162,29 @@ class Category extends Model implements Viewable
     public function scopeFilter(Builder $builder, QueryFilter $filter)
     {
         return $filter->apply($builder);
+    }
+
+    public static function getCategoryHierarchy()
+    {
+        $categories = DB::table('categories as c')
+            ->select('c.id', 'c.name', 'cr.parent_id')
+            ->leftJoin('category_relation as cr', 'c.id', '=', 'cr.category_id')
+            ->get()
+            ->groupBy('parent_id');
+
+        return self::buildTree($categories);
+    }
+
+    private static function buildTree($categories, $parentId = null)
+    {
+        $tree = [];
+        foreach ($categories[$parentId] ?? [] as $category) {
+            $tree[] = [
+                'id' => $category->id,
+                'name' => $category->name,
+                'children' => self::buildTree($categories, $category->id),
+            ];
+        }
+        return $tree;
     }
 }

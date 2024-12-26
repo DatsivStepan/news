@@ -16,6 +16,8 @@ Route::get('/', [App\Http\Controllers\NewsController::class, 'index'])->name('/'
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin-login', [App\Http\Controllers\Admin\AdminController::class,'login'])->name('admin-login');
 Route::post('/admin/login', [App\Http\Controllers\Admin\AdminLoginController::class,'login'])->name('admin.login');
+Route::get('/ukrnet/rss', [\App\Http\Controllers\RssController::class, 'generateRss']);
+Route::get('/urknet/feed', [\App\Http\Controllers\RssController::class, 'generateRSSWithNewlines']);
 
 Route::group(['middleware' => ['auth']], function() {
 //    Route::group(['middleware' => ['role:Admin|Manager']], function () {

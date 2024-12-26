@@ -53,7 +53,7 @@ class RecommendNews extends AbstractWidget
         $recommendedNews = News::join('news_categories', 'news.id', '=', 'news_categories.news_id')
             ->whereIn('news_categories.category_id', $allCategoryIds)
             ->whereNotIn('news.id', $viewedNewsIds)
-            ->orderBy('news.created_at', 'desc')
+            ->orderBy('news.date_of_publication', 'desc')
             ->limit(3)
             ->get(['news.*']);
 

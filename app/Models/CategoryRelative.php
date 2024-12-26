@@ -14,6 +14,4 @@ class CategoryRelative extends Model
     ];
 
     protected $table = 'category_relation';
-
-
 }

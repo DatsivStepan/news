@@ -65,7 +65,7 @@ class FileController extends Controller
             'name' => 'required|string'
         ]);
 
-        $this->repository->uploadAndCreate($request->file, $request->get('name'));
+        $this->repository->uploadAndCreate($request->file, 'news',$request->get('name'));
 
         return redirect(route('admin.files.index'))
             ->with('success', 'You have successfully upload file.')

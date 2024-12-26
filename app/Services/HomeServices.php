@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Image;
+use App\Models\News;
 use App\Models\Setting;
 use App\Models\Tag;
 use App\Repositories\CategoryRepository;
@@ -92,12 +93,13 @@ class HomeServices
         $pageRepository = app(PageRepository::class);
 
         $result = [];
+        $childCounter = 0;
         foreach ($items as $item) {
             $item = trim($item);
             $isChild = strpos($item, '-') === 0;
             $item = ltrim($item, '-');
 
-            [$type, $slug] = explode(',', $item);
+            [$type, $slug, $forceName] = array_pad(explode(',', $item), 3, null);
 
             // Створюємо елемент
             $element = [];
@@ -120,12 +122,23 @@ class HomeServices
 
                     $element = [
                         'info' => [
-                            'name' => $category->getName(),
+                            'name' => $forceName ? : $category->getName(),
                             'url' => $category->getUrl(),
                         ],
                         'child' => $childCategories
                     ];
 
+                    break;
+                case Setting::MENU_OPTION_HASH:
+                    if ($forceName) {
+                        $element = [
+                            'info' => [
+                                'name' => $forceName,
+                                'url' => '#',
+                            ],
+                            'child' => []
+                        ];
+                    }
                     break;
                 case Setting::MENU_OPTION_PAGE:
                     $page = $pageRepository->getOne($slug, 'slug');
@@ -134,7 +147,7 @@ class HomeServices
                     }
                     $element = [
                         'info' => [
-                            'name' => $page->getName(),
+                            'name' => $forceName ? : $page->getName(),
                             'url' => $page->getUrl(),
                         ],
                         'child' => []
@@ -149,8 +162,13 @@ class HomeServices
 
             if ($isChild) {
                 $countResult = count($result);
+                if ($childCounter == 0) {
+                    $result[$countResult-1]['child'] = [];
+                }
                 $result[$countResult-1]['child'][] = $element['info'];
+                $childCounter++;
             } else {
+                $childCounter = 0;
                 $result[] = $element;
             }
         }
@@ -172,16 +190,21 @@ class HomeServices
         if (!$items) {
             return [];
         }
-        $result = [];
+
         $categoryRepository = app(CategoryRepository::class);
         $pageRepository = app(PageRepository::class);
+
+        $result = [];
+        $childCounter = 0;
         foreach ($items as $item) {
-            $item = explode(",", $item);
-            if (empty($item[0]) || empty($item[1])) {
-                continue;
-            }
-            $type = trim($item[0]);
-            $slug = trim($item[1]);
+            $item = trim($item);
+            $isChild = strpos($item, '-') === 0;
+            $item = ltrim($item, '-');
+
+            [$type, $slug, $forceName] = array_pad(explode(',', $item), 3, null);
+
+            // Створюємо елемент
+            $element = [];
             switch ($type) {
                 case Setting::MENU_OPTION_CATEGORY:
                     $category = $categoryRepository->getOne($slug, 'slug');
@@ -190,7 +213,7 @@ class HomeServices
                     }
 
                     $childCategories = [];
-                    if (!$category->childrenCategories->isEmpty()) {
+                    if (!$isChild && !$category->childrenCategories->isEmpty()) {
                         foreach ($category->childrenCategories as $childCategory) {
                             $childCategories[] = [
                                 'name' => $childCategory->getName(),
@@ -198,9 +221,10 @@ class HomeServices
                             ];
                         }
                     }
-                    $result[] = [
+
+                    $element = [
                         'info' => [
-                            'name' => $category->getName(),
+                            'name' => $forceName ? : $category->getName(),
                             'url' => $category->getUrl(),
                         ],
                         'child' => $childCategories
@@ -212,14 +236,31 @@ class HomeServices
                     if (!$page) {
                         break;
                     }
-                    $result[] = [
+                    $element = [
                         'info' => [
-                            'name' => $page->getName(),
+                            'name' => $forceName ? : $page->getName(),
                             'url' => $page->getUrl(),
                         ],
-                        'child' => null
+                        'child' => []
                     ];
                     break;
+            }
+
+
+            if (!$element) {
+                continue;
+            }
+
+            if ($isChild) {
+                $countResult = count($result);
+                if ($childCounter == 0) {
+                    $result[$countResult-1]['child'] = [];
+                }
+                $result[$countResult-1]['child'][] = $element['info'];
+                $childCounter++;
+            } else {
+                $childCounter = 0;
+                $result[] = $element;
             }
         }
 
@@ -263,21 +304,42 @@ class HomeServices
         return $setting->value;
     }
 
-    public function getMainPageCentralNews()
+    public function getMainPageCentralNews($resetCache = false)
     {
+        if (($value = Cache::get('main-page-central-news')) && !$resetCache) {
+            return collect($value);
+        }
+
         $setting = app(SettingRepository::class)->getOne(Setting::MAIN_PAGE_CENTRAL_BLOCK_CATEGORY, 'key');
         $categoryIds = explode(",", $setting->value);
         if (!$categoryIds) {
             return [];
         }
 
-        return \App\Models\News::whereIn('id', function ($query) use ($categoryIds) {
-                    $query->select(\DB::raw('MAX(news.id)'))
-                        ->from('news')
-                        ->join('news_categories', 'news.id', '=', 'news_categories.news_id')
-                        ->whereIn('news_categories.category_id', $categoryIds)
-                        ->groupBy('news_categories.category_id');
-                })->get();
+        $options = [
+            'filters' => [
+                'slug' => $categoryIds,
+            ]
+        ];
+        if (!$categories = $this->categoryRepository->get($options)) {
+            return [];
+        }
+        $resNews = [];
+        foreach ($categories as $category) {
+            if (!$lastNews = $category->latestNews()->first()) {
+                continue;
+            }
+            $resNews[] = [
+                'url' => $lastNews->getUrl(),
+                'image_url' => $lastNews->getImageUrl(\App\Models\File::PATH_MEDIUM),
+                'title' => $lastNews->getTitle(),
+                'category_name' => $category->getName(),
+                'short_description' => $lastNews->getShortDescription(150),
+            ];
+        }
+
+        Cache::put('main-page-central-news', $resNews);
+        return collect($resNews);
     }
 
    public function getMainPageBottomNews()
@@ -289,7 +351,7 @@ class HomeServices
         }
 
         return \App\Models\Category::withCount('news')
-            ->having('news_count', '>', 3)->whereIn('id', $categoryIds)
+            ->having('news_count', '>', 3)->whereIn('slug', $categoryIds)
             ->get();
     }
 
@@ -300,7 +362,11 @@ class HomeServices
             return [];
         }
 
-        return app(NewsRepository::class)->getLastNewsForCategoory($setting->value, 3);
+        if (!$category = $this->categoryRepository->getOne($setting->value, 'slug')) {
+            return [];
+        }
+
+        return app(NewsRepository::class)->getLastNewsForCategoory($category->id, 3);
     }
 
     public static function getFooterPageCompany($type)
@@ -311,9 +377,9 @@ class HomeServices
 
     public static function getWeatherData()
     {
-//        if (($value = Cache::get('header-weather-data'))) {
-//            return $value;
-//        }
+        if (($value = Cache::get('header-weather-data'))) {
+            return $value;
+        }
 
         $weatherData = [];
         $apiKey = env('WEATHER_API_KEY');
